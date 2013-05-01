@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main(void) 
+{
+  int i, j , m ;
+
+  printf("Entre com os valores i e j: ");
+  scanf("%d %d", &i , &j );
+
+  m = i + j - ( i % j );
+
+  printf("O menor inteiro é %d.\n" , m );
+
+  return 0;
+}

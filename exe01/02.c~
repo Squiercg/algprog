@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main(void)
+{
+  int a,b,c,soma,mult;
+
+  prinf("Entre os valores de a b c: ");
+  scanf("%d %d %d", &a,&b,&c);
+
+  soma = a + b + c;
+  mult = a * b * c;
+
+  printf("O resultado da soma é %d e da multiplicação é %d", soma , multi);
+
+  return 0; 
+  }
