@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+/* Esse programa recebe valor e tempo trabalhado e calcula algusn encargos fiscais*/
+
 int main(void)
 {
   float hora , valor , a , b , c , d , e , f;
@@ -24,15 +26,14 @@ int main(void)
   e = b + c;
   f = a - e;
 
-  printf("Salario Bruto: %d\n",a);
-  printf("IR : %d\n",b);
-  printf("INSS : %d\n",c);
-  printf("FGTS : %d\n",d);
-  printf("Total de descontos : %d\n",e);
-  printf("Salário liquido : %d\n",f);
+  printf("---------------------------------\n");
+  printf("Salario Bruto: %f\n",a);
+  printf("IR : %f\n",b);
+  printf("INSS : %f\n",c);
+  printf("FGTS : %f\n",d);
+  printf("Total de descontos : %f\n",e);
+  printf("Salário liquido : %f\n",f);
 
-
-
-
+  return 0;
 
 }
