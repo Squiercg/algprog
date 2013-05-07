@@ -4,13 +4,17 @@
 
 int main(void)
 {
-  int num , passo , soma , final;
+  int entradas, computados ,num , passo , soma , final;
 
-    final = 0;
+  final = 0;
+
+    printf("Digite um entradas a avaliar: ");
+    scanf("%d",&entradas);
+    computados=1;
 
   do {
 
-    printf("Digite um número: ");
+    printf("Digite a entrada %d: ",computados);
     scanf("%d",&num);
 
     passo = 2;
@@ -23,11 +27,13 @@ int main(void)
       passo = passo + 1;
     }
 
-    if( (soma == num-2) && (num > 0) ) {
+    if( (soma == num-2)) {
       final = final + num;
     }
 
-  } while(num > 0);
+    computados++;
+
+  } while(computados<=entradas);
 
     printf("A soma dos primos é %d.\n",final);
 
