@@ -2,25 +2,30 @@
 
 int main(void)
 {
-  int n, n2, m, resto ;
+  int quantidade , i ,n, n2, m, resto ;
 
-  printf("Entre com um número: ");
-  scanf("%d",&n);
+  scanf("%d",&quantidade);
 
-  m=0;
-  n2=n;
+  for(i=1 ; i<=quantidade ; i++ ) {
 
-  do {
-    resto = n % 10;
-    n = n / 10;
+    scanf("%d",&n);
 
-    m = m*10 + resto;
-  } while(n>0);
+    m=0;
+    n2=n;
+
+    do {
+      resto = n % 10;
+      n = n / 10;
+
+      m = m*10 + resto;
+    } while(n>0);
 
   if(n2==m)
-    printf("É palindromo.\n");
+    printf("yes\n");
   else
-    printf("Não palindromo.\n");
+    printf("no\n");
+
+  }
 
   return 0;
 }
