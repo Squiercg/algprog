@@ -18,7 +18,7 @@ int main(void)
 
       scanf("%d" , &x );
 
-      if(x < y) {
+      if(x <= y) {
 	teste = 1;
       }
 
