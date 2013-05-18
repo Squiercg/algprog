@@ -6,7 +6,6 @@ int main(void)
 {
   int x , y , z , aux ;
 
-  printf("Entre com 3 números inteiros: ");
   scanf("%d %d %d", &x,&y,&z);
 
   if(y>x) {
@@ -27,7 +26,7 @@ int main(void)
     y=aux;
   }
 
-  printf("Resultado apos a reorganização: %d , %d e %d.\n",x,y,z);
+  printf("%d %d %d\n",x,y,z);
 
   return 0;
 

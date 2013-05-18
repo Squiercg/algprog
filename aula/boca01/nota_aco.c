@@ -6,7 +6,6 @@ int main(void)
 {
   int carbono , dureza , resistencia , teste , resultado ;
 
-  printf("Entre com os valores de conteudo de carbono, dureza e resistencia da amostra: ");
   scanf("%d %d %d",&carbono, &dureza , &resistencia);
 
   teste=0;
@@ -37,7 +36,7 @@ int main(void)
     }
   }
 
-  printf("A classificação da amostra é %d.\n",resultado);
+  printf("%d\n",resultado);
   return 0;
 
 }
