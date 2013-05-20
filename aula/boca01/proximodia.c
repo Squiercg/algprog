@@ -6,25 +6,14 @@ int main (void)
   scanf ("%d %d %d", &dia, &mes, &ano);
 
   if((ano % 4 == 0 && ano % 100 != 0) || ano % 400 == 0)
-    bissexto = 1;
+    bissexto = 29;
   else
-    bissexto = 0;
+    bissexto = 28;
 
-  if(bissexto == 1) {
-
-    if((dia==29&&mes==2)||(dia==30&&(mes==4||mes==6||mes==9||mes==11))||dia==31)
-      pdia=1;
-    else
-      pdia=dia+1;
-
-  } else {
-
-    if((dia==28&&mes==2)||(dia==30&&(mes==4||mes==6||mes==9||mes==11))||dia==31)
-        pdia=1;
-    else
-      pdia=dia+1;
-
-  }
+  if((dia==bissexto&&mes==2)||(dia==30&&(mes==4||mes==6||mes==9||mes==11))||dia==31)
+    pdia=1;
+  else
+    pdia=dia+1;
 
     if(pdia==1)
       pmes=mes+1;
