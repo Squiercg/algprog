@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main(void)
+{
+  float vetora[100], vetorb[100], vetorc[100];
+  int cont;
+
+  cont=0;
+  scanf("%d %d", &vetora[0] , &vetorb[0]);
+
+  while(vetora[cont]!= -1 && vetorb[cont]!=-1) {
+    vetorc[cont]=vetora[cont]+vetorb[cont];
+    scanf("%d %d", &vetora[0] , &vetorb[0]);
+    cont++;
+  }
+
+  for(i=0;i<=cont;i++) {
+    printf("%d",vetorc[i]); 
+  }
+
+  printf("\n");
+
+  return 0;
+}
