@@ -2,7 +2,7 @@
 
 int main(void)
 {
-  int num[100], pares[50], impares[50] , par , imp , n, i;
+  int num[100], pares[100], impares[100] , par , imp , n, i;
 
   scanf("%d",&n);
 
