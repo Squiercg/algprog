@@ -4,13 +4,14 @@ int main(void) {
 
   int idade[100]={0}, velhos , novos , i , n; 
     float media;
-
+    /*Entrada de dados*/
     scanf("%d",&n);
 
     for(i=0;i<n;i++) {
       scanf("%d",&idade[i]);
     }
 
+    /*Processamento*/
     media=0;
 
     for(i=0;i<n;i++) {
@@ -30,6 +31,7 @@ int main(void) {
       }
     }
 
+    /*Saida*/
     printf("Mais velhos: %d\n",velhos);
     printf("Mais novos: %d\n",novos);
 

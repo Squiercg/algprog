@@ -10,7 +10,7 @@ de k e dos pontos x1 , x2 , . . . , xk .*/
 int main(void)
 {
   int n , i , k , j;
-  float px, x, pot, coef[MAX] = { 0 };
+  float px[MAX] = { 0 }, x[MAX] = { 0 }, pot, coef[MAX] = { 0 };
 
   printf("Qual o grau do polinomio?\n");
   scanf("%d",&n);
@@ -23,20 +23,23 @@ int main(void)
   printf("Para quantos valores de x o polinomio deve ser avaliado?\n");
   scanf("%d",&k);
 
-  for(j=1;j<=k;j++) {
-    printf("Entre com valor de x: ");
-    scanf("%f",&x);
+  printf("Entre com valor de x: \n");
+  for(j=0;j<k;j++) {
+    scanf("%f",&x[j]);
 
-    px=0;
+    px[j]=0;
     pot=1;
 
-    for(i=0;i<=n;
-
-
+    for(i=0;i<=n;i++) {
+      px[j]=px[j]+(pot*coef[i]);
+      pot=pot*x[j];
+    }
   }
 
+  printf("\n");
+  for(i=0;i<k;i++) {
+    printf("P(%.2f) = %.2f\n",x[i],px[i]);
+  }
 
-
-
-
+    return 0;
 }
