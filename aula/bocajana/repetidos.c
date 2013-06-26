@@ -16,9 +16,14 @@ int main(void)
     for(j=0;j<m;j++){
       for(l=0;l<n;l++){
 	for(c=0;c<m;c++){
-	  if(matriz[i][j]==matriz[l][c]){
-	    saida=1;
+
+	  if((l!=i)&&(c!=j)) {
+
+	      if(matriz[i][j]==matriz[l][c]){
+		saida=1;
 	      }
+
+	    }
 	}
       }
     }

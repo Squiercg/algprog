@@ -2,7 +2,7 @@
 
 int main(void)
 {
-  int i, j, m , n , maior[2]={0}, teste , matriz[200][200];
+  int i, j, m , n , menor[2]={0,0} , matriz[200][200];
 
   scanf("%d %d",&n , &m);
 
@@ -10,16 +10,21 @@ int main(void)
     for(j=0;j<m;j++)
       scanf("%d",&matriz[i][j]);
 
+
+  menor[0]=matriz[0][0];
+
   for(i=0;i<n;i++){
-    teste=0;
     for(j=0;j<m;j++){
-      teste=teste+matriz[i][j];
+
+      if(menor[0]>matriz[i][j]){
+	menor[0]=matriz[i][j];
+	menor[1]=i;
+      }
+
     }
-    if(teste>maior[0])
-      maior[1]=i;
   }
 
-  printf("%d\n",maior[1]+1);
+  printf("%d\n",menor[1]+1);
 
   return 0;
 }
