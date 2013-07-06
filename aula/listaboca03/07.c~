@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int MENORES(int x, int V[], int n){
+  int cont=0;
+
+  if(V[i]<=x){
+    cont++;
+  }
+
+
+  return cont;
+}
+
+int main(void)
+{
+
+  return 0;
+}
