@@ -1,4 +1,10 @@
 #include <stdio.h>
+/*Aluno: Augusto Cesar de Aquino Ribas
+Algoritmos de programação turma 03
+Analise de sistemas.*/
+
+/* Esse programa recebe os dados de trafego aereo e estima qual ou quais
+os aeroportos com mair risco de congestionamento*/
 
 int main(void)
 {
@@ -19,15 +25,18 @@ int main(void)
   }
 
   /*Computando voos por aeroporto*/
+  /*Essa informção sera guardada numa matriz,
+    a linha zero consiste no id do aerorporto e a linha 1
+    consiste na quantidade de voos daquele aeroporto*/
   for(i=0;i<v;i++){
     x[1][y[0][i]-1]++;
     x[1][y[1][i]-1]++;
   }
 
-  /*Ordenando com o algoritimo da bolha*/
+  /*Ordenando  aeroportos com o algoritimo da bolha, note que ordenamos por
+    quantidade, mas os id dos aeroportos também são organizados juntos*/
   for(i=(v-1);i>=1;i--){
     for(j=0;j<i;j++){
-	  printf("Comparando %d com %d\n",j,j+1);
 	if(x[1][j]<x[1][j+1]){
 	  aux[0]=x[0][j+1];
 	  aux[1]=x[1][j+1];
@@ -41,17 +50,14 @@ int main(void)
   }
   printf("\n");
 
-  for(i=0;i<a;i++){
-    printf("A:%d,C:%d\n",x[0][i], x[1][i]);
-  }
-
-
   /*Saida*/
-  if(x[0][0]==x[0][1]){
+  /*Comparamos se houve empate entre os primeiros, se houver nos listaremos
+    todos os aeroportos com maior chance de congestionamento*/
+  if(x[1][0]==x[1][1]){
     printf("Aeroportos: \n");
     printf("%d ",x[0][0]);
     i=1;
-    while(x[0][i]==x[0][0]) {
+    while(x[1][i]==x[1][0]) {
     printf("%d ",x[0][i]);
     i++;
     }

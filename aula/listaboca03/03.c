@@ -1,4 +1,10 @@
 #include <stdio.h>
+/*Aluno: Augusto Cesar de Aquino Ribas
+Algoritmos de programação turma 03
+Analise de sistemas.*/
+
+/* Esse programa recebe duas matrizes e compara se a segunda é o inverso da primeira*/
+
 
 #define MAX 100
 
@@ -44,9 +50,9 @@ int main(void)
 
   /*Saida de dados*/
   if(igual==1)
-    printf("Não é igual\n");
+    printf("Não são iguais\n");
   else
-    printf("É igual\n");
+    printf("São iguais\n");
 
   return 0;
 }
