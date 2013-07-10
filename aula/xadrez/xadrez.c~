@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+typedef struct{
+  char peca;
+  int linha , coluna;
+} peca;
+
+
+int main(void)
+{
+  peca branca[16] , preta[16], movimento[2];
+  char coluna[2];
+  int b,p,i,linha[2];
+
+  scanf("%d",&b);
+
+  for(i=0;i<b;i++) {
+    scanf("\n %c %d%c",&branca[i].peca,&linha[0],&coluna[0]);
+    branca[i].linha=linha[0]-1;
+    branca[i].coluna=coluna[0]-97;
+  }
+
+  scanf("%d",&p);
+
+  for(i=0;i<p;i++) {
+    scanf("\n %c %d%c",&preta[i].peca,&linha[0],&coluna[0]);
+    preta[i].linha=linha[0]-1;
+    preta[i].coluna=coluna[0]-97;
+  }
+
+  scanf("\n %c %d%c %d%c",&movimento[0].peca,&linha[0],&coluna[0],&linha[1],&coluna[1]);
+  movimento[0].linha=linha[0]-1;
+  movimento[0].coluna=coluna[0]-97;
+  movimento[1].peca=movimento.peca[0];
+  movimento[1].linha=linha[1]-1;
+  movimento[1].coluna=coluna[1]-97;
+
+  printf("fim\n");
+
+  return 0;
+}
