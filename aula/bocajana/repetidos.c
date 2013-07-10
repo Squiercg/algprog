@@ -14,10 +14,10 @@ int main(void)
 
   for(i=0;i<n;i++){
     for(j=0;j<m;j++){
-      for(l=0;l<n;l++){
-	for(c=0;c<m;c++){
+      for(l=i;l<n;l++){
+	for(c=i;c<m;c++){
 
-	  if((l!=i)&&(c!=j)) {
+	  if((l!=i)||(c!=j)) {
 
 	      if(matriz[i][j]==matriz[l][c]){
 		saida=1;
