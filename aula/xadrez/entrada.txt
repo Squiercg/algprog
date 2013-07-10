@@ -1,0 +1,10 @@
+3
+R 4a
+D 1h
+T 7d
+4
+P 3f
+R 2d
+C 8a
+B 4g
+D 1h 1d
