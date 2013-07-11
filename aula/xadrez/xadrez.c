@@ -15,7 +15,7 @@ int xeque(peca rei , peca adversario , char cor) {
     if(  ((rei.linha-1==adversario.linha-1) && (rei.coluna-1==adversario.coluna-1 ))  ||
 	  ((rei.linha+1==adversario.linha+1) && (rei.coluna-1==adversario.coluna-1))  )
       return 1;
-    else
+    exlse
       return 0;
   } else {
     if( ((rei.linha-1==adversario.linha-1) && (rei.coluna+1==adversario.coluna+1))  ||
