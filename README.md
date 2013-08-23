@@ -1,5 +1,4 @@
 Aqui estão uma coleção de aulas e exercícios de cursos e aulas de Algorítimos de programação que venho estudando.  
-Até agora so existem programa em C por aqui.  
   
 Lembretes:  
   
