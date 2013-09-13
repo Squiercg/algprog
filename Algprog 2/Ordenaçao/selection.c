@@ -4,7 +4,7 @@
 void selectionsort(int vetor[MAX],int n){
   int i, j, max, imax;
 
-  for(i=n-1;i>0;i--) {
+  for(i=n;i>0;i--) {
     max=vetor[0];
     imax=0;
 
@@ -14,18 +14,35 @@ void selectionsort(int vetor[MAX],int n){
 	imax=j;
       }
 
-
     }
-      vetor[imax]=vetor[i];
-      vetor[i]=max;
+      vetor[imax]=vetor[i-1];
+      vetor[i-1]=max;
   }
 }
 
-/*
-void selectionsortR(int vetor,int n){
+
+void selectionsortR(int vetor[MAX],int n){
+  int max,imax,j;
+
+  if(n>1){
+    max=vetor[0];
+    imax=0;
+
+    for(j=0;j<n;j++) {
+      if(vetor[j]>max){
+	max=vetor[j];
+	imax=j;
+      }
+
+    }
+      vetor[imax]=vetor[n-1];
+      vetor[n-1]=max;
+
+      selectionsortR(vetor,n-1);
+  }
 
 }
-*/
+
 
 
 int main(void) {
@@ -53,9 +70,7 @@ int main(void) {
 
   printf("Selection Sort recursivo:\n");
 
-  /*
   selectionsortR(vetor2,n);
-  */
 
   for(i=0;i<n;i++) {
     printf("%d ",vetor2[i]);

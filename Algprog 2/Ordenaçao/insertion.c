@@ -18,18 +18,18 @@ void insertionsort(int vetor[MAX], int n) {
 
 }
 
-void insertionsortR(int vetor[MAX], int i , int n) {
-  int j,aux;
+void insertionsortR(int vetor[MAX], int n) {
+  int i, aux;
 
-  if(i<n) {
-    aux=vetor[i];
-    j=i-1;
-    while(j>=0 && vetor[j]>aux) {
-      vetor[j+1]=vetor[j];
-      j=j-1;
-    }
-    vetor[j+1]=aux;
-    insertionsortR(vetor,i+1,n);
+  if(n>1) {
+    insertionsortR(vetor,n-1);
+    aux=vetor[n-1];
+    i=n-1;
+    while(vetor[i-1]>aux && i>=0 ) {
+      vetor[i]=vetor[i-1];
+      i--;
+     }
+    vetor[i]=aux;
   }
 }
 
@@ -58,7 +58,7 @@ int main(void) {
 
   printf("Insertion Sort recursivo:\n");
 
-  insertionsortR(vetor2,1,n);
+  insertionsortR(vetor2,n);
 
   for(i=0;i<n;i++) {
     printf("%d ",vetor2[i]);
