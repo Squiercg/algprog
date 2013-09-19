@@ -1,5 +1,8 @@
-#include <stdlib>
-#include ordena.h
+#include <stdio.h>
+#include <stdlib.h>
+#include "ordena.h"
+
+#define teste 5
 
 int main(void){
 
@@ -7,49 +10,49 @@ int main(void){
 
   /*Insertion Sort*/
 
-  for(i=0;i<30;i++)
+  for(i=0;i<teste;i++)
     vetor[i]=rand();
 
-  for(i=0;i<30;i++)
+  for(i=0;i<teste;i++)
     printf("%d ",vetor[i]);
   printf("\n");
 
-  insertionsortR(vetor,30);
+  insertionsortR(vetor,teste);
 
   printf("Insertion Sort\n");
-  for(i=0;i<30;i++)
+  for(i=0;i<teste;i++)
     printf("%d ",vetor[i]);
   printf("\n\n");
 
   /*Selection Sort*/
 
-  for(i=0;i<30;i++)
+  for(i=0;i<teste;i++)
     vetor[i]=rand();
 
-  for(i=0;i<30;i++)
+  for(i=0;i<teste;i++)
     printf("%d ",vetor[i]);
   printf("\n");
 
-  selectionsortR(vetor,30);
+  selectionsortR(vetor,teste);
 
   printf("Selection Sort\n");
-  for(i=0;i<30;i++)
+  for(i=0;i<teste;i++)
     printf("%d ",vetor[i]);
   printf("\n\n");
 
   /*Merge Sort*/
 
-  for(i=0;i<30;i++)
+  for(i=0;i<teste;i++)
     vetor[i]=rand();
 
-  for(i=0;i<30;i++)
+  for(i=0;i<teste;i++)
     printf("%d ",vetor[i]);
   printf("\n");
 
-  mergesort(vetor,30);
+  mergesort(0,teste,vetor);
 
-  printf("Selection Sort\n");
-  for(i=0;i<30;i++)
+  printf("Merge Sort\n");
+  for(i=0;i<teste;i++)
     printf("%d ",vetor[i]);
   printf("\n\n");
 

@@ -1,3 +1,5 @@
+#define MAX 100
+
 void insertionsortR(int vetor[MAX], int n) {
   int i, aux;
 
