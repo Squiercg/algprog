@@ -1,4 +1,4 @@
-#define MAX 100
+#include "ordena.h"
 
 void insertionsortR(int vetor[MAX], int n) {
   int i, aux;

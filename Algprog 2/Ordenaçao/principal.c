@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include "ordena.h"
 
-#define teste 5
-
 int main(void){
 
-  int i, vetor[MAX];
+  int i, vetor[MAX] , teste;
+
+  scanf("%d",teste);
 
   /*Insertion Sort*/
 
@@ -40,7 +40,7 @@ int main(void){
     printf("%d ",vetor[i]);
   printf("\n\n");
 
-  /*Merge Sort*/
+  /*MergeSort*/
 
   for(i=0;i<teste;i++)
     vetor[i]=rand();
@@ -51,11 +51,42 @@ int main(void){
 
   mergesort(0,teste,vetor);
 
-  printf("Merge Sort\n");
+  printf("MergeSort\n");
   for(i=0;i<teste;i++)
     printf("%d ",vetor[i]);
   printf("\n\n");
 
+  /*QuickSort*/
+
+  for(i=0;i<teste;i++)
+    vetor[i]=rand();
+
+  for(i=0;i<teste;i++)
+    printf("%d ",vetor[i]);
+  printf("\n");
+
+  //
+
+  printf("QuickSort\n");
+  for(i=0;i<teste;i++)
+    printf("%d ",vetor[i]);
+  printf("\n\n");
+
+  /*BinaryHeap*/
+
+  for(i=0;i<teste;i++)
+    vetor[i]=rand();
+
+  for(i=0;i<teste;i++)
+    printf("%d ",vetor[i]);
+  printf("\n");
+
+  //
+
+  printf("Binary Heap\n");
+  for(i=0;i<teste;i++)
+    printf("%d ",vetor[i]);
+  printf("\n");
 
 
 }
