@@ -173,11 +173,48 @@ Segue uma amostra de valores da função $\lfloor \log_2 n \rfloor$:
 int piso_log2(int n)
 \end{lstlisting}
 
-que receba um número inteiro positivo $n$ e devolva $\lfloor
-\log_2 n \rfloor$. 
+que receba um número inteiro positivo $n$ e devolva $\lfloor \log_2 n \rfloor$. 
+
+\begin{lstlisting}
+int piso_log2(int n){
+
+  if(n/2==0) {
+    return 0;
+  } else {
+    return 1+piso_log2(n/2);
+  }
+
+}
+\end{lstlisting}
 
 \item Escreva um programa que receba um número inteiro $n \geq 1$ e imprima $\lfloor \log_2 n \rfloor$. 
-Use a função do item (a). 
+Use a função do item (a).
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int piso_log2(int n){
+
+  if(n/2==0) {
+    return 0;
+  } else {
+    return 1+piso_log2(n/2);
+  }
+
+}
+
+int main(void)
+{
+  int n;
+
+  scanf("%d",&n);
+  printf("%d\n",piso_log2(n));
+  return 0;
+}
+\end{lstlisting}
+
+
+
 \end{enumerate}
 
 \pagebreak
