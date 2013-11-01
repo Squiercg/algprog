@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+typedef struct {
+  int chave;
+  struct cel *prox;
+} cel;
+
+void imprime_lista(cel *lst)
+{
+   cel *p;
+   for (p = lst; p != NULL; p = p->prox)
+      printf("%d\n", p->chave);
+}
+
+
+int main(void) {
+  int n,i;
+  cel *lista, *aux, *proximo;
+
+  lista = (cel *) malloc(sizeof (celula));
+  lista->prox = NULL;
+
+  proximo = (cel *) malloc(sizeof (celula));
+  lista->prox = NULL;
+
+
+
+  scanf("%d",&n);
+
+  for (i= 0; i<n; i++) {
+    aux=proximo;
+    proximo = (cel *) malloc(sizeof (celula));
+    scanf("%d",proximo.chave);
+    proximo->prox = NULL;
+    aux->prox=proximo;
+
+
+
+  }
+
+
+
+
+
+  return 0;
+}
