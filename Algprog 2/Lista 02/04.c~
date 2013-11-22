@@ -59,6 +59,8 @@ void insere_lista(int y, celula *lst , int local) {
 
 
 /*Remove*/
+
+
 int remove_C(celula *lst, int local) {
   int x;
   celula *lixo, *p;
@@ -67,13 +69,13 @@ int remove_C(celula *lst, int local) {
    printf("Lista vazia\n");
    return -1;
   } else {
-    if(local == 0 || lst->chave == 1) {
- 
-      lst->prox->ante=lst;
+    if(local == 0) {
+
       x=lst->prox->chave;
       lixo=lst->prox;
+      lst->prox->ante=lst->prox;
       lst->prox=lst->prox->prox;
-       free(lixo);
+      free(lixo);
       lst->chave--;
       return x;
 
@@ -83,8 +85,7 @@ int remove_C(celula *lst, int local) {
       while(p->prox->prox != NULL) {
 	p = p->prox;
     }
-      p->prox->ante=p;
-      x=p->prox->chave;
+      x=p->chave;
       lixo=p->prox;
       p->prox=NULL;
       free(lixo);
@@ -95,41 +96,6 @@ int remove_C(celula *lst, int local) {
   }
 }
 
-void intercala(celula *lst1 ,celula *lst2 ,celula *saida) {
-  int i , n , aux;
-
-  n=lst1->chave+lst2->chave;
-
-  for(i=0; i < n ; i++) {
-
-
-    if(lst1->chave > 0 && lst2->chave > 0 ) {
-
-      if(lst1->prox->chave < lst2->prox->chave) {
-	aux=remove_C(lst1, 0);
-	insere_lista(aux,saida,1);
-      } else {
-	aux=remove_C(lst2, 0);
-	insere_lista(aux,saida,1);
-      }
-
-    } else {
-
-      if(lst1->chave > 0) {
-	aux=remove_C(lst1, 0);
-	insere_lista(aux,saida,1);
-      } else {
-	aux=remove_C(lst2, 0);
-	insere_lista(aux,saida,1);
-      }
-
-    }
-
-
-  }
-
-
-}
 
 int main(void)
 {

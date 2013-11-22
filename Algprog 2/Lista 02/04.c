@@ -4,8 +4,6 @@
 typedef struct cel {
   int chave;
   struct cel *prox;
-  struct cel *ante;
-
 }celula;
 
 /*Imprime lista linear com cabeça*/
@@ -31,15 +29,12 @@ void insere_lista(int y, celula *lst , int local) {
     nova->chave = y;
     lst->prox=nova;
     nova->prox=NULL;
-    nova->ante=NULL;
-  } else {
+   } else {
     if(local == 0) {
 
       nova->chave = y;
       nova->prox=lst->prox;
-      lst->prox->ante=nova;
-      lst->prox=nova;
-      nova->ante=NULL;
+       lst->prox=nova;
 
     } else {
 
@@ -50,8 +45,7 @@ void insere_lista(int y, celula *lst , int local) {
       nova->chave = y;
       nova->prox=NULL;
       p->prox=nova;
-      nova->ante=p;
-
+ 
     }
   }
   lst->chave++;
@@ -67,11 +61,10 @@ int remove_C(celula *lst, int local) {
    printf("Lista vazia\n");
    return -1;
   } else {
-    if(local == 0) {
+    if(local == 0 || lst->chave == 1) {
 
       x=lst->prox->chave;
       lixo=lst->prox;
-      lst->prox->ante=lst->prox;
       lst->prox=lst->prox->prox;
       free(lixo);
       lst->chave--;
@@ -83,13 +76,12 @@ int remove_C(celula *lst, int local) {
       while(p->prox->prox != NULL) {
 	p = p->prox;
     }
-      x=p->chave;
+      x=p->prox->chave;
       lixo=p->prox;
       p->prox=NULL;
       free(lixo);
       lst->chave--;
       return x;
-
 
     }
   }
@@ -97,51 +89,43 @@ int remove_C(celula *lst, int local) {
 
 int main(void)
 {
-  int n, i, x;
-  celula *lista;
+  int n, i, x, a , b;
+  celula *l, *r;
 
   /*Lista com cabeça, esse elemento fica vaziu*/
-  lista = (celula *) malloc(sizeof (celula));
-  lista->prox = NULL;
-  lista->ante = NULL;
-  lista->chave = 0;
+  l = (celula *) malloc(sizeof (celula));
+  l->prox = NULL;
+  l->chave = 0;
 
-  printf ("Entre com o número de elementos:");
+  r = (celula *) malloc(sizeof (celula));
+  r->prox = NULL;
+  r->chave = 0;
+
+  printf ("Entre com o número de elementos da lista l:");
   scanf("%d",&n);
 
-  printf("Entre com os elementos:");
+  printf("Entre com os elementos da lista l:");
   for (i= 0; i<n; i++) {
     scanf("%d",&x);
-    insere_lista(x,lista,0);
+    insere_lista(x,l,1);
   }
 
-  printf("%d elementos \n",lista->chave);
-  imprime_lista(lista);
+  printf("%d elementos \n",l->chave);
+  imprime_lista(l);
 
-  printf ("Entre com o número de elementos:");
-  scanf("%d",&n);
+  n=l->chave/2;
+  for(i=0;i<n;i++){
 
-  printf("Entre com os elementos:");
-  for (i= 0; i<n; i++) {
-    scanf("%d",&x);
-    insere_lista(x,lista,1);
+    a=remove_C(l, 0);
+    b=remove_C(l, 1);
+    printf("a=%d B=%d\n",a,b);
+    insere_lista(a+b,r,1);
+
   }
 
-  printf("%d elementos \n",lista->chave);
-  imprime_lista(lista);
+  printf("%d elementos \n",r->chave);
+  imprime_lista(r);
 
-
-  printf("Remove o primeiro elemento:");
-
-  remove_C(lista, 0);
-  printf("%d elementos \n",lista->chave);
-  imprime_lista(lista);
-
-  printf("Remove o ultimo elemento:");
-
-  remove_C(lista, 1);
-  printf("%d elementos \n",lista->chave);
-  imprime_lista(lista);
 
   return 0;
 }
