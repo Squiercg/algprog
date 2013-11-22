@@ -1,3 +1,4 @@
+/*Exercicio 3*/
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -68,7 +69,7 @@ int remove_C(celula *lst, int local) {
    return -1;
   } else {
     if(local == 0 || lst->chave == 1) {
- 
+
       lst->prox->ante=lst;
       x=lst->prox->chave;
       lixo=lst->prox;
@@ -95,6 +96,7 @@ int remove_C(celula *lst, int local) {
   }
 }
 
+/*Intercala 2 listas*/
 void intercala(celula *lst1 ,celula *lst2 ,celula *saida) {
   int i , n , aux;
 
@@ -125,9 +127,7 @@ void intercala(celula *lst1 ,celula *lst2 ,celula *saida) {
 
     }
 
-
   }
-
 
 }
 
@@ -177,7 +177,6 @@ int main(void)
   imprime_lista(lista2);
 
   intercala(lista1 ,lista2 ,saida);
-
 
   printf("\n\n %d elementos \n",saida->chave);
   imprime_lista(saida);

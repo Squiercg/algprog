@@ -1,3 +1,12 @@
+/*
+Algoritimos de Programação 2
+Lista 2
+Professor Marco Stefanes
+Aluno Augusto Cesar de Aquino Ribas
+
+ */
+
+/*Exercicio 01*/
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -15,7 +24,7 @@ void imprime_lista(celula *lst) {
 }
 
 
-/**/
+/*Insere um elemento*/
 void insere_C(int y, celula *p) {
   celula *nova;
   nova = (celula *) malloc(sizeof (celula));
@@ -25,6 +34,7 @@ void insere_C(int y, celula *p) {
   p->prox = nova;
 }
 
+/*Remove um elemento*/
 int remove_C(celula *p) {
   int x;
   celula *lixo;
@@ -41,7 +51,7 @@ int main(void)
   int n, i, x;
   celula *lista;
 
-  /*Lista com cabeça, esse elemento fica vaziu*/
+  /*Lista com cabeça*/
   lista = (celula *) malloc(sizeof (celula));
   lista->prox = NULL;
   lista->chave = 0;

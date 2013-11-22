@@ -1,3 +1,5 @@
+/*Exercicio 2*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -19,7 +21,6 @@ void imprime_lista(celula *lst) {
      printf("Lista vazia\n");
    }
 }
-
 
 /*Insere*/
 void insere_lista(int y, celula *lst , int local) {
@@ -56,7 +57,6 @@ void insere_lista(int y, celula *lst , int local) {
   }
   lst->chave++;
 }
-
 
 /*Remove*/
 int remove_C(celula *lst, int local) {
@@ -100,7 +100,7 @@ int main(void)
   int n, i, x;
   celula *lista;
 
-  /*Lista com cabeça, esse elemento fica vaziu*/
+  /*Lista com cabeça, cabeça contém o número de elementos da lista*/
   lista = (celula *) malloc(sizeof (celula));
   lista->prox = NULL;
   lista->ante = NULL;

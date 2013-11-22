@@ -1,14 +1,12 @@
+/*Exercicio 5*/
 #include <stdio.h>
 #include <stdlib.h>
 
 typedef struct cel {
   int pot;
-  int coef;
+  float coef;
   struct cel *prox;
 }celula;
-
-
-
 
 /*Insere*/
 void insere_lista(int pot , int coef, celula *lst , int local) {
@@ -16,7 +14,7 @@ void insere_lista(int pot , int coef, celula *lst , int local) {
 
   nova = (celula *) malloc(sizeof (celula));
 
-  if(lst->chave == 0) {
+  if(lst->coef == 0) {
     nova->pot = pot;
     nova->coef = coef;
     lst->prox=nova;
@@ -39,12 +37,12 @@ void insere_lista(int pot , int coef, celula *lst , int local) {
       nova->coef = coef;
       nova->prox=NULL;
       p->prox=nova;
- 
     }
   }
-  lst->chave++;
+  lst->coef++;
 }
 
+/*Calcula a potencia*/
 float potencia(float x, int n) {
   float num;
   if(n==0) {
@@ -66,7 +64,7 @@ float potencia(float x, int n) {
 float resolve(float x ,celula *lst) {
   float saida=0;
   celula *p;
-   if (lst->chave > 0) {
+   if (lst->coef > 0) {
      for (p = lst->prox; p != NULL; p = p->prox)
        saida = saida + p->coef * potencia(x,p->pot);
    } else {
@@ -77,7 +75,8 @@ float resolve(float x ,celula *lst) {
 
 int main(void)
 {
-  int n, i, x, a , b;
+  int n, i, a;
+  float x, b;
   celula *p, *q;
 
   /*Lista com cabeça, esse elemento fica vaziu*/
@@ -86,35 +85,41 @@ int main(void)
   p->coef = 0;
   p->pot = 0;
 
-  r = (celula *) malloc(sizeof (celula));
-  r->prox = NULL;
-  r->coef = 0;
-  r->pot = 0;
+  q = (celula *) malloc(sizeof (celula));
+  q->prox = NULL;
+  q->coef = 0;
+  q->pot = 0;
 
-  printf ("Entre com o número de elementos da lista l:");
+  printf ("Entre com o número de elementos da equacao p:");
   scanf("%d",&n);
 
-  printf("Entre com os elementos da lista l:");
+  printf("Entre com os elementos da lista p:");
   for (i= 0; i<n; i++) {
-    scanf("%d",&x);
-    insere_lista(x,l,1);
+    scanf("%d",&a);
+    scanf("%f",&b);
+    insere_lista(a,b,p,1);
   }
 
-  printf("%d elementos \n",l->chave);
-  imprime_lista(l);
+  printf ("Entre com o número de elementos da equacao q:");
+  scanf("%d",&n);
 
-  n=l->chave/2;
-  for(i=0;i<n;i++){
-
-    a=remove_C(l, 0);
-    b=remove_C(l, 1);
-    printf("a=%d B=%d\n",a,b);
-    insere_lista(a+b,r,1);
-
+  printf("Entre com os elementos da lista q:");
+  for (i= 0; i<n; i++) {
+    scanf("%d",&a);
+    scanf("%f",&b);
+    insere_lista(a,b,q,1);
   }
 
-  printf("%d elementos \n",r->chave);
-  imprime_lista(r);
+  printf("Entre com o valor de x\n");
+  scanf("%f",&x);
+  printf("p=%f\n", resolve(x,p));
+
+  printf("p=%f\n", resolve(x,q));
+
+  printf("p=%f\n", resolve(resolve(x,q),p));
+
+  printf("p=%f\n", resolve(x,p)+resolve(x,q));
+
 
 
   return 0;
