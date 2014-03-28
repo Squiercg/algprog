@@ -80,58 +80,58 @@ void imprimePre(Node* a){
 
 int alturaNegra(Node* a){
 
+  int iEsq,iDir;
 
   if (a == NULL) {
-    return 1;
-  } else {
-    if(a->esq!=NULL && a->cor==1) {
-      return 1+alturaNegra(a->esq);
+    return 0;
+  }
+
+  iEsq = alturaNegra(a->esq);
+  iDir = alturaNegra(a->dir);
+
+  if ( iEsq > iDir ) {
+    if(a->cor==0) {
+      return iEsq + 1;
     } else {
-      if(a->dir!=NULL && a->cor==1) {
-	  return 1+alturaNegra(a->dir);
-	} else {
-	  if(a->esq!=NULL && a->cor==0) {
-	    return 0+alturaNegra(a->esq);
-	  } else {
-	    return 0+alturaNegra(a->dir);
-	  }
-      }
+      return iEsq + 0;
+    }
+  } else {
+    if(a->cor==0) {
+      return iDir + 1;
+    } else {
+      return iDir + 0;
     }
   }
+
 }
 
 int calculaNosNegros(Node* a){
 
-  if (a != NULL && a->cor==0) {    
-    return 1+calculaNosNegros(a->esq);
-    return 1+calculaNosNegros(a->dir);
-  } else {
-    if (a != NULL && a->cor==1) {
-      return 0+calculaNosNegros(a->esq);
-      return 0+calculaNosNegros(a->dir);
+  if(a != NULL) {
+    if (a->cor==0) {
+      return 1+calculaNosNegros(a->esq)+calculaNosNegros(a->dir);
     } else {
-      return 0;
+      return 0+calculaNosNegros(a->esq)+calculaNosNegros(a->dir);
     }
+  } else {
+    return 0;
   }
 
 }
 
 
 Node* antecessor(Node* a){
-  Node* caminho;
 
-  if(a->esq==NULL) {
+  if(a->esq == NULL) {
     printf("Não tem antecessor\n");
-    return a;
+    return NULL;
   } else {
-    caminho=a->esq;
-
-    while(caminho->dir!=NULL) {
-      caminho=caminho->dir;
+    Node *temp = a->esq;
+    while(temp->dir != NULL) {
+      temp = temp->dir;
     }
+    return temp;
   }
-
-  return caminho;
 
 }
 
@@ -298,7 +298,7 @@ int main(void)
 
   int i, n;
 
-  Node *exemplo;
+  Node *exemplo, *saida;
 
   exemplo=NULL;
 
@@ -306,7 +306,7 @@ int main(void)
   scanf("%d",&n);
 
   for(i=0;i<n;i++) {
-    exemplo=insere(exemplo,rand()%101,NULL);
+    exemplo=insere(exemplo,rand()%1001,NULL);
   }
 
   imprimePre(exemplo);
@@ -316,7 +316,14 @@ int main(void)
 
   printf("Nos Negros: %d\n",calculaNosNegros(exemplo));
 
-  printf("Antecessor: %d\n",antecessor(exemplo)->info);
+  saida=antecessor(exemplo);
+
+  if(saida!=NULL) {
+    printf("Antecessor: %d\n",saida->info);
+  }
+
+  printf("Raiz: %d\n",exemplo->info);
+
 
    return 0;
 }
