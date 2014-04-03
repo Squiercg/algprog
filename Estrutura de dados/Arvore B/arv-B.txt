@@ -1,0 +1,24 @@
+Exercício 01.
+
+a)513
+
+b)256
+
+c) 2
+
+d) 0
+
+e) 199
+
+2) Veja se a primeira se a página raiz tem filhos, se está não tiver filhos, então a menor chave será a primeira chave da página raiz. Se a página raiz tiver filhos, devemos ir para o primeiro filho, aquele que está na posição zero do vetor de endereços de filhos e refazer o mesmo procedimento feito na página raiz, verificar se está página tem filhos, se não tiver o menor número é a primeira chave desta página, senão devemos ir para a pagina filho zero.
+
+3)Uma árvore binaria só tem dois ponteiros, esquerda e direita, a menor árvore b possível, de grau 1, terá 2*1, duas chave e 3 ponteiros, sendo assim sempre diferente de uma arvore binaria.
+
+4)Pois uma página possui mais chaves próximas que uma árvore binaria, que só possui uma chave, assim árvores B são mais eficientes ao se buscar informação na arvore quando a gente geralmente precisa da informação buscada e as chaves próximas.
+
+5)
+
+
+  	
+  
+
