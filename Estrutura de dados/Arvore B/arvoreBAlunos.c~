@@ -27,48 +27,47 @@ typedef struct no_arvoreB arvoreB;
 void pre_ordem(arvoreB *raiz)
 {
   int i;
-  if (raiz != NULL)
-   {
-     for (i = 0; i < raiz->num_chaves; i++)  {
-       printf("%d ", raiz->chaves[i]);
-       pre_ordem(raiz->filhos[i]);
-     }
-     pre_ordem(raiz->filhos[i]);
-   }
+  if(raiz!=NULL){
+
+  for(i=0;i<raiz->num_chaves;i++) {
+
+    printf("%d ",raiz->chaves[i]);
+    pre_ordem(raiz->filhos[i]);
+    }
+
+    if(raiz->filhos[i+1]!=NULL && i==raiz->num_chaves) {
+      pre_ordem(raiz->filhos[i+1]);
+    }
+  }
 }
+
+
+
 
 int busca_binaria(arvoreB *no, int info)
 {
-  int meio, i, f;
-  i = 0;
-  f = no->num_chaves-1;
+  int i;
 
-  while (i <= f) {
-    meio = (i + f)/2;
-    if (no->chaves[meio] == info)
-      return(meio); //Encontrou. Retorna a posição em que a chave está.
-    else if (no->chaves[meio] > info)
-      f = meio - 1;
-    else i = meio + 1;
-  }
-  return(i); //Não encontrou. Retorna a posição do ponteiro para o filho.
+  for(i=0;i<raiz->num_chaves && info<=raiz->chave[i];i++);
+
+  return i;
+
 
 }
 
 int busca(arvoreB *raiz, int info)
 {
-  arvoreB *no;
-  int pos; //posição retornada pelo busca binária.
+  int n;
 
-  no = raiz;
-  while (no != NULL)
-   {
-     pos = busca_binaria(no, info);
-     if (pos < no->num_chaves && no->chaves[pos] == info)
-         return(true);
-     else no = no->filhos[pos];
-   }
-  return(false);
+  n=busca_binaria(raiz,info);
+
+  if(raiz->chave[n]==info && n<raiz->num_chaves) {
+    return raiz->chave[n];
+  } else {
+
+
+
+
 
 }
 
@@ -197,22 +196,17 @@ int main(void){
     
     arv = insere_arvoreB(arv, 10);
     pre_ordem(arv);
-    printf("\n");
     arv = insere_arvoreB(arv, 300);
     pre_ordem(arv);
-    printf("\n");
     arv = insere_arvoreB(arv, 100);
     pre_ordem(arv);
-    printf("\n");
     arv = insere_arvoreB(arv, 30);
     pre_ordem(arv);
-    printf("\n");
     arv = insere_arvoreB(arv, 11);
     pre_ordem(arv);
-    printf("\n");
     arv = insere_arvoreB(arv, 77);
+    
     pre_ordem(arv);
-    printf("\n");
     
     return 0;
 }
