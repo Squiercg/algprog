@@ -1,0 +1,7 @@
+TACTGA -> Íntron: [0, 5]
+TTAACA -> Íntron: [43, 48]
+CTGTGAC -> Íntron: [73, 79]
+TTA -> Íntron: [96, 98]
+GTGTGTGTGTACACACTAAACTTGAAAATGGACACAT -> Éxon: [6, 42]
+AACACAGTGGGACCATGGAAATGC -> Éxon: [49, 72]
+GTAAAGACAGTGTGAC -> Éxon: [80, 95]

@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <string.h>
+
+#define ALF 27
+#define MAXP 100
+#define MTEX 1000
+
+int n;
+
+int preBM(char padrao[MAXP],char v1[] , int v2[]){
+  int n=0,l=0,i,j,busca;
+
+  while (padrao[n] != '\0') {
+
+/*Primeiro eu busco a letra na minha matriz de pre-processo*/
+    busca=0;
+    for(i=0;i<l;i++) {
+      if(padrao[n]==v1[i]) {
+	busca=1;
+      }
+    }
+
+/*Se não encontrar eu insiro*/
+    if(busca==0) {
+      v1[l]=padrao[n];
+      l++;
+    }
+    n++;
+  }
+
+  for(i=0;i<l;i++) {
+    for(j=(n-1);j<n && padrao[j]!=v1[i];j--);
+    v2[i]=(n-1)-j;
+  }
+
+  v1[l]='*';
+  v2[l]=n;
+
+
+  for(i=0;i<=l;i++) {
+    printf("Letra: %c Posicao:%d\n",v1[i],v2[i]);
+  }
+
+  return n;
+}
+
+int BM(char padrao[MAXP], char v1[],int v2[], char texto[MTEX], int k){
+
+  int i,j,a,b,aux,busca=-1,fim=0;
+
+  i=0;
+  j=0;
+
+  while(texto[i]!='\0' && fim==0) {
+    i++;
+  }
+
+  return busca;
+}
+
+
+
+
+int main(void){
+
+    int k, v2[ALF], bm;
+    char padrao[MAXP], texto[MTEX],v1[ALF];
+
+    scanf("%s %s", texto, padrao);
+    printf("Padrao: %s\n",padrao);
+
+    k = preBM(padrao,  v1, v2);
+
+    printf("Texto: %s\n",texto);
+
+    bm = BM(padrao, v1, v2, texto, k);
+
+    printf("Ocorrencia %d\n", bm);
+
+    return 0;
+}
