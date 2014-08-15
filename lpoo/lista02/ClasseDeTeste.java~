@@ -1,0 +1,12 @@
+public class ClasseDeTeste {
+    public static void main(String[] args) {
+	Funcionario funcionario = new Funcionario();
+
+	funcionario.nome = "Zorobabel";
+	funcionario.departamento = "FACOM";
+	funcionario.salario = "1500";
+	funcionario.dataEntrada = "15/08/1987";
+	funcionario.rg = "12332112 SSP/MS";
+
+    }
+}
