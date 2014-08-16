@@ -1,0 +1,10 @@
+all: programa1
+
+programa_1: programa1.o
+	gcc programa1.o -o programa1
+
+programa_1.o: programa1.c
+	gcc -c programa1.c
+
+clean:
+	rm *.o programa1
