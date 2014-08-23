@@ -23,7 +23,8 @@ public class ClasseDeTeste {
 	funcionario.departamento = JOptionPane.showInputDialog("Digite a data de Entrada");
 	funcionario.departamento = JOptionPane.showInputDialog("Digite o rg");
 
-
+	Data data = new Data(26,05,2014);
+	System.out.println(data);
 
 	System.out.println("Nome: "+funcionario.nome + " da " + funcionario.departamento);
 	JOptionPane.showMessageDialog(null,"departamento " + funcionario.departamento);

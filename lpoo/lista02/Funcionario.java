@@ -17,7 +17,7 @@ class Funcionario {
     String nome;
     String departamento;
     double salario;
-    String dataEntrada;
+    Data dataEntrada = new Data();
     String rg;
 
     void recebeAumento(double aumento) {
