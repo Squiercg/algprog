@@ -1,37 +1,0 @@
-/*3. Crie uma func~ao chamada forkMultiple, que recebe como argumento um valor n. Sua func~ao deve criar n lhos do mesmo processo pai,
- onde cada processo lho entra em um laco innito imprimindo a mensagem "Filho". Alem disso, o processo pai deve esperar todos os
- lhos terminarem sua execuc~ao para ent~ao nalizar sua execuc~ao e imprimr a mensagem "Pai".*/
-
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-
-void forkMultiple(int n) {
-  int i;
-  for(i=0;i<n;i++) {
-    fork();
-}
-
-int main(int argc, char const *argv[]) {
-
-  int n;
-  pid_t=pid;
-
-  scanf("%d",&n);
-
-  forkMultiple(n);
-
-  if(pid==0) {
-    while(1) {
-      printf("Filho ");
-    }
-  } else {
-    wait(NULL);
-    printf("Pai\n");
-  }
-
-
-
-  return 0;
-}
