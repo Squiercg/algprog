@@ -2,13 +2,13 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-CREATE SCHEMA IF NOT EXISTS `Cinema` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-USE `Cinema` ;
+CREATE SCHEMA IF NOT EXISTS `augusto.ribas_Cinema` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
+USE `augusto.ribas_Cinema` ;
 
 -- -----------------------------------------------------
 -- Table `Cinema`.`Cinema`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `Cinema`.`Cinema` (
+CREATE  TABLE IF NOT EXISTS `augusto.ribas_Cinema`.`Cinema` (
   `idCinema` INT NOT NULL ,
   `nomecinema` VARCHAR(45) NULL ,
   `capacidade` INT(11) NULL ,
@@ -20,7 +20,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Cinema`.`Filme`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `Cinema`.`Filme` (
+CREATE  TABLE IF NOT EXISTS `augusto.ribas_Cinema`.`Filme` (
   `idFilme` INT NOT NULL ,
   `titulo_original` VARCHAR(45) NULL ,
   `dataproducao` VARCHAR(45) NULL ,
@@ -32,13 +32,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Cinema`.`SalaExibicao`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `Cinema`.`SalaExibicao` (
+CREATE  TABLE IF NOT EXISTS `augusto.ribas_Cinema`.`SalaExibicao` (
   `SalaExibicao` INT NOT NULL ,
   `nomesala` VARCHAR(45) NULL ,
   `quant_lugares` VARCHAR(45) NULL ,
   `Cinema_idCinema` INT NOT NULL ,
   PRIMARY KEY (`SalaExibicao`, `Cinema_idCinema`) ,
   INDEX `fk_SalaExibicao_Cinema1` (`Cinema_idCinema` ASC) ,
+  UNIQUE INDEX `indice_nomesala`  (`nomesala` ASC) ,
   CONSTRAINT `fk_SalaExibicao_Cinema1`
     FOREIGN KEY (`Cinema_idCinema` )
     REFERENCES `Cinema`.`Cinema` (`idCinema` )
@@ -50,7 +51,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Cinema`.`Cinema_has_Filme`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `Cinema`.`Cinema_has_Filme` (
+CREATE  TABLE IF NOT EXISTS `augusto.ribas_Cinema`.`Cinema_has_Filme` (
   `Cinema_idCinema` INT NOT NULL ,
   `Filme_idFilme` INT NOT NULL ,
   `periodoexibicao` VARCHAR(45) NULL ,
@@ -74,3 +75,11 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+CREATE INDEX indcinema  ON Cinema(nomecinema);
+CREATE UNIQUE INDEX titulo_original ON Filme(titulo_original); 
+
+
+DROP SCHEMA `augusto.ribas_Cinema`;
+
+
