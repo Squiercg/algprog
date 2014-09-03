@@ -2,24 +2,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+/*Tamanho da matriz*/
 #define n 5
 
-int Y[n][n];
-int X[n][n];
-pthread_barrier_t bar[n][n];
-
+/*Apenas um struct para enviar as informações para a thread*/
 typedef struct {
   int lin;
   int col;
-  int quantidade;
-  pthread_barrier_t thread_esperar[n];
 } threadinfo;
 
+/*Matrizes de dados*/
+int Y[n][n];
+int X[n][n];
+
+
+/*Função que recebe 3 inteiros e retorna o maior*/
 int max(int a, int b, int c){
-
   int saida;
-
   if(a>b && a>c){
     saida = a;
   } else {
@@ -29,17 +28,12 @@ int max(int a, int b, int c){
       saida = c;
     }
   }
-
+  return saida;
 }
 
+/*Função que faz os calculos necessarios, usada como thread*/
 void *matriz_paralela(void *dados) {
   threadinfo data = *((threadinfo*)dados);
-  int i;
-
-  for(i=0;i<data.quantidade;i++) {
-    pthread_join(data.thread_esperar[i], NULL);
-  }
-
   if(data.lin==0) {
     X[data.lin][data.col]=(rand()%100)+1;
   } else {
@@ -54,27 +48,21 @@ void *matriz_paralela(void *dados) {
   pthread_exit(NULL);
 }
 
-
-
 int main(void) {
   pthread_t thread_matriz[n][n];
   int codigo_de_erro, i, j;
   threadinfo info[n][n];
 
+  /*Alimentando os dados para as threads*/
   for(i=0;i<n;i++){
     for(j=0;j<n;j++) {
       info[i][j].lin=i;
       info[i][j].col=j;
       Y[i][j]=(rand()%10)+1;
-      if(i>0 && (j==0 || j==(n-1))) {
-	info[i][j].quantidade=1;
-	pthread_barrier_init(&bar[i-1][j],NULL,1);
-	info[i][j].thread_esperar[0]=bar[i-1][j];
-      }
     }
   }
 
-
+  /*Criando as threads, linha por linha*/
   for(i=0;i<n;i++){
     for(j=0;j<n;j++) {
       codigo_de_erro = pthread_create(&thread_matriz[i][j], NULL, matriz_paralela , (void*)&info[i][j] );
@@ -83,8 +71,21 @@ int main(void) {
 	exit(1);
       }
     }
+  /*Apos inicializar toda uma linha de n threads, esperamos todas finalizarem antes de pular para a proxima linha*/
+    for(j=0;j<n;j++) {
+      pthread_join(thread_matriz[i][j], NULL);
+    }
   }
 
+  /*Saida, so deve ser impresso no final*/
+  printf("Matriz Y Final: \n");
+
+  for(i=0;i<n;i++){
+    for(j=0;j<n;j++) {
+      printf("%02d ",Y[i][j]);
+    }
+    printf("\n");
+  }
 
   printf("Matriz X Final: \n");
 
