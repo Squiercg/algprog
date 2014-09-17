@@ -1,0 +1,5 @@
+package exe02;
+
+public abstract class conta {
+
+}

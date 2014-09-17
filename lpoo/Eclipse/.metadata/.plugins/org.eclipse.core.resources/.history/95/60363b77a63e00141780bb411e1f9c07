@@ -1,0 +1,10 @@
+package exe02;
+
+public class Corrente extends Conta {
+
+	public Corrente(String nome, int cpf, int agencia, int conta) {
+		super(nome, cpf, agencia, conta);
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,20 @@
+package exe02;
+
+public class SeguroVida {
+	private int cpf;
+	private double valor;
+	
+	public int getCpf() {
+		return cpf;
+	}
+	public void setCpf(int cpf) {
+		this.cpf = cpf;
+	}
+	public double getValor() {
+		return valor;
+	}
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+}
