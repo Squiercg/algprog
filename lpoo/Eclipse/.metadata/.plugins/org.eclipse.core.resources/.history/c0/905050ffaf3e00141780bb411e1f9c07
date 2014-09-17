@@ -1,0 +1,16 @@
+package exe02;
+
+public class TestaTributavel {
+
+	public static void main(String[] args) {
+		Corrente corrente = new Corrente("Augusto Ribas",123456789,33219,139319);
+		corrente.setSaldo(100);
+		Poupanca poupanca = new Poupanca("Augusto Ribas",123456789,33219,139319);
+		poupanca.setSaldo(350); 
+					
+		System.out.println("Conta corrente = "+"Nome: "+corrente.getNome()+" - Saldo: "+corrente.getSaldo());
+		System.out.println("Conta Poupanca = "+"Nome: "+poupanca.getNome()+" - Saldo: "+poupanca.getSaldo());
+
+	}
+
+}

@@ -1,0 +1,28 @@
+package exe02;
+
+public class TestaTributavel {
+
+	public static void main(String[] args) {
+		Corrente corrente = new Corrente("Augusto Ribas",123456789,33219,139319);
+		corrente.setSaldo(100);
+		Poupanca poupanca = new Poupanca("Augusto Ribas",123456789,33219,139319);
+		poupanca.setSaldo(350); 
+		SeguroVida seguroVida = new SeguroVida(123456789,500);
+		SeguroAutomovel seguroAutomovel = new SeguroAutomovel("Corsa",1200.00);
+					
+		System.out.println("Conta Corrente = "+"Nome: "+corrente.getNome()+" - Saldo: "+corrente.getSaldo());
+		System.out.println("Conta Poupanca = "+"Nome: "+poupanca.getNome()+" - Saldo: "+poupanca.getSaldo());
+		
+		GerenciadorDeImpostoDeRenda augusto = new GerenciadorDeImpostoDeRenda();
+		//Calculando Impostos
+		augusto.adiciona(corrente);
+		augusto.adiciona(seguroVida);
+		augusto.adiciona(seguroAutomovel);
+		
+		System.out.println("Imposto Devido: "+augusto.getImposto());
+		
+		
+
+	}
+
+}

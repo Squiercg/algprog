@@ -1,0 +1,33 @@
+package exe02;
+
+public abstract class Conta {
+	private Pessoa pessoa;
+	private int agencia;
+	private int conta;
+		
+	public Conta(String nome, int cpf, int agencia, int conta) {
+		pessoa = new Pessoa(nome,cpf);
+		this.agencia = agencia;
+		this.conta = conta;
+	}
+	
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+	public int getAgencia() {
+		return agencia;
+	}
+	public void setAgencia(int agencia) {
+		this.agencia = agencia;
+	}
+	public int getConta() {
+		return conta;
+	}
+	public void setConta(int conta) {
+		this.conta = conta;
+	}
+	
+}

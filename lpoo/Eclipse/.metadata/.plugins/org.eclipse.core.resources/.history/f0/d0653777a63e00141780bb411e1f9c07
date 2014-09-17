@@ -1,0 +1,9 @@
+package exe02;
+
+public class TestaTributavel {
+
+	public static void main(String[] args) {
+		System.out.println("Teste!");
+	}
+
+}
