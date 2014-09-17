@@ -1,0 +1,59 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{longtable}
+
+%opening
+\title{Especificação de requisitos para o Sistema de Teletransporte}
+\author{Augusto Cesar de Aquino Ribas}
+
+\begin{document}
+
+\maketitle
+
+\section{Requisitos Funcionais}
+
+Os requisitos funcionais referem-se aos requisitos que estão relacionados com a
+maneira com que o sistema deve operar, onde se especificam as entradas e saídas do sistema e o relacionamento comportamental entre elas, assim como a iteração com o usuário. 
+
+\begin{center}
+    \begin{longtable}{ | l | p{2.5cm} | p{5cm} | p{2.5cm} |}
+    \hline
+    Id & Requisito & Descrição & Caso de Uso \\ \hline
+    RF01 & Digitalizar uma Pessoa & Permitir que uma pessoa, ao entrar em uma cabine de teletransporte, seja completamente digitalizada, registrando a posição e propriedades fisicas de todos os seus atómos e partículas em um arquivo digital & Digitalização de uma pessoa \\ \hline
+    RF02 & Impressão de uma Pessoa & Permitir a impressão 3d de uma pessoa dentro de cabine de teletransporte, reproduzindo todos os atómos e partículas, bem como suas propriedades fisícas registras previamente em um arquivo digital & Impressão de uma pessoa \\ \hline
+    RF03 & Seguraça do arquivo gerado na digitalização & O arquivo da digitalização deve ser criptografado de forma que so possa ser visto pela cabine de teletransporte de destino & Somente a cabine de destino pode ver o arquivo da digitalização da pessoa a ser teleportada \\ \hline
+    RF04 & Sincronização de cabines de teletransporte & As cabines de teletransporte de destino e de origem devem estabelecer comunicação de dados antes do inicio de qualquer atividade, e está deve ser $100\%$ estável durante todo o processo & As cabines de origem e destino devem estar conectadas, com coneção estável durante todo o processo de teletransporte \\ \hline
+    RF05 & Desintegração de uma pessoa & Após uma copia da pessoa ser impressa em um novo local, a pessoa da cabine original deve ser completamente desintegrada & Desintegrar uma pessoa após a impressão completada no local de destino \\ \hline
+    \end{longtable}
+\end{center}
+
+\section{Requisitos Não-Funcionais}
+
+Os requisitos não-funcionais são aqueles que não estão especificamente relacionados com a funcionalidade do sistema. Eles impõem restrições no produto a ser desenvolvido e/ou no processo de desenvolvimento do sistema como também especificam restrições externas as quais o produto precisa atender. Eles referem-se a questões como: segurança, confiabilidade, usabilidade, performance, entre outros.
+
+\subsection{Usabilidade}
+
+\begin{center}
+    \begin{tabular}{ | l | p{10cm} |}
+    \hline
+    Id & Descrição \\ \hline
+    RNF1 & Facilidade de uso: O sistema deve ser de facíl uso e auto-contido, não necessitando de adminstradores localmente.\\ \hline
+    RNF2 & Interface touch: O usuário utilizará o sistema através de um monitor touch dentro da cabine de teleporte\\ \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Licença}
+
+\begin{center}
+    \begin{tabular}{ | l | p{10cm} |}
+    \hline
+    Id & Descrição \\ \hline
+    RNF3 & O código do sistema estará disponível de acordo com a licença GPL (General Public License).\\ \hline
+    \end{tabular}
+\end{center}
+
+
+
+\end{document}
