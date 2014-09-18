@@ -1,0 +1,9 @@
+package exe02;
+
+public class SeguroVida {
+
+	public SeguroVida() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

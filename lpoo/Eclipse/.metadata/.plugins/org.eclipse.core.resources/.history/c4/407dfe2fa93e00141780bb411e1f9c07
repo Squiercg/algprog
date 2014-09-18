@@ -1,0 +1,10 @@
+package exe02;
+
+public class Popanca extends Conta {
+
+	public Popanca(String nome, int cpf, int agencia, int conta) {
+		super(nome, cpf, agencia, conta);
+		// TODO Auto-generated constructor stub
+	}
+
+}

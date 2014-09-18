@@ -5,15 +5,16 @@
 
 #define n 5
 
+int Y[n][n];
+int X[n][n];
+pthread_barrier_t bar[n][n];
+
 typedef struct {
   int lin;
   int col;
   int quantidade;
-  pthread_t thread_esperar[n];
+  pthread_barrier_t thread_esperar[n];
 } threadinfo;
-
-int Y[n][n];
-int X[n][n];
 
 int max(int a, int b, int c){
 
@@ -53,6 +54,8 @@ void *matriz_paralela(void *dados) {
   pthread_exit(NULL);
 }
 
+
+
 int main(void) {
   pthread_t thread_matriz[n][n];
   int codigo_de_erro, i, j;
@@ -65,7 +68,8 @@ int main(void) {
       Y[i][j]=(rand()%10)+1;
       if(i>0 && (j==0 || j==(n-1))) {
 	info[i][j].quantidade=1;
-	info[i][j].thread_esperar[0]=thread_matriz[i-1][j];
+	pthread_barrier_init(&bar[i-1][j],NULL,1);
+	info[i][j].thread_esperar[0]=bar[i-1][j];
       }
     }
   }

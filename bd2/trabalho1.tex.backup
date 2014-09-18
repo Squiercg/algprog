@@ -1,0 +1,105 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{longtable}
+
+%opening
+\title{Atividade - Processamento de Consultas}
+\author{Augusto Ribas
+\and
+Bruno Nazario
+\and
+Doglas Sorgatto}
+
+\begin{document}
+
+\maketitle
+
+\section{Exercício}
+
+\subsection{Consulta}
+
+$\Pi_{Qt-copia}((\sigma_{Nome-unidade='Central'}(Unidade-Biblioteca))$\\
+$\bigotimes(Livro-Copias\bigotimes(\sigma_{Titulo='A\ Tribo\ Perdida'}(Livro))))$\\
+
+$\sigma_{Nome-unidade='Central'}(Unidade-Biblioteca)$
+
+$Nome-unidade$ não é uma chave primaria, então podemos usar um método de busca com um indice de clusterização para muitos registros. Como a seleção envolve uma comparação de igualde num atributo não chave que pode ter um indice de clusterização, podemos usa-lo para recuperar todos os registros que satisfação a condição.
+
+
+$\sigma_{Titulo='A\ Tribo\ Perdida'}(Livro)$
+
+$Titulo$ também não é uma chave primaria, então podemos usar um método de busca com um indice de clusterização para muitos registros. Como a seleção envolve uma comparação de igualde num atributo não chave que pode ter um indice de clusterização, podemos usa-lo para recuperar todos os registros que satisfação a condição.
+
+\subsection{Consulta}
+$R1 \neg \Pi_{Cod-unidade} (\sigma_{Nome-unidade='Central'}(Unidade_Biblioteca))$\\
+$R2 \neg \Pi_{Cod-unidade,Nr-cartao} ((\sigma_{Data-devolucao='hoje'}(Livro-Emprestimos))\bigotimes R1 )$\\
+$RESULT \neg \Pi_{Titulo,Nome,Endereco} (Livro \bigotimes Usuario \bigotimes R2)$\\
+
+
+$\sigma_{Nome-unidade='Central'}(Unidade_Biblioteca)$
+
+$Nome-unidade$ também não é uma chave primaria, então podemos usar um método de busca com um indice de clusterização para muitos registros. Como a seleção envolve uma comparação de igualde num atributo não chave que pode ter um indice de clusterização, podemos usa-lo para recuperar todos os registros que satisfação a condição.
+
+$\sigma_{Data-devolucao='hoje'}(Livro-Emprestimos)$
+
+$Data-devolucao$ também não é uma chave primaria, então podemos usar um método de busca com um indice de clusterização para muitos registros. Como a seleção envolve uma comparação de igualde num atributo não chave que pode ter um indice de clusterização, podemos usa-lo para recuperar todos os registros que satisfação a condição.
+
+\subsection{Consulta}
+
+$R1(Nr-cartao,Total-livros-emp) \neg Nr-cartao\ \Im COUNT_{(Cod-livro)}(Livros-Emprestados)$\\
+$R2 \neg \sigma_{Total-livros-emp>5}(R1)$\\
+$Result \neg \Pi_{Nome,Endereco,Total-livros-emp} (R2 \bigotimes Usuario) $
+
+$\sigma_{Total-livros-emp>5}(R1)$
+
+$Total-livros-emp$ está em uma tabela temporaria chamada R1 além de ver um valor derivado (veio de uma função count), assim não possue indice, de forma que precisamos de uma busca linear(algoritimo de força bruta). Recupa todos os registros na tabela e teste se o atributo satisfaz a condição de seleção.
+
+\section{Exercício}
+
+\subsection{Unidade-Biblioteca $\bigotimes$ Livros-Copias}
+
+$b_A+(\lceil b_A/(n_B-2)\rceil * b_B)$\\
+onde:\\
+$b_A$Número de blocos de registros de A\\
+$n_B$ Número de buffers disponiveis\\
+$b_B$Número de blocos de registros de B\\
+
+Número total de acessos de leitura de blocos\\
+$10 + (\lceil 10/(11-2) \rceil * 15000) = 30010$\\
+
+\subsection{Livro-Copias $\bigotimes$ Livro}
+
+Número total de acessos de leitura de blocos\\
+$15000 + (\lceil 15000/(11-2) \rceil * 10000) = 16685000$\\
+
+\subsection{Livro-Emprestimos $\bigotimes$ Unidade-Biblioteca}
+
+Número total de acessos de leitura de blocos\\
+$8000 + (\lceil 8000/(11-2) \rceil * 10) = 16890$\\
+
+\subsection{Livro-Emprestimos $\bigotimes$ Usuario}
+
+Número total de acessos de leitura de blocos\\
+$8000 + (\lceil 8000/(11-2) \rceil * 6000) = 5342000$\\
+
+
+\section{Exercício}
+
+\subsection{Unidade-Biblioteca $\bigotimes$ Livros-Copias}
+
+$b_A+(r_A*X_B+1)$\\
+$b_A$ Número de blocos de registros de A\\
+$r_A$ Número de registros de A\\
+$X_B$ Indice em B\\
+
+\subsection{Livro-Copias $\bigotimes$ Livro}
+
+\subsection{Livro-Emprestimos $\bigotimes$ Unidade-Biblioteca}
+
+\subsection{Livro-Emprestimos $\bigotimes$ Usuario}
+
+
+
+\end{document}

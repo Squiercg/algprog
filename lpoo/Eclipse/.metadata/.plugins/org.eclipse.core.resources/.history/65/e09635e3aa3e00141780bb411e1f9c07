@@ -1,0 +1,20 @@
+package exe02;
+
+public class SeguroAutomovel {
+	private String veiculo;
+	private double valor;
+	
+	public String getVeiculo() {
+		return veiculo;
+	}
+	public void setVeiculo(String veiculo) {
+		this.veiculo = veiculo;
+	}
+	public double getValor() {
+		return valor;
+	}
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+}

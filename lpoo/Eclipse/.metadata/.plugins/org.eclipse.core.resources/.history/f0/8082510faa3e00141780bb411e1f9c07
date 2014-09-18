@@ -1,0 +1,28 @@
+package exe02;
+
+public class Corrente extends Conta {
+	private float saldo;
+
+	public Corrente(String nome, int cpf, int agencia, int conta) {
+		super(nome, cpf, agencia, conta);
+		this.setSaldo((float) 0.0);
+	}
+	
+	
+	public String getNome() {
+		return getPessoa().getNome();
+	}
+	
+	public int getCpf() {
+		return getPessoa().getCpf();
+	}
+
+	public float getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(float saldo) {
+		this.saldo = saldo;
+	}
+
+}
