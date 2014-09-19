@@ -1,0 +1,41 @@
+package aula71;
+
+class Cliente {
+	String nome;
+	String cpf;
+	String endereco;
+	String telefone;
+}
+
+class Conta {
+	int numero;
+	float saldo;
+	float limite = 500f;
+	Cliente cliente = new Cliente();
+
+	boolean sacar(float valor) {
+		if((saldo + limite) >= valor) {
+			this.saldo = this.saldo - valor;
+			return true;
+		}
+		return false;
+	}
+
+	/* Fazer validações */
+	boolean transfere(float valor, Conta destino) {
+		this.saldo -= valor;
+		destino.saldo += valor;
+
+		return true;
+	}
+}
+
+public class Main {
+	public static void main(String[] args) {
+		Conta contaCorrente1 = new Conta();
+
+		contaCorrente1.cliente = new Cliente();
+		
+		System.out.println("Fim");
+	}
+}
