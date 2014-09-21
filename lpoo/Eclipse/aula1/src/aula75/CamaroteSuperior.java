@@ -1,0 +1,22 @@
+package aula75;
+
+public class CamaroteSuperior extends Vip {
+	private boolean bocaLivre;
+	
+	public CamaroteSuperior(double valorInicial, double valorAdicional, boolean bocaLivre) {
+		super(valorInicial, valorAdicional);
+		setBocaLivre(bocaLivre);
+		if(bocaLivre) {
+			setValorAdicional(getValorAdicional() + 50.0);
+		}
+	}
+
+	public boolean isBocaLivre() {
+		return bocaLivre;
+	}
+
+	public void setBocaLivre(boolean bocaLivre) {
+		this.bocaLivre = bocaLivre;
+	}
+
+}

@@ -1,0 +1,28 @@
+package br.ufms.facom.lpoo.aula4;
+
+public class TestaEmpresa {
+	public static void main(String[] args) {
+		Empresa empresa1 = new Empresa
+								(5, 
+								"Refricola",
+								"737");
+		Funcionario f1 = new Funcionario
+						("Jubrinaro", 
+						"848", 
+						12000.0f);
+
+		empresa1.adiciona(f1);
+
+		Empresa empresa2 = new Empresa
+								(10, 
+								"Guaranacola",
+								"27492378");
+
+		empresa2.adiciona(f1);
+
+		f1.setNome("Jazinuro");
+
+		System.out.println(empresa1.getFuncionarios()[0].getNome());
+		System.out.println(empresa2.getFuncionarios()[0].getNome());
+	}
+}

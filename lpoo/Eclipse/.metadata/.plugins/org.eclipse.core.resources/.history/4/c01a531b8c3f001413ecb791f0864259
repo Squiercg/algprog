@@ -1,0 +1,7 @@
+package br.ufms.facom.lpoo.aula6;
+
+public class SistemaInterno {
+	public boolean login(Autenticavel f, String usuario, String senha) {
+		return f.autentica(usuario, senha);
+	}
+}

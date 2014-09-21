@@ -1,0 +1,21 @@
+package br.ufms.facom.lpoo.aula3;
+
+public class EmployeeTest {
+	public static void main(String[] args) {
+		
+		Employee employee1 = new Employee("Praquinaldo", "323");
+		Employee employee2 = new Employee("Praquinaldo", "323");
+
+		if(employee1.equals(employee2)) {
+			System.out.println("Yes!");
+		}
+		else {
+			System.out.println("No!");	
+		}
+
+		System.out.println(employee1);
+		System.out.println(employee2);
+
+		System.out.println(Employee.getCount());
+	}
+}

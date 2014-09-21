@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+<<<<<<< HEAD
 	<section name="org.eclipse.ui.internal.QuickAccess">
 		<item value="759" key="dialogHeight"/>
 		<item value="1440" key="dialogWidth"/>
@@ -10,6 +11,18 @@
 		<list key="orderedProviders">
 		</list>
 		<list key="textArray">
+=======
+	<section name="ZipFileImportWizard">
+		<item value="false" key="WizardZipFileResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID"/>
+		<list key="WizardZipFileResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="/home/grad/augusto.ribas/Downloads/aulas_eclipse.zip"/>
+		</list>
+	</section>
+	<section name="ImportExportAction">
+		<item value="org.eclipse.ui.wizards.import.ZipFile" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+>>>>>>> 822f3a84deb0ae25a953966a45041e9d4c0d9a5f
 		</list>
 	</section>
 </section>
