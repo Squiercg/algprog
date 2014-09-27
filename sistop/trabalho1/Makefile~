@@ -1,0 +1,10 @@
+all: trabalho
+
+trabalho: classes.o trabalho.o
+	g++ trabalho.o classes.o -o trabalho
+
+trabalho.o: trabalho.cpp classes.h
+	g++ -c trabalho.cpp
+
+classes.o: classes.cpp classes.h
+	g++ -c classes.cpp
