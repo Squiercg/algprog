@@ -1,7 +1,7 @@
 all: trabalho inicio
 
 inicio: trabalho
-	./trabalho < entrada.txt	
+	./trabalho	
 
 trabalho.o: trabalho.cpp Classes.h
 	g++ -c trabalho.cpp

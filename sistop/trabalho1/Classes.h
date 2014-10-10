@@ -12,6 +12,22 @@ public:
 	bool bitmodificacao;
 };
 
+class TabelaPaginaInvertida {
+public:
+	int processo;
+	int pagina;
+	int quadro;
+	bool bitvalidade;
+	bool bitmodificacao;
+	int inicio;
+	int fim;
+
+TabelaPaginaInvertida(): bitvalidade(false),bitmodificacao(false){}
+void imprime_conteudo(char* memoria);
+
+
+};
+
 /*Lista de quadros livres, que informa, para cada quadro da memória, se ele está livre ou ocupado;*/
 
 /*Vetor memória, que é um vetor de bytes que armazenar de fato as páginas de cada processo;*/
