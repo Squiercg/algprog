@@ -28,50 +28,56 @@ int main() {
 /*1. Esquema de paginaçao:
 Se 0, o esquema de paginaçao desejado é paginação de dois níveis.
 Se 1, o esquema de paginaçao escolhido é paginaçao invertida.*/
-  std::cout << "Esquema de paginação: ";
-  std::cin >> esquemaPaginacao;
-
+  std::cout << "\nEsquema de paginação: ";
+  //std::cin >> esquemaPaginacao;
+  esquemaPaginacao=1;
 
 /*2. Quantidade de bits do espaço de endereçamento virtual;*/
-  std::cout << "Quantidade de bits do espaço de endereçamento virtual: ";
-  std::cin >> enderecamentoVirtual;
+  std::cout << "\nQuantidade de bits do espaço de endereçamento virtual: ";
+  //std::cin >> enderecamentoVirtual;
+  enderecamentoVirtual=5;
 
 /*3. Quantidade de bits do espaço de endereçamento físico;*/
- std::cout << "Quantidade de bits do espaço de endereçamento físico: ";
- std::cin >> enderacamentoFisico;
+ std::cout << "\nQuantidade de bits do espaço de endereçamento físico: ";
+ //std::cin >> enderacamentoFisico;
+ enderacamentoFisico=4;
 
 /*4. Tamanho da página (em Kb);*/
- std::cout << "Tamanho da página: ";
- std::cin >> tamanhoPagina;
+ std::cout << "\nTamanho da página: ";
+ //std::cin >> tamanhoPagina;
+ tamanhoPagina=8;
 
 /*5. Algoritmo de substituição de páginas:
 • Se 1, utilizar algoritmo FIFO;
 • Se 2, utilizar algoritmo LRU (implementado utilizando uma pilha).*/
- std::cout << "Algoritmo de substituição de páginas: ";
- std::cin >> algoritmoSubstituicao;
+ std::cout << "\nAlgoritmo de substituição de páginas: ";
+ //std::cin >> algoritmoSubstituicao;
+ algoritmoSubstituicao=1;
 
 /*6. Quantidade de processos em execução. Por exemplo, se o valor recebido nesse campo for 3, deve existir os
 processos com id 0, 1 e 2;*/
- std::cout << "Quantidade de processos em execução: ";
- std::cin >> nProcessos;
+ std::cout << "\nQuantidade de processos em execução: ";
+ //std::cin >> nProcessos;
+ nProcessos=2;
 
 /*7. Quantidade de quadros disponíveis.*/
 
- std::cout << "Quantidade de quadros disponíveis: ";
- std::cin >> nQuadros;
+ std::cout << "\nQuantidade de quadros disponíveis: ";
+ //std::cin >> nQuadros;
+ nQuadros=2;
 
 
- std::cout << "Iniciando memoria e disco\n";
-char* memoria = new char[(tamanhoPagina*1024)/8];
-for(i=0;i<(tamanhoPagina*1024)/8;i++)
+ std::cout << "\nIniciando memoria e disco\n";
+char* memoria = new char[nQuadros*(tamanhoPagina)];
+for(i=0;i<nQuadros*tamanhoPagina;i++)
   memoria[i]=(rand() % 25)+97;
 
 char** disco = new char*[nProcessos];
 for (i = 0; i < nProcessos; ++i)
-  disco[i] = new char[(int) (pow(2,enderecamentoVirtual)/8)];
+  disco[i] = new char[(int) (pow(2,enderecamentoVirtual))];
 
 for (i = 0; i < nProcessos; i++)
-  for(j = 0; j < (pow(2,enderecamentoVirtual)/8); j++)
+  for(j = 0; j < pow(2,enderecamentoVirtual); j++)
     disco[i][j]= (rand() % 25)+97;
 
 
@@ -81,7 +87,7 @@ TabelaPaginaInvertida* tabelainvertida = new TabelaPaginaInvertida[nQuadros];
 bool* quadros_livres = new bool[nQuadros];
 
 bool atividade = true;
-int opcao;
+int opcao=0;
 
 
 
@@ -97,6 +103,8 @@ int opcao;
    std::cout << "(8) Imprimir a quantidade de falhas de página existentes até o momento\n";
    std::cout << "(9) Sair do programa\n"; 
    std::cin >> opcao;
+
+   std::cout << opcao;
    
 
    switch(opcao){
@@ -126,6 +134,9 @@ int opcao;
       tabelainvertida->imprime_conteudo(memoria);
     }    
     }
+    if(i==nQuadros){
+      falha_de_pagina=true;
+    }
 
 
 /*Falha de pagina, precisamos de um quadro para alocar os dados*/
@@ -137,7 +148,10 @@ int opcao;
           break;
         }
       }
+
+
     }
+
 
      std::cout << "Fim da opção 1\n";
      break;
@@ -150,13 +164,22 @@ int opcao;
    case 4:
      std::cout << opcao;
      break;
+
    case 5:
-     std::cout << opcao;
+     for(i=0;i<nProcessos;i++) {
+      std::cout << "Processo ";
+      std::cout << i;
+      std::cout << "\n";
+      for(j=0;j<pow(2,enderecamentoVirtual);j++){
+        std::cout << disco[i][j];
+      }
+      std::cout << "\n";
+    }
      break;
 
    case 6:
      std::cout << "Memoria Fisica:\n";
-     for(i=0; i<(tamanhoPagina*1024)/8; i++ )
+     for(i=0; i<nQuadros*tamanhoPagina; i++ )
      std::cout << memoria[i];
      std::cout << "\n\n";
    break;
@@ -167,13 +190,14 @@ int opcao;
    case 8:
      std::cout << opcao;
      break;
+
    case 9:
-     std::cout << opcao;
      atividade = false;
      break;
+
    default:
      std::cout << "Valor invalido\n";
-     atividade = false;
+     //atividade = false;
      break;
    }
  }
