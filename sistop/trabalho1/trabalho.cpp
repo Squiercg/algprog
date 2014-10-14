@@ -5,14 +5,12 @@
 #include <queue>
 #include "Classes.h"
 
-std::queue<int> fila;
+
 
 /**********************************/
 /* Funções de manipulação da fila */
 /**********************************/
-void insere_na_fila(int elemento);
-int remove_da_fila();
-void remove_da_fila(int elemento);
+
 
 
 void inicializa_quadros_livres(bool* quadros_livres, int quantidade_de_quadros);
@@ -21,8 +19,10 @@ unsigned int descobre_p(unsigned int tamanho_p, unsigned int tamanho_d, unsigned
 int main() {
 
   int esquemaPaginacao , enderecamentoVirtual , enderacamentoFisico , tamanhoPagina , algoritmoSubstituicao ,
-    nProcessos , nQuadros , i, j, numeroprocesso , el, pagina, quadro_livre, tamanho_p, tamanho_d;
+    nProcessos , nQuadros , i, j, numeroprocesso , el, pagina, quadro_livre, tamanho_p, tamanho_d, 
+    quantidade_falha_pagina, quantidade_acessos;
   bool falha_de_pagina;
+  char entrada;
 
 
 /*1. Esquema de paginaçao:
@@ -70,7 +70,7 @@ processos com id 0, 1 e 2;*/
  std::cout << "\nIniciando memoria e disco\n";
 char* memoria = new char[nQuadros*(tamanhoPagina)];
 for(i=0;i<nQuadros*tamanhoPagina;i++)
-  memoria[i]=(rand() % 25)+97;
+  memoria[i]='-';
 
 char** disco = new char*[nProcessos];
 for (i = 0; i < nProcessos; ++i)
@@ -83,11 +83,16 @@ for (i = 0; i < nProcessos; i++)
 
 std::cout << "\n ----------------------- \n"; 
 
-TabelaPaginaInvertida* tabelainvertida = new TabelaPaginaInvertida[nQuadros];
-bool* quadros_livres = new bool[nQuadros];
+tamanho_d=enderacamentoFisico-log2(nQuadros);
+tamanho_p=enderecamentoVirtual-tamanho_d;
+
+TabelaPaginaInvertida* tabelaPaginaInvertida = new TabelaPaginaInvertida(nQuadros,tamanho_p,tamanho_d);
+FIFO* fifo = new FIFO();
 
 bool atividade = true;
 int opcao=0;
+quantidade_falha_pagina = 0;
+quantidade_acessos = 0;
 
 
 
@@ -102,68 +107,101 @@ int opcao=0;
    std::cout << "(7) Imprimir a quantidade de acessos realizados até o momento\n";
    std::cout << "(8) Imprimir a quantidade de falhas de página existentes até o momento\n";
    std::cout << "(9) Sair do programa\n"; 
-   std::cin >> opcao;
-
-   std::cout << opcao;
+   std::cin >> opcao;   
    
 
    switch(opcao){
    case 1:
+   quantidade_acessos++;
+
    std::cout << "Digite o número do processo\n";
    std::cin >> numeroprocesso;
    std::cout << "Digite o endereco lógico que deseja acessar do processo \n";
    std::cin >> el;
 
    /**********************/
-   /*Início do seu código*/
-   /**********************/
 
-   
-   tamanho_d=enderacamentoFisico-log2(nQuadros);
-   tamanho_p=enderecamentoVirtual-tamanho_d;
-    
-   falha_de_pagina = false;
    pagina = descobre_p(tamanho_p, tamanho_d, el);
    quadro_livre = -1;
+   falha_de_pagina = false;
 
-   /*Pergunto se a pagina esta mapeada, se nao procuro um quadro livre*/
-   for(i=0;i<nQuadros;i++) {
-    if(tabelainvertida[i].processo==numeroprocesso && 
-       tabelainvertida[i].pagina==pagina && 
-       tabelainvertida[i].bitvalidade==true) {
-      tabelainvertida->imprime_conteudo(memoria);
-    }    
+   if(tabelaPaginaInvertida->pagina_esta_mapeada(numeroprocesso,pagina)==true) {
+    std::cout << "Ta mapeado\n";
+   } else {
+    falha_de_pagina = true;
+    quantidade_falha_pagina++;
+   }
+
+   if(falha_de_pagina){
+    quadro_livre=tabelaPaginaInvertida->procura_quadro_livre();
+    if(quadro_livre==-1) {
+      quadro_livre=fifo->remove_da_fila();
     }
-    if(i==nQuadros){
-      falha_de_pagina=true;
-    }
+    tabelaPaginaInvertida->insere_pagina(numeroprocesso,pagina,quadro_livre,memoria,disco);
+    fifo->insere_na_fila(quadro_livre);
+   }
 
 
-/*Falha de pagina, precisamos de um quadro para alocar os dados*/
-    if(falha_de_pagina==true) {
-      for(i=0; i<nQuadros; i++) {
-        if(quadros_livres[i] == true) {
-          /*Achei um quadro livre*/
-          quadro_livre = i;
-          break;
-        }
-      }
+   std::cout << "Fim da opção 1\n";
+   break;
 
-
-    }
-
-
-     std::cout << "Fim da opção 1\n";
-     break;
    case 2:
-     std::cout << opcao;
+   quantidade_acessos++;
+
+   std::cout << "Digite o número do processo\n";
+   std::cin >> numeroprocesso;
+   std::cout << "Digite o endereco lógico que deseja escrever \n";
+   std::cin >> el;
+   std::cout << "Digite o char que deve ser escrito la \n";
+   std::cin >> entrada;
+
+   quantidade_acessos++;
+
+   pagina = descobre_p(tamanho_p, tamanho_d, el);
+   quadro_livre = -1;
+   falha_de_pagina = false;
+
+   if(tabelaPaginaInvertida->pagina_esta_mapeada(numeroprocesso,pagina)==true) {
+    std::cout << "Ta mapeado\n";
+   } else {
+    falha_de_pagina = true;
+    quantidade_falha_pagina++;
+   }
+
+   if(falha_de_pagina){
+    quadro_livre=tabelaPaginaInvertida->procura_quadro_livre();
+    if(quadro_livre==-1) {
+      quadro_livre=fifo->remove_da_fila();
+    }
+    std::cout << quadro_livre;
+    tabelaPaginaInvertida->insere_pagina(numeroprocesso,pagina,quadro_livre,memoria,disco);
+    fifo->insere_na_fila(quadro_livre);
+   }
+
+   tabelaPaginaInvertida->escreve_endereco(numeroprocesso,pagina,el,entrada,memoria);
+
+
+   std::cout << "Fim da opção 2\n";
+     
      break;
    case 3:
-     std::cout << opcao;
+   quantidade_acessos++;
+   std::cout << "Digite o número do processo\n";
+   std::cin >> numeroprocesso;
+   std::cout << "Digite o numero da pagina que deseja remover \n";
+   std::cin >> pagina;
+
+   if(tabelaPaginaInvertida->pagina_esta_mapeada(numeroprocesso,pagina)==true) {
+    tabelaPaginaInvertida->remove_pagina(numeroprocesso,pagina,memoria,disco);   
+    fifo->remove_da_fila(tabelaPaginaInvertida->descobre_quadro(numeroprocesso,pagina));
+  } else {
+    std::cout << "Pagina não esta mapeada\n";
+  }
+
      break;
    case 4:
-     std::cout << opcao;
-     break;
+   tabelaPaginaInvertida->imprime_tabela_pagina();
+   break;
 
    case 5:
      for(i=0;i<nProcessos;i++) {
@@ -185,11 +223,15 @@ int opcao=0;
    break;
 
    case 7:
-     std::cout << opcao;
+   std::cout << "Quantidade de acessos: ";
+   std::cout << quantidade_acessos;
+   std::cout << "\n";
      break;
    case 8:
-     std::cout << opcao;
-     break;
+   std::cout << "Quantidade de falhas de pagina: ";
+   std::cout << quantidade_falha_pagina;
+   std::cout << "\n";
+   break;
 
    case 9:
      atividade = false;
@@ -197,68 +239,13 @@ int opcao=0;
 
    default:
      std::cout << "Valor invalido\n";
-     //atividade = false;
      break;
    }
  }
 }
 
 
-
-
-
-
-
-
-
-
 /*Funções */
-
-/**********************************/
-/* Funções de manipulação da fila */
-/**********************************/
-void insere_na_fila(int valor) {
-  fila.push(valor);
-}
-
-int remove_da_fila() {
-  int valor = -1;
-  if(!fila.empty()) {
-    valor = fila.front();
-    fila.pop();
-  }
-  return valor;
-}
-
-void remove_da_fila(int elemento) {
-  if(!fila.empty()) {
-    if(elemento == fila.front()) {
-      fila.pop();
-    }
-    else {
-      int primeiro = remove_da_fila();
-      insere_na_fila(primeiro);
-      while(fila.front() != primeiro) {
-        if(fila.front() == elemento) {
-          fila.pop();
-        }
-        else {
-          insere_na_fila(remove_da_fila());
-        }
-      }
-    }
-  }
-}
-
-/*************************************/
-/* Funções de manipulação da memoria */
-/*************************************/
-
-void inicializa_quadros_livres(bool* quadros_livres, int quantidade_de_quadros) {
-  for(int i = 0 ; i < quantidade_de_quadros ; i++)
-    quadros_livres[i] = true;
-}
-
 unsigned int descobre_p(unsigned int tamanho_p, unsigned int tamanho_d, unsigned int endereco_logico) {
   endereco_logico = endereco_logico >> tamanho_d;
   unsigned int operando = (pow(2,tamanho_p) - 1);
