@@ -78,6 +78,7 @@ void TabelaPaginaInvertida::insere_pagina(int numeroprocesso,int pagina, int qua
 	this->linha[quadro].pagina=pagina;
 	this->linha[quadro].processo=numeroprocesso;
 	this->linha[quadro].bitvalidade=true;
+	this->linha[quadro].bitmodificacao=false;
 
 	//E subimos o conteudo do disco para a memoria
 	for(i = 0 ; i < (pow(2,this->q)) ; i++) {
@@ -201,4 +202,64 @@ void FIFO::remove_da_fila(int elemento) {
       }
     }
   }
+}
+
+void LRU::insere_na_fila(int valor, int quantidade_acessos) {
+	this->quadro[this->ocupado]=valor;
+	this->tempo[this->ocupado]=quantidade_acessos;
+	this->ocupado++;
+}
+
+int LRU::remove_da_fila() {
+	int quadro, tempo, i;
+
+	quadro=0;
+	tempo=this->tempo[0];
+
+	for(i=1; i<this->nQuadros; i++) {
+		if(tempo<this->tempo[i]) {
+			quadro=this->quadro[i];
+			tempo=this->tempo[i];
+		}
+	}
+
+	for(i=quadro; i<this->nQuadros; i++) {
+		this->tempo[i]=this->tempo[i+1];
+		this->quadro[i]=this->quadro[i+1];		
+	}	
+
+	this->ocupado--;
+
+	return quadro;
+}
+
+void LRU::remove_da_fila(int elemento) {
+	int quadro, i;
+
+	for(i=0; i<this->nQuadros; i++) {
+		if(this->quadro[i]==elemento) {
+			quadro=i;
+		}
+	}
+
+	for(i=quadro; i<this->nQuadros; i++) {
+		this->tempo[i]=this->tempo[i+1];
+		this->quadro[i]=this->quadro[i+1];		
+	}	
+
+	this->ocupado--;
+
+
+}
+
+void LRU::update_tempo(int elemento, int quantidade_acessos){
+	int quadro, i;
+
+	for(i=0; i<this->nQuadros; i++) {
+		if(this->quadro[i]==elemento) {
+			quadro=i;
+		}
+	}
+	this->tempo[i]==quantidade_acessos;
+
 }

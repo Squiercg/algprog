@@ -61,6 +61,33 @@ public:
 
 };
 
+
+class LRU {
+public:
+	int* quadro;
+	int* tempo;
+	int ocupado;
+	int nQuadros;
+
+	LRU(int nQuadros){
+		this->quadro = new int[nQuadros];		
+		this->tempo = new int[nQuadros];
+
+		this->nQuadros = nQuadros;
+		this->ocupado = 0;
+		for(int i=0; i<nQuadros; i++){
+			this->quadro[i]=-1;
+			this->tempo[i]=-1;
+		}
+	}
+
+	void insere_na_fila(int elemento, int quantidade_acessos);
+	int remove_da_fila();
+	void remove_da_fila(int elemento);
+	void update_tempo(int quadro, int quantidade_acessos);
+
+};
+
 /*Lista de quadros livres, que informa, para cada quadro da memória, se ele está livre ou ocupado;*/
 
 /*Vetor memória, que é um vetor de bytes que armazenar de fato as páginas de cada processo;*/
