@@ -1,0 +1,7 @@
+all: filosofo 
+
+filosofo.o: filosofo.c
+	gcc -c aula6.c 
+
+filosofo: filosofo.o
+	gcc filosofo.o -lpthread -o filosofo

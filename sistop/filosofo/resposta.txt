@@ -1,0 +1,3 @@
+2. Há possibilidade de deadlock? Justifique através de um exemplo e escreva sua resposta em um arquivo chamado resposta.txt.
+
+Sim, pois se todos os filósofos pegarem o seu respectivo garfo todos ficarão esperando o próximo filósofo terminar.
