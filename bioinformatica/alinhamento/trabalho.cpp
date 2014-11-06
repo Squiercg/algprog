@@ -5,43 +5,51 @@
 /****************************************************/
 
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "Classes.h"
 
-
-/****************************************************/
-/* Funções auxiliares                               */
-/****************************************************/
+using namespace std;
 
 int main (int argc, char* argv[]) {
 
-  /* <nome executavel> [-g,-l,-s] -u <arquivo 1a. sequencia> -v <arquivo 2a. sequencia> -i <w(a,a)> -d <w(a,b)> -e <w(-,b) ou w(a,-)>
-  Nas duas linhas acima, -g, -l e -s correspondem ao tipo de alinhamento desejado (global,local e semi-global, respectivamente). 
-  Ja sobre os parametros -i, -d e -e, eles correspondem aos valores atribuıdos pela funcao de pontuacao para colunas com caracteres iguais,
-  diferentes e espaco, respectivamente.
-  */
+  int igual, diferente, espaco, i, arq1, arq2;
+  char tipo_alinhamento;
+     
 
-  int tipo_alinhamento, iguais, diferente, espaco;
-  char arquivo1, arquivo2;
-
-  for(int i=0; i<argc; i++) {
-    std::cout << "Argumento " << i << " : " << argv[i] << "\n";
+  for(i=0;i<argc;i++) {
+    if(string(argv[1])==("-g")) {
+      tipo_alinhamento='g';
+      i=argc;
+    }
+    if(string(argv[1])==("-l")) {
+      tipo_alinhamento='l';
+      i=argc;
+    }
+    if(string(argv[1])==("-s")) {
+      tipo_alinhamento='s';
+      i=argc;
+    }
   }
-
-  if(argv[1]=="-g")
-    tipo_alinhamento=0;
-  else if(argv[1]=="-l")
-    tipo_alinhamento=1;
-  else
-    tipo_alinhamento=2;
-
   
 
+  for(i=0; string(argv[i])!=("-u") ;i++);
+  arq1=i+1;
+  for(i=0; string(argv[i])!=("-v") ;i++);
+  arq2=i+1;
 
+  for(i=0; string(argv[i])!=("-i") ;i++);
+  sscanf (argv[i+1],"%d",&igual);
 
+  for(i=0; string(argv[i])!=("-d") ;i++);
+  sscanf (argv[i+1],"%d",&diferente);
 
-  Rectangle rect;
-  rect.set_values (3,4);
-  std::cout << "area: " << rect.area() << "\n";
-  return 0;
+  for(i=0; string(argv[i])!=("-e") ;i++);
+  sscanf (argv[11],"%d",&espaco);
+
+  Sequencia* seq1 = new Sequencia(argv[arq1]);
+  Sequencia* seq2 = new Sequencia(argv[arq2]);
+
+  Alinhamento* alinhamento = new Alinhamento(seq1,seq2,tipo_alinhamento,igual,diferente,espaco);
+   
 }
-

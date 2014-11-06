@@ -1,0 +1,6 @@
+0,.
+0,..
+3,oi.txt
+5,desktop
+6,documentos
+7,downloads

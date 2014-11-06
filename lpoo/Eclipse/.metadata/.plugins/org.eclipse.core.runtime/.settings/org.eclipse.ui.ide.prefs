@@ -1,12 +1,10 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=822f3a84deb0ae25a953966a45041e9d4c0d9a5f
 PROBLEMS_FILTERS_MIGRATE=true
-<<<<<<< HEAD
-eclipse.preferences.version=1
-platformState=1410983267494
-=======
 SWITCH_PERSPECTIVE_ON_PROJECT_CREATION=always
 TASKS_FILTERS_MIGRATE=true
 eclipse.preferences.version=1
-platformState=1411081674148
->>>>>>> 822f3a84deb0ae25a953966a45041e9d4c0d9a5f
+platformState=1414848530964
 quickStart=false
 tipsAndTricks=true

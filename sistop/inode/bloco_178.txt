@@ -1,0 +1,4 @@
+1,.
+5,..
+10,arquivo_inutil_1.txt
+11,arquivo_inutil_2.txt

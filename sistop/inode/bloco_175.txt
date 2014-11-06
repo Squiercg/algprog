@@ -1,0 +1,4 @@
+0,.
+1,..
+8,pasta_inutil_1
+9,pasta_inutil_2
