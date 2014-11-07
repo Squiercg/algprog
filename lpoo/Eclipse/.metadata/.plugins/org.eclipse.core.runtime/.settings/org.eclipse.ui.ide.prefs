@@ -6,6 +6,6 @@ PROBLEMS_FILTERS_MIGRATE=true
 SWITCH_PERSPECTIVE_ON_PROJECT_CREATION=always
 TASKS_FILTERS_MIGRATE=true
 eclipse.preferences.version=1
-platformState=1410983267494
+platformState=1414848530964
 quickStart=false
 tipsAndTricks=true
