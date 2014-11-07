@@ -1,10 +1,11 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=822f3a84deb0ae25a953966a45041e9d4c0d9a5f
+EXIT_PROMPT_ON_CLOSE_LAST_WINDOW=false
 PROBLEMS_FILTERS_MIGRATE=true
 SWITCH_PERSPECTIVE_ON_PROJECT_CREATION=always
 TASKS_FILTERS_MIGRATE=true
 eclipse.preferences.version=1
-platformState=1413501593675
+platformState=1414848530964
 quickStart=false
 tipsAndTricks=true

@@ -2,9 +2,21 @@ Introdução à Bioinformática
 Professor Said Sadique Adi
 ===================
 
-<nome executavel> [-g,-l,-s] -u <arquivo 1a. sequencia> -v <arquivo 2a. sequencia> -i <w(a,a)> -d <w(a,b)> -e <w(-,b) ou w(a,-)>
-Nas duas linhas acima, -g, -l e -s correspondem ao tipo de alinhamento desejado (global,local e semi-global, respectivamente). 
-Ja sobre os parametros -i, -d e -e, eles correspondem aos valores atribuıdos pela funcao de pontuacao para colunas com caracteres iguais, diferentes e espaco, respectivamente.
-  
+O codigo está dividido em três arquivos. 
 
-O codigo está dividido em três arquivos. O trabalho.cpp possui uma função main com a execução da classe alinhamento e os arquivos Classes.h e Classes.cpp possuem as classes Sequencia e Alinhamento usados realizar o processamento.
+O trabalho.cpp possui uma função main com a execução da classe alinhamento.
+Os arquivos Classes.h e Classes.cpp possuem as classes Sequencia e Alinhamento usados realizar o processamento.
+
+A classe sequencia serve apenas para fazer a leitura de arquivos fasta. No construtor ela recebe uma string, contendo o nome do arquivo a ser usado, então com esse nome, o construtor vai abrir esse arquivo, ler a primeira linha do arquivo e extrair o nome da sequencia e outras informações desta linha, guardando nos atributos identificador e e outros. Apos isso o construtor vai ler linha a linha o arquivo até o final, concatenando as strings de cada linha numa string chamada sequencia.
+
+A classe alinhamento faz o alinhamento propriamente dito. No seu construtor ela recebe duas sequencias, bem como o tipo de alinhamento desejado e os valores para igualdade, diferença e espaço.
+O alinhamento procedimento de alinhamento está dividido em três metodos para cada tipo de alinhamento.
+Temos um método que gera uma matriz de alinhamento para a programação dinamica e preenche a primeira linha e primeira coluna, de acordo com a necessidade do tipo de alinhamento, esse metodo se chama inicia_matriz_método.
+Depois temos método para preencher a matriz e outro método que chama volta matriz. Estes vão preencher a matriz, e o metodo volta matriz vai construir as strings de alinhamento, de acordo com o tipo de alinhamento desejado.
+
+Por ultimo temos o método imprime alinhamento, que vai imprimir o alinhamento construido no método.
+
+Existe uma função auxiliar que imprime a matriz de pontuação, mas está foi usada somente para verificar se os alinhamentos estavam sendo construidos corretamente, não sendo invocada nessa versão do trabalho.
+
+Existe um Makefile que cuida da compilação do programa e roda um exemplo inicial.
+Basta digitar make.
