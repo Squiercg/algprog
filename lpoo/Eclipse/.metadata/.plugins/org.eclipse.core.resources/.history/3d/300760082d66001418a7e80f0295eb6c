@@ -1,0 +1,24 @@
+package Main;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import dao.*;
+
+public class Teste {
+
+	public static void main(String[] args) {
+		
+		try{
+			System.out.println("Entrei");
+			GenericDao dao = new GenericDao("\TrabalhoLpoo\db\trabalho.sqlite","Corredor");
+			ArrayList<String> teste = dao.all();
+			System.out.println(teste);
+		}catch(Exception e){
+			System.out.println("Caught IOException: " + e.getMessage());						
+		}		
+		
+		System.out.println("???? Hello           World!");
+	}
+
+}

@@ -1,0 +1,19 @@
+package Main;
+
+import dao.*;
+
+public class Teste {
+
+	public static void main(String[] args) {
+		try{
+			GenericDao dao = new GenericDao("trabalho.sqlite","Corredor");
+		}catch(Exception e){
+			System.err.println("Caught IOException: " + e.getMessage());						
+		}
+		
+		System.out.println(dao.all());
+		
+		System.out.println("Hello World!");
+	}
+
+}
