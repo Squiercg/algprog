@@ -1,0 +1,404 @@
+package Main;
+
+import java.io.File;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import classes.Corredor;
+import classes.Corrida;
+import classes.Modalidade;
+import dao.CorredorDao;
+import dao.CorridaDao;
+import dao.ModalidadeDao;
+
+public class Main {
+
+	private static Scanner leitor;
+	private static boolean menu_principal;
+	private static boolean menu_corredores;
+	private static boolean menu_corridas;
+	private static CorredorDao corredordao;
+	private static CorridaDao corridadao;
+	private static ModalidadeDao modalidadedao;
+
+	public static void main(String[] args) {
+		String caminho;
+		File file = new File("trabalho.sqlite");
+		caminho = file.getAbsolutePath().replaceAll("trabalho.sqlite", "db/trabalho.sqlite").replaceAll("\\\\", "/");
+		
+		try {
+			corredordao = new CorredorDao(caminho);
+			corridadao = new CorridaDao(caminho);
+			modalidadedao = new ModalidadeDao(caminho);
+		} catch (SQLException e) {
+			System.out.println("Problemas em criar coneção com banco de dados: " + e.getMessage());
+		}
+		
+		
+		leitor = new Scanner(System.in);
+		int opcao;
+		
+		menu_principal=true;		
+		while(menu_principal) {
+			imprime_menu_principal();
+			opcao=leitor.nextInt();
+			leitor.nextLine();
+			
+			switch (opcao) {
+			case 1:
+				menu_corredores();
+				break;
+			case 2:
+				menu_corridas();
+				break;
+			case 3:
+				System.out.println("Fim do Programa! Beep. Beep.");
+				menu_principal=false;
+				break;
+			default:
+				System.out.println("Opção Inválida!");
+			}			
+		}		
+		leitor.close();
+	}
+	
+	public static void imprime_menu_principal(){
+		System.out.println("Menu Principal.");
+		System.out.println("Opções:");
+		System.out.println("1 - Corredores");
+		System.out.println("2 - Corridas");
+		System.out.println("3 - Encerrar sessão");
+		System.out.print("Sua Opção: ");		
+	}
+	
+	public static void imprime_menu_corredores(){
+		System.out.println("Menu Corredores");
+		System.out.println("Opções:");
+		System.out.println("1 - Listar Cadastros");
+		System.out.println("2 - Cadastrar Corredor");
+		System.out.println("3 - Modificar Cadastro");
+		System.out.println("4 - Remover Cadastro");		
+		System.out.println("5 - Inscrever Corredor em Corrida");
+		System.out.println("6 - Voltar");
+		System.out.print("Sua Opção: ");		
+	}
+	
+	public static void imprime_menu_corridas(){
+		System.out.println("Menu Corredores");
+		System.out.println("Opções:");
+		System.out.println("1 - Listar Corridas");
+		System.out.println("2 - Cadastrar Corrida");
+		System.out.println("3 - Modificar Corrida");
+		System.out.println("4 - Remover Corrida");
+		System.out.println("5 - Listar Modalidade");
+		System.out.println("6 - Cadastrar Modalidade");
+		System.out.println("7 - Modificar Modalidade");
+		System.out.println("8 - Remover Modalidade");
+		System.out.println("9 - Registrar modalidade em corrida");
+		System.out.println("10 - Voltar");
+		System.out.print("Sua Opção: ");		
+	}
+	
+	public static void menu_corredores(){
+		int opcao;
+		
+		menu_corredores=true;
+		while(menu_corredores) {
+			imprime_menu_corredores();
+			opcao=leitor.nextInt();
+			leitor.nextLine();
+			
+			switch (opcao) {
+			case 1: //Listar Cadastros
+				ArrayList<Corredor> lista_corredores;				
+				try {
+					System.out.printf("\n\n");
+					lista_corredores = corredordao.all();
+					System.out.println("Lista de corredores cadastrados:");
+					for (Corredor pessoa : lista_corredores){
+						System.out.println(pessoa);				
+					}
+					System.out.printf("\n\n");
+					
+				} catch (SQLException e) {
+					System.out.println("Problemas com o banco de dados!" + e.getMessage());
+				}
+				break;
+			case 2: //Cadastrar Corredor
+				String nome, data_de_nascimento, cpf;
+				
+				System.out.println("Cadastro de Corredor.");
+				System.out.printf("Nome: ");
+				nome=leitor.nextLine();
+				System.out.printf("Data de Nascimento:");
+				data_de_nascimento=leitor.nextLine();
+				System.out.printf("CPF: ");
+				cpf=leitor.nextLine();
+				
+				try {
+					Corredor cadastro = new Corredor(corredordao.descobre_chave_livre(),nome,data_de_nascimento,cpf);
+					corredordao.insert(cadastro);					
+				} catch (SQLException e) {
+					System.out.println("Problemas com o banco de dados!" + e.getMessage());
+				}
+				
+				break;
+			case 3://Modificar Cadastro
+				int mod, identificador;			
+				
+				System.out.println("O que deseja Modificar?");
+				System.out.println("1 - Nome");
+				System.out.println("2 - Data de nascimento");
+				System.out.println("3 - CPF");
+				System.out.println("4 - Voltar");
+				
+				mod=leitor.nextInt();
+				leitor.nextLine();
+				
+				Corredor modificar = new Corredor();
+				
+				System.out.printf("Qual id do cadastro que deseja modoficar?");
+				identificador=leitor.nextInt();
+				leitor.nextLine();
+				
+				
+				switch (mod) {
+				case 1:
+					System.out.printf("Novo Nome: ");
+					modificar.setNome(leitor.nextLine());					
+					try {
+						if(corredordao.chave_existe(identificador)) {
+							corredordao.update(modificar,identificador);
+						} else {
+							System.out.println("Falha na modificação, chave inexistente!");
+						}
+					} catch (SQLException e) {
+						System.out.println("Problemas com o banco de dados!" + e.getMessage());
+					}					
+					break;
+				case 2:
+					System.out.printf("Nova Data de nascimento: ");
+					modificar.setData_de_nascimento(leitor.nextLine());					
+					try {
+						if(corredordao.chave_existe(identificador)) {
+							corredordao.update(modificar,identificador);
+						} else {
+							System.out.println("Falha na modificação, chave inexistente!");
+						}
+					} catch (SQLException e) {
+						System.out.println("Problemas com o banco de dados!" + e.getMessage());
+					}
+					break;
+				case 3:
+					System.out.printf("Novo cpf: ");
+					modificar.setCpf(leitor.nextLine());					
+					try {
+						if(corredordao.chave_existe(identificador)) {
+							corredordao.update(modificar,identificador);
+						} else {
+							System.out.println("Falha na modificação, chave inexistente!");
+						}
+					} catch (SQLException e) {
+						System.out.println("Problemas com o banco de dados!" + e.getMessage());
+					}
+					break;
+				case 4:
+					System.out.println("Voltando ao menu corredor");
+					break;
+				default:
+					System.out.println("Opção Inválida!");
+				}
+				break;
+			case 4://Remover Cadastro
+				int id_remover;
+				System.out.printf("Qual id do cadastro que deseja remover?");
+				id_remover=leitor.nextInt();
+				leitor.nextLine();
+				try {
+					if(corredordao.chave_existe(id_remover)) {
+						corredordao.remove(id_remover);
+					} else {
+						System.out.println("Falha na remoção, chave inexistente!");
+					}
+				} catch (SQLException e) {
+					System.out.println("Problemas com o banco de dados!" + e.getMessage());
+				}
+				break;
+			case 5://Inscrever Corredor em Corrida
+				System.out.println("5");
+				break;
+			case 6:
+				System.out.println("Voltando ao menu principal");
+				menu_corredores=false;
+				break;
+			default:
+				System.out.println("Opção Inválida!");
+			}			
+		}		
+	}
+
+	public static void menu_corridas(){
+		int opcao;
+		
+		menu_corridas=true;
+		while(menu_corridas) {
+			imprime_menu_corridas();
+			opcao=leitor.nextInt();
+			leitor.nextLine();
+			
+			switch (opcao) {
+			case 1: //Listar Corridas
+				ArrayList<Corrida> lista_corridas;				
+				try {
+					System.out.printf("\n\n");
+					lista_corridas = corridadao.all();
+					System.out.println("Lista de corridas cadastrados:");
+					for (Corrida corrida : lista_corridas){
+						System.out.println(corrida);				
+					}
+					System.out.printf("\n\n");
+					
+				} catch (SQLException e) {
+					System.out.println("Problemas com o banco de dados!" + e.getMessage());
+				}
+				break;
+			case 2: //Cadastrar Corrida
+				String nome, data, local;
+				
+				System.out.println("Cadastro de corrida.");
+				System.out.printf("Nome: ");
+				nome=leitor.nextLine();
+				System.out.printf("Data:");
+				data=leitor.nextLine();
+				System.out.printf("Local: ");
+				local=leitor.nextLine();
+				
+				try {
+					Corrida cadastro_corrida = new Corrida(corridadao.descobre_chave_livre(),nome,data,local);
+					corridadao.insert(cadastro_corrida);					
+				} catch (SQLException e) {
+					System.out.println("Problemas com o banco de dados!" + e.getMessage());
+				}
+				
+				break;
+			case 3: //Modificar Corrida
+				int mod, identificador;			
+				
+				System.out.println("O que deseja Modificar?");
+				System.out.println("1 - Nome");
+				System.out.println("2 - Data");
+				System.out.println("3 - Local");
+				System.out.println("4 - Voltar");
+				
+				mod=leitor.nextInt();
+				leitor.nextLine();
+				
+				Corrida modificar_corrida = new Corrida();
+				
+				System.out.printf("Qual id da corrida que deseja modoficar?");
+				identificador=leitor.nextInt();
+				leitor.nextLine();
+				
+				
+				switch (mod) {
+				case 1:
+					System.out.printf("Novo Nome: ");
+					modificar_corrida.setNome(leitor.nextLine());					
+					try {
+						if(corridadao.chave_existe(identificador)) {
+							corridadao.update(modificar_corrida,identificador);
+						} else {
+							System.out.println("Falha na modificação, chave inexistente!");
+						}
+					} catch (SQLException e) {
+						System.out.println("Problemas com o banco de dados!" + e.getMessage());
+					}					
+					break;
+				case 2:
+					System.out.printf("Nova Data de nascimento: ");
+					modificar_corrida.setData(leitor.nextLine());					
+					try {
+						if(corridadao.chave_existe(identificador)) {
+							corridadao.update(modificar_corrida,identificador);
+						} else {
+							System.out.println("Falha na modificação, chave inexistente!");
+						}
+					} catch (SQLException e) {
+						System.out.println("Problemas com o banco de dados!" + e.getMessage());
+					}
+					break;
+				case 3:
+					System.out.printf("Novo local: ");
+					modificar_corrida.setLocal(leitor.nextLine());					
+					try {
+						if(corridadao.chave_existe(identificador)) {
+							corridadao.update(modificar_corrida,identificador);
+						} else {
+							System.out.println("Falha na modificação, chave inexistente!");
+						}
+					} catch (SQLException e) {
+						System.out.println("Problemas com o banco de dados!" + e.getMessage());
+					}
+					break;
+				case 4:
+					System.out.println("Voltando ao menu corrida");
+					break;
+				default:
+					System.out.println("Opção Inválida!");
+				}
+				break;
+			case 4: //Remover Corrida
+				int id_remover_corrida;
+				System.out.printf("Qual id da corrida que deseja modoficar?");
+				id_remover_corrida=leitor.nextInt();
+				leitor.nextLine();
+				try {
+					if(corridadao.chave_existe(id_remover_corrida)) {
+						corridadao.remove(id_remover_corrida);
+					} else {
+						System.out.println("Falha na remoção, chave inexistente!");
+					}
+				} catch (SQLException e) {
+					System.out.println("Problemas com o banco de dados!" + e.getMessage());
+				}
+				break;
+			case 5: //Listar Modalidade
+				ArrayList<Modalidade> lista_modalidades;				
+				try {
+					System.out.printf("\n\n");
+					lista_modalidades = modalidadedao.all();
+					System.out.println("Lista de corridas cadastrados:");
+					for (Modalidade modalidade : lista_modalidades){
+						System.out.println(modalidade);				
+					}
+					System.out.printf("\n\n");
+					
+				} catch (SQLException e) {
+					System.out.println("Problemas com o banco de dados!" + e.getMessage());
+				}
+				break;
+			case 6: //Cadastrar Modalidade
+				System.out.println("1");
+				break;
+			case 7: //Modificar Modalidade
+				System.out.println("1");
+				break;
+			case 8: //Remover Modalidade
+				System.out.println("1");
+				break;
+			case 9: //Registrar modalidade em corrida
+				System.out.println("1");
+				break;
+			case 10:
+				System.out.println("Voltando ao menu principal");
+				menu_corridas=false;
+				break;
+			default:
+				System.out.println("Opção Inválida!");
+			}			
+		}
+	}
+
+	
+}

@@ -1,0 +1,8 @@
+package classes;
+
+public class Inscricao {
+	private int id_inscricao;
+	private int id_relacao;	
+
+
+}

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import classes.Corredor;
 import dao.*;
 
 public class Teste {
@@ -39,7 +40,6 @@ public class Teste {
 			teste = dao.all();
 			System.out.println("Dao.all depois insert: "+teste);
 			
-			
 			mapping.clear();
 			mapping.put( "id_corredor",  "2");			
 			Map<String, Object> mapping2 = new HashMap<>();			
@@ -59,12 +59,57 @@ public class Teste {
 			
 		}catch(Exception e){
 			System.out.println("Caught IOException: " + e.getMessage());						
-		}		
+		}	
+		
+		try{
+			CorredorDao corredordao = new CorredorDao(caminho);
+			
+			ArrayList<Corredor> lista_corredores;
+			
+			lista_corredores = corredordao.all();			
+			for (Corredor pessoa : lista_corredores){
+				System.out.println(pessoa);				
+			}
+				
+			Corredor cor_in = new Corredor(2,"Thiago Machado","10/10/1995","654321");
+			
+			corredordao.insert(cor_in);
+			
+			lista_corredores = corredordao.all();			
+			for (Corredor pessoa : lista_corredores){
+				System.out.println(pessoa);				
+			}
+			
+			System.out.println(corredordao.all_chaves());
+			System.out.println(corredordao.descobre_chave_livre());
+			
+			
+			
+			Corredor cor_up = new Corredor();
+			
+			cor_up.setCpf("999999");
+			corredordao.update(cor_up,2);
+			
+			lista_corredores = corredordao.all();			
+			for (Corredor pessoa : lista_corredores){
+				System.out.println(pessoa);				
+			}			
+			
+			corredordao.remove(2);
+			
+			lista_corredores = corredordao.all();			
+			for (Corredor pessoa : lista_corredores){
+				System.out.println(pessoa);				
+			}
+			
+			System.out.println(corredordao.descobre_chave_livre());
+
+			
+		}catch(Exception e){
+			System.out.println("Caught IOException: " + e.getMessage());						
+		}
 		
 
-		
-
-		
 		System.out.println("Hello World!");
 	}
 

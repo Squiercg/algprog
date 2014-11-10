@@ -50,6 +50,32 @@ public class GenericDao {
 		return result;
 	}
 	
+	/*Devolve todas os atributos*/
+	public  ArrayList<String> all_atributo(String atributo) throws SQLException {
+		
+		Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseUrl);
+		Statement statement = connection.createStatement();
+		
+		ArrayList<String> result = new ArrayList<String>();
+		ResultSet resultSet = statement.executeQuery("select "+ atributo +" from " + tableName);
+		int numberOfColumns = resultSet.getMetaData().getColumnCount();
+		
+		while(resultSet.next()) {
+			String stringResult = "";
+			int i;
+			for(i = 1 ; i < numberOfColumns ; i++) {
+				stringResult += resultSet.getString(i);
+				stringResult += ",";
+			}
+			stringResult += resultSet.getString(i);
+			result.add(stringResult);
+		}
+		
+		statement.close();
+		connection.close();
+		return result;
+	}
+	
 
 	/*Procura elementos na tabela*/
 	public ArrayList<String> findBy(Map<String, Object> mapping) throws SQLException {

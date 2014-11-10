@@ -1,0 +1,142 @@
+package Main;
+
+import java.io.File;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import classes.Corredor;
+import dao.CorredorDao;
+
+public class Main {
+
+	private static Scanner leitor;
+	private static boolean menu_principal;
+	private static boolean menu_corredores;
+	private static CorredorDao corredordao;
+
+	public static void main(String[] args) {
+		String caminho;
+		File file = new File("trabalho.sqlite");
+		caminho = file.getAbsolutePath().replaceAll("trabalho.sqlite", "db/trabalho.sqlite").replaceAll("\\\\", "/");
+		
+		try {
+			corredordao = new CorredorDao(caminho);
+		} catch (SQLException e) {
+			System.out.println("Problemas com o banco de dados!" + e.getMessage());
+		}
+		
+		
+		leitor = new Scanner(System.in);
+		int opcao;
+		
+		menu_principal=true;		
+		while(menu_principal) {
+			imprime_menu_principal();
+			opcao=leitor.nextInt();
+			leitor.nextLine();
+			
+			switch (opcao) {
+			case 1:
+				menu_corredores();
+				break;
+			case 2:
+				System.out.println("2");
+				break;
+			case 3:
+				System.out.println("Saida!");
+				menu_principal=false;
+				break;
+			default:
+				System.out.println("Opção Inválida!");
+			}			
+		}		
+		leitor.close();
+	}
+	
+	public static void imprime_menu_principal(){
+		System.out.println("Menu Principal.");
+		System.out.println("Opções:");
+		System.out.println("1 - Corredores");
+		System.out.println("2 - Corridas");
+		System.out.println("3 - Encerrar sessão");
+		System.out.print("Sua Opção: ");		
+	}
+	
+	public static void imprime_menu_corredores(){
+		System.out.println("Menu Corredores");
+		System.out.println("Opções:");
+		System.out.println("1 - Listar Cadastros");
+		System.out.println("2 - Cadastrar Corredor");
+		System.out.println("3 - Modificar Cadastro");
+		System.out.println("4 - Remover Cadastro");		
+		System.out.println("5 - Inscrever Corredor em Corrida");
+		System.out.println("6 - Voltar");
+		System.out.print("Sua Opção: ");		
+	}
+	
+	public static void menu_corredores(){
+		int opcao;
+		
+		menu_corredores=true;
+		while(menu_corredores) {
+			imprime_menu_corredores();
+			opcao=leitor.nextInt();
+			leitor.nextLine();
+			
+			switch (opcao) {
+			case 1: //Listar Cadastros
+				ArrayList<Corredor> lista_corredores;				
+				try {
+					System.out.printf("\n\n");
+					lista_corredores = corredordao.all();
+					System.out.println("Lista de corredores cadastrados:");
+					for (Corredor pessoa : lista_corredores){
+						System.out.println(pessoa);				
+					}
+					System.out.printf("\n\n");
+					
+				} catch (SQLException e) {
+					System.out.println("Problemas com o banco de dados!" + e.getMessage());
+				}
+				break;
+			case 2: //Cadastrar Corredor
+				String nome, data_de_nascimento, cpf;
+				
+				System.out.println("Cadastro de Corredor.");
+				System.out.printf("Nome: ");
+				nome=leitor.nextLine();
+				System.out.printf("Data de Nascimento:");
+				data_de_nascimento=leitor.nextLine();
+				System.out.printf("CPF: ");
+				cpf=leitor.nextLine();
+				
+				try {
+					Corredor cadastro = new Corredor(corredordao.descobre_chave_livre(),nome,data_de_nascimento,cpf);
+					corredordao.insert(cadastro);					
+				} catch (SQLException e) {
+					System.out.println("Problemas com o banco de dados!" + e.getMessage());
+				}
+				
+				break;
+			case 3://Modificar Cadastro
+				System.out.println("3");
+				break;
+			case 4://Remover Cadastro
+				System.out.println("4");
+				break;
+			case 5://Inscrever Corredor em Corrida
+				System.out.println("5");
+				break;
+			case 6:
+				System.out.println("Voltando ao menu principal");
+				menu_corredores=false;
+				break;
+			default:
+				System.out.println("Opção Inválida!");
+			}			
+		}
+		
+	}
+
+}
