@@ -5,44 +5,32 @@ using namespace std;
 
 int main()
 {
-  int T, N,pontos_total,i,empates,pontos;
-  char pais[100];
+  int T, N,pontos_total,i,empates,pontos,total;
+  char pais[11];
 
   cin >> T;
   cin >> N;
 
-  while(T!=0 && N!=0){
-    
+  while(!(T==0 && N==0)){  
 
     pontos_total = 3*N;
-    empates=0;
+    total=0;
 
     for(i=0;i<T;i++){
       scanf("%s %d",pais,&pontos);
-      
-      if(pontos%3!=0) {
-        empates+=pontos%3;
-        pontos_total-=(pontos/3)*3;
-      } else {
-        pontos_total-=pontos;
-      }
+      total+=pontos;
     }
 
-    
+    empates=pontos_total-total;
 
-    if(empates<N){
-    	cout << N << "\n";
-	} else {
-	    if(empates%2==0){
-	    	cout << empates/2 << "\n";
-	    } else {
-	    	cout << empates << "\n";
-	    }
-	}
+   	cout << empates;
 
     cin >> T;
-    cin >> N;    
+    cin >> N; 
+
+    if(!(T==0 && N==0))
+      cout << "\n"; 
 
   }
-  return 0;
+
 }
