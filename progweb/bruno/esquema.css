@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+div {
+	border: 2px solid black;
+	margin: 5px;
+	font-family: tahoma, verdana, arial;
+}
+
+p {
+	margin-left: 10px;
+    margin-right: 5px;
+    text-align: justify;
+}
+
+h1, h2, h3 {
+	margin-left: 5px;
+    margin-right: 5px;
+}
+
+ul{
+	list-style-type: circle;
+}
+
+.foto {
+	margin: 5px;
+	width: 150px;
+	height: 200px;
+	float: left;
+}
+
+.identificacao {
+    text-align: center;
+    font-size: 1.5em;
+    font-variant: small-caps;
+	margin: 5px;
+	margin-left: 165px;
+	height: 200px;
+	float: center;
+}

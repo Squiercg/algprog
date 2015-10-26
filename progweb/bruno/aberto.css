@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+
+body {
+	background-color: #292A31;
+}
+
+div {
+	color: white;
+	font-family: "Book Antiqua", "Palatino Linotype", "Times New Roman";
+	background: url(xjRkN1h-black.png);
+    background-attachment: fixed;
+}
+
+p {
+	margin-left: 10px;
+    margin-right: 5px;
+    text-align: justify;
+}
+
+h1, h2, h3 {
+	margin-left: 5px;
+    margin-right: 5px;
+}
+
+ul{
+	list-style-type: square;
+}
+
+.foto {
+	border: 2px solid white;
+	margin: 25px;
+	width: 150px;
+	height: 200px;
+	float: left;
+}
+
+.identificacao {
+	display: table-cell;
+	vertical-align: bottom;
+	color: white;
+    text-align: left;
+    font-size: 1.2em;
+	margin: 5px;
+	margin-left: 165px;
+	height: 200px;
+	float: center; 
+}
+
+.apresentacao {
+	margin-top: 75px;
+	margin-bottom: 25px;
+	padding: 5px;
+}
+
+.formacao, .info {
+	margin-bottom: 25px;
+	padding: 5px;
+}

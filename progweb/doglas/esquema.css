@@ -1,0 +1,77 @@
+div{
+    border: 2px solid black;
+    margin: 5px;
+    font-family: Tahoma, verdana, sans-serif;
+}
+p, h2, h3{
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: justify;
+}
+
+.foto{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 130px;
+    height: 150px;
+}
+.identificacao{
+    position: absolute;
+    height: 150px;
+    top: 5px;
+    left: 145px;
+    right: 5px;
+    text-align: center;
+    font-size: 1.7em;
+    font-variant: small-caps;
+}
+.cabecalho{
+    position: relative;
+    height: 175px;
+    color: navy;
+}
+.apresentacao{
+    position: relative;
+}
+.formacao{
+    position: relative;
+}
+.info{
+    position: relative;
+}
+.academica{
+    position: relative;
+}
+.extra{
+    position: relative;
+}
+
+/*Configurar os links da página*/
+a:link{
+	text-decoration: none;
+	color: blue;
+}
+a:visited{
+	text-decoration: none;
+	color: green;
+}
+a:hover{
+	text-decoration: underline;
+    color:white;
+    background-color: blue;
+}
+a:active{
+	text-decoration: underline;
+}
+
+/*configurar listas*/
+ul{
+	list-style-type: square;
+}
+ol{
+	list-style-type: upper-roman;
+}
+li{
+    padding-bottom: 10px;
+}

@@ -1,0 +1,107 @@
+div{
+    font-family: helvetica, tahoma, sans-serif;
+}
+h2, h3{
+    margin-left: 5px;
+    margin-right: 5px;
+    color: yellow;
+}
+body{
+    background-image: url("tijolo.gif");
+    color: white;
+}
+p{
+    margin: 5px;
+}
+/*primeiro bloco*/
+.foto{
+    position: absolute;
+    width: 130px;
+    height: 150px;
+    right: 5px;
+    top: 5px;
+}
+.identificacao{
+    position: absolute;
+    height: 150px;
+    right: 145px;
+    left: 5px;
+    top: 5px;
+    text-align: center;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+.cabecalho{
+    position: relative;
+    height: 160px;
+    border: 5px double white;
+}
+/*segundo bloco*/
+.apresentacao{
+    position: absolute;
+    top: 175px;
+    left: 5px;
+    margin: 5px;
+    max-width: 48%;
+    max-height: 25%;
+    text-align: justify;
+}
+.info{
+    position: absolute;
+    top: 175px;
+    right: 5px;
+    margin: 5px;
+    max-width: 48%;
+    max-height: 25%;
+    text-align: justify;
+}
+/*terceiro bloco*/
+.formacao{
+    position: absolute;
+    top:400px;
+    height: 100px;
+    right: 5px;
+    left: 5px;
+
+}
+.academica{
+    position: absolute;
+    top:100px;
+    right: 0px;
+    left: 0px;
+}
+.extra{
+    position: absolute;
+    top:330px;
+    right: 0px;
+    left: 0px;
+}
+
+/*Configurar os links da página*/
+a:link{
+	text-decoration: underline;
+	color: white;
+}
+a:visited{
+	text-decoration: none;
+	color: green;
+}
+a:hover{
+	text-decoration: underline;
+    color: white;
+    background-color: blue;
+}
+a:active{
+	text-decoration: underline;
+}
+
+/*configurar listas*/
+ul{
+	list-style-type: circle;
+}
+ol{
+	list-style-type: decimal-leading-zero;
+}
+li{
+    padding-bottom: 10px;
+}
