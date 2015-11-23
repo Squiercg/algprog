@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Ex 03 - Augusto Ribas e Bruno Názario</title>
+  </head>
+
+
+
+  <body>
+
+    <header>
+
+      <h1>Header 1</h1>
+
+
+    </header>
+
+
+    <section class="formulario">
+
+      <header>
+
+	<h2>Header 2 - Formulario</h2>
+
+      </header>
+
+      <article>
+
+	Formularios
+
+
+
+
+	<form action="action_page.php" autocomplete="on">
+
+	  Primeiro nome:<br>
+	  <input type="text" name="firstname" size="30" maxlength="10" placeholder="Primeiro nome">
+	  <br>
+
+	  Último nome:<br>
+	  <input type="text" name="lastname" size="30" maxlength="10" placeholder="Último nome">
+	  <br>
+
+	  Sexo: 
+	  <input type="radio" name="sexo" value="masculino" checked>masculino
+	  <input type="radio" name="sexo" value="feminino" >feminino
+	  <br>
+
+	  E-mail: 
+	  <input type="email" name="email" autocomplete="off" required placeholder="e-mail"><br>
+	  <br>
+
+	  Endereço:
+	  <input type="text" name="lastname" size="100" maxlength="100" placeholder="Endereço">
+	  <br>
+
+	  CEP: <input name="cep" id="endereco_cep" required pattern="[0-9]{5}-\d{3}" placeholder="00000-000">
+
+
+
+	  <br><br>
+
+
+	  <input type="submit" value="Submit">
+
+
+	</form>
+
+      </article>
+
+
+
+
+    </section>
+
+
+<section class="canvas">
+
+<canvas id="meuCanvas" width="600" height="600" style="border:1px solid #000000;">
+
+<script>
+var c = document.getElementById("meuCanvas");
+var ctx = c.getContext("2d");
+
+var yaxis = c.getContext("2d");
+
+
+
+ctx.moveTo(580,580);
+ctx.lineTo(50,580);
+
+ctx.moveTo(50,580);
+ctx.lineTo(50,50);
+
+
+ctx.moveTo(300,300);
+ctx.arc(300,300,100,0,2*Math.PI);
+
+
+ctx.font = "15px Arial";
+ctx.fillText("raio",320,290);
+
+ctx.fillText("eixo x",265,595);
+
+ctx.stroke();
+
+yaxis.textAlign = "center"
+yaxis.textBaseline = "middle";
+yaxis.rotate(90*Math.PI/180);
+
+yaxis.fillText("eixo y",40,265);
+
+
+</script>
+
+
+
+</canvas>
+
+
+
+
+</section>
+
+
+    <footer>
+footer
+    </footer>
+
+
+
+  </body>
+
+</html>
