@@ -1,10 +1,13 @@
 div {
 	border-style: solid;
     border-width: 1px;
+    margin: 5px;
+    padding: 5px;
 }
 
 .cabecalho{
     /*background-color: orange;*/
+    overflow: auto;
 }
 
 .foto{    
@@ -12,7 +15,6 @@ div {
     width: 20%;
     float: left;
     border-width: 0px;
-    margin-top: 10px;
 }
 
 .identificacao {
@@ -21,13 +23,11 @@ div {
 	margin: 5px;
 	margin-left: 165px;
 	height: 180px;
-	float: center;
 	border-width: 0px;
 }
 
 .academica {
 	/* background-color:red; */
-	float: center;
 	margin-left: 100px;
 	margin-bottom: 20px;
     width: 600px;
@@ -35,7 +35,6 @@ div {
 }
 
 .extra{
-	float: center;
 	margin-left: 100px;
 	margin-bottom: 20px;
     width: 600px;

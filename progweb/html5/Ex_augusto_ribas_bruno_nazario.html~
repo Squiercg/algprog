@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Ex 03 - Augusto Ribas e Bruno Názario</title>
+  </head>
+
+
+
+  <body>
+
+    <header>
+
+<par>Header 1</par>
+
+
+    </header>
+
+
+    <section class="formulario">
+
+    <header>
+
+<par>Header 2 - Formulario</par>
+
+
+    </header>
+
+
+
+
+    </section>
+
+
+    <footer>
+
+    </footer>
+
+
+
+  </body>
+
+</html>

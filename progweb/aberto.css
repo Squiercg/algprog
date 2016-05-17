@@ -1,46 +1,68 @@
-div {
+body{
 	background-image: url(paper.gif);
 	background-position: left top;
 	background-repeat: repeat;
+	background-attachment: fixed;
+}
+
+p {
+    font-family: "Times New Roman", Times, serif;
+}
+
+h1 {
+    font-size: 40px;
+    font-style: italic;
+    color: gray;
+}
+
+h1:hover{
+	font-size: 50px;
+}
+
+div {
+	/*overflow: auto;*/
 
 	border: 10px solid transparent;
     padding: 15px;
-    -webkit-border-image: url(border.png) 30 round; /* Safari 3.1-5 */
-    -o-border-image: url(border.png) 30 round; /* Opera 11-12.1 */
     border-image: url(border.png) 30 round;
 }
 
 .cabecalho{
     /*background-color: orange;*/
-    background-image: url(dnapicasa.gif);
-    background-position: right bottom;
-    background-repeat: no-repeat;
-    background-size: 200px 150px;
+    
 }
 
 .foto{    
     /*background-color:blue;*/
     width: 20%;
     float: left;
-    border-width: 0px;
+    border: none;
     margin-top: 10px;
-    background-image:none;
+    /*background-image:none;*/    
+}
+
+.foto:hover{
+	opacity: 0.4;
 }
 
 .identificacao {
-    text-align: center;
     font-size: 1.5em;
 	margin: 5px;
 	margin-left: 165px;
 	height: 180px;
-	float: center;
-	border-width: 0px;
-	background-image:none;
+	border: none;
+
+	background-image: url(dnapicasa.gif);
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 200px 150px;
+    z-index: 1;
+
+	/*background-image:none;*/
 }
 
 .academica {
 	/* background-color:red; */
-	float: center;
 	margin-left: 100px;
 	margin-bottom: 20px;
     width: 600px;
@@ -48,7 +70,6 @@ div {
 }
 
 .extra{
-	float: center;
 	margin-left: 100px;
 	margin-bottom: 20px;
     width: 600px;

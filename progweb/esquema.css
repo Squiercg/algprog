@@ -1,18 +1,20 @@
 div {
 	border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
+    margin: 5px;
+    padding: 5px;
 }
 
 .cabecalho{
     /*background-color: orange;*/
+    overflow: auto;
 }
 
 .foto{    
     /*background-color:blue;*/
     width: 20%;
     float: left;
-    border-width: 0px;
-    margin-top: 10px;
+    border: none;
 }
 
 .identificacao {
@@ -21,25 +23,24 @@ div {
 	margin: 5px;
 	margin-left: 165px;
 	height: 180px;
-	float: center;
-	border-width: 0px;
+	border: none;
 }
 
 .academica {
 	/* background-color:red; */
-	float: center;
 	margin-left: 100px;
 	margin-bottom: 20px;
     width: 600px;
-	border-style: dotted;
+	border-style: double;
+	border-width: 6px;
 }
 
 .extra{
-	float: center;
 	margin-left: 100px;
 	margin-bottom: 20px;
     width: 600px;
-	border-style: dotted;
+	border-style: double;
+	border-width: 6px;
 }
 
 .formacao{
