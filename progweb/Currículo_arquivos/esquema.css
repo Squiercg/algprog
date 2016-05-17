@@ -1,0 +1,48 @@
+div {
+	border-style: solid;
+    border-width: 1px;
+}
+
+.cabecalho{
+    /*background-color: orange;*/
+}
+
+.foto{    
+    /*background-color:blue;*/
+    width: 20%;
+    float: left;
+    border-width: 0px;
+    margin-top: 10px;
+}
+
+.identificacao {
+    text-align: center;
+    font-size: 1.5em;
+	margin: 5px;
+	margin-left: 165px;
+	height: 180px;
+	float: center;
+	border-width: 0px;
+}
+
+.academica {
+	/* background-color:red; */
+	float: center;
+	margin-left: 100px;
+	margin-bottom: 20px;
+    width: 600px;
+	border-style: dotted;
+}
+
+.extra{
+	float: center;
+	margin-left: 100px;
+	margin-bottom: 20px;
+    width: 600px;
+	border-style: dotted;
+}
+
+.formacao{
+	/* background-color:blue; */
+}
+
