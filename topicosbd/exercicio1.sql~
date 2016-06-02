@@ -1,0 +1,78 @@
+/*Acessando o servidor */
+ssh 201319030386@10.87.0.219
+
+/*Criando banco de dados*/
+createdb -T template0 -E UTF-8 db_201319030386 -U 201319030386 -W
+
+/*Entrando no banco */
+psql -d db_201319030386 -U 201319030386 -W
+
+/*Criando tabela */
+create table aluno(
+id_aluno integer not null primary key,
+nome_aluno varchar(40) not null default 'NP',
+sexo_aluno char(1) not null check (sexo_aluno in ('M','F')),
+dt_nasc timestamp,
+dt_alter_tab timestamp not null default now(),
+observacoes varchar(250)
+);
+
+/* 
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "aluno_pkey" for table "aluno"
+CREATE TABLE   
+*/
+
+/*Inserindo dados na tabela aluno*/
+insert into aluno (id_aluno, sexo_aluno) values ('1','X');
+insert into aluno (id_aluno, sexo_aluno) values ('1','M');
+insert into aluno (id_aluno, sexo_aluno) values ('1','F');
+
+/* 
+ERROR:  new row for relation "aluno" violates check constraint "aluno_sexo_aluno_check" 
+
+INSERT 0 1 
+
+ERROR:  duplicate key value violates unique constraint "aluno_pkey"                                                    
+DETAIL:  Key (id_aluno)=(1) already exists.
+*/
+
+/*Alterando tabela aluno */
+alter table aluno add column cod_sit_aluno integer;
+alter table aluno add column id_curso integer;
+
+
+/*
+ALTER TABLE 
+ALTER TABLE 
+*/
+
+/*Criar tabela curso*/
+
+create table curso(
+  id_curso integer,
+  nome_curso varchar(40),
+dt_implantacao timestamp,
+dt_alteracao timestamp default now()
+);
+
+/* */
+
+/* */
+
+/* */
+
+/* */
+
+/* */
+
+/* */
+
+/* */
+
+/* */
+
+/* */
+
+/* */
+
+/* */

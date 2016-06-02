@@ -1,0 +1,44 @@
+body {
+
+    font-family: "Arial";
+    margin-left: 30px;
+    margin-right: 30px;
+
+}
+
+h1 {
+    color: brown;
+    text-align: center;
+}
+
+h2 {
+    color: blue;
+    text-decoration: underline;
+}
+
+h3 {
+    color: green;
+    text-decoration: underline;
+    margin-left: 40px;
+}
+
+p {
+
+}
+
+dt {
+font-weight: bold;
+
+}
+
+dl {
+
+}
+
+dd {
+padding: 20px;
+}
+
+.ref_type {
+    color: red;
+}
