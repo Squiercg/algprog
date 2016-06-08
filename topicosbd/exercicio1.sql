@@ -1,3 +1,12 @@
+/*
+*********************************** 
+*Augusto Cesar de Aquino Ribas    *
+*Análise de Sistemas              *
+*Tópicos de banco de dados        *
+*Professor: Hercolis Sandim       *
+***********************************
+*/
+
 /*Acessando o servidor */
 ssh 201319030386@10.87.0.219
 
@@ -98,21 +107,26 @@ alter table aluno add foreign key(cod_sit_aluno) references situacao(cod_sit_alu
 ERROR:  insert or update on table "aluno" violates foreign key constraint "aluno_id_curso_fkey"
 DETAIL:  Key (id_curso)=(0) is not present in table "curso".
 DELETE 1
-
 */
 
-/* */
 
-/* */
 
-/* */
+/*Querys*/
 
-/* */
+/*Obter todos os alunos do sexo “M” */
+select * from aluno where sexo_aluno='M';
+/*Obter todos os alunos do sexo  “F”*/
+select * from aluno where sexo_aluno='F';
+/*Contar o total de linhas da tabela aluno*/
+select count(*) from aluno;
+/*Contar a qtde de alunos do sexo “F” e “M”*/
+select count(case when sexo_aluno='M' then 1 else NULL end) as "meninos",
+count(case when sexo_aluno='F' then 1 else NULL end) as "meninas"
+from aluno;
+/*Contar os alunos por curso*/
+select count(aluno.sexo_aluno),curso.id_curso from aluno,curso where aluno.id_curso=curso.id_curso group by curso.id_curso;
+/*Contar os alunos por situação */
+select count(sexo_aluno),cod_sit_aluno from aluno group by cod_sit_aluno;
+/*Contar os alunos por curso e situação*/
+select count(aluno.sexo_aluno),curso.id_curso,aluno.cod_sit_aluno from aluno,curso where aluno.id_curso=curso.id_curso group by curso.id_curso,aluno.cod_sit_aluno;
 
-/* */
-
-/* */
-
-/* */
-
-/* */
