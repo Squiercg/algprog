@@ -1,0 +1,20 @@
+/*Acessando o servidor */
+ssh 201319030386@10.87.0.219
+
+/*Criando banco de dados*/
+createdb -T template0 -E UTF-8 restaurantedb_201319030386 -U 201319030386 -W
+
+/*Entrando no banco */
+psql -d restaurantedb_201319030386 -U 201319030386 -W
+
+/*salvando o banco*/
+pg_dump --inserts -Fp restaurantedb_201319030386 -U 201319030386 -W > restaurantedb_201319030386_dump.sql
+
+/*Apagar o banco*/
+
+dropdb restaurantedb_201319030386 -U 201319030386 -W
+
+
+/*restaurar o banco*/
+createdb -T template0 -E UTF-8 restaurantedb_201319030386 -U 201319030386 -W
+psql -d restaurantedb_201319030386 -U 201319030386 -W <  restaurantedb_201319030386_dump.sql

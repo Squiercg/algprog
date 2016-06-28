@@ -1,0 +1,13 @@
+Minimundo do banco restaurante:
+
+
+
+funcionario(*idfuncionario,nome)
+cliente(*idcliente,nome,endereco)
+cardapio(*idcardapio,nome,preco)
+estoque(*idestoque,nome,disponivel)
+conta(*idconta,entrada,saida,mesa,*idfuncionario,*idcliente)
+telefone(numero,*idcliente)
+conta_consumiu_cardapio(*idconta,*idcardapio,quantidade)
+cardapio_utiliza_estoque(*id_cardapio,*idestoque,quantidade)
+
