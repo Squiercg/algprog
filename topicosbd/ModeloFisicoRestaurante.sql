@@ -31,21 +31,36 @@ CREATE DOMAIN sexo AS character(1) NOT NULL
 
 CREATE FUNCTION "atualizaMesa"() RETURNS trigger
     LANGUAGE plpgsql
-    AS $$
-DECLARE
-
-BEGIN
-
-	UPDATE restaurante.mesa
-    SET disponibilidade='0'
-    WHERE id IN
-    (
-    	SELECT mesa_id
-        FROM restaurante.mesa_has_atendimento
-        WHERE atendimento_idatendimento = NEW.idatendimento
-    );
-
-END;
+    AS $$
+
+DECLARE
+
+
+
+BEGIN
+
+
+
+	UPDATE restaurante.mesa
+
+    SET disponibilidade='0'
+
+    WHERE id IN
+
+    (
+
+    	SELECT mesa_id
+
+        FROM restaurante.mesa_has_atendimento
+
+        WHERE atendimento_idatendimento = NEW.idatendimento
+
+    );
+
+
+
+END;
+
 $$;
 
 
