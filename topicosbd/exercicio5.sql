@@ -196,7 +196,7 @@ and tgrelid = 'Funcionario'::regclass;
 
 
 /*PG DUMP
-pg_dump --inserts -Fp restaurante_db_201319030386 -U 201319030386 -W > pg_dump_restaurante_db_201319030386.sql
+pg_dump --inserts -Fp restaurante_db_201319030386 -U 201319030386 -W > dump_exercicio6.sql
 */
 
 

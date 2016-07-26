@@ -3,8 +3,8 @@ drop function "atualizaMesa"()  cascade;
 
 insert into funcionario(cpf,nome,funcao,salario,sexo) values('00000000001','Augusto Ribas','garcom',880.00,'M');
 insert into funcionario(cpf,nome,funcao,salario,sexo) values('00000000002','Bruno Nazario','garcom',880.00,'M');
-insert into mesa(id,disponibilidade,capacidade) values(1,BIT'0',8);
-insert into mesa(id,disponibilidade,capacidade) values(2,BIT'0',6);
+insert into mesa(id,disponibilidade,capacidade) values(1,BIT'1',8);
+insert into mesa(id,disponibilidade,capacidade) values(2,BIT'1',6);
 insert into atendimento(datahora,funcionario_cpf) values('2016-07-05 12:00:00','00000000001');
 insert into atendimento(datahora,funcionario_cpf) values('2016-07-05 12:00:00','00000000002');
 insert into mesa_has_atendimento(mesa_id,atendimento_idatendimento) values (1,1);
