@@ -1,0 +1,40 @@
+/*
+Entrando no postgree
+psql -d db_ponto_extra_201319030386 -U 201319030386 -W
+
+Gerando dump
+pg_dump -Fp -O db_ponto_extra_201319030386 -U 201319030386 -W > ~/ponto_extra_201319030386/questao2.sql
+*/
+
+insert into Cassete(duracao) values(30);
+insert into Cassete(duracao) values(60);
+insert into Cassete(duracao) values(90);
+
+
+insert into Realizador(nomeR,nacionalidade) values ('Bong Joon-ho','Sul Coreano');
+insert into Realizador(nomeR,nacionalidade) values ('John Milius','Norte Americano');
+insert into Realizador(nomeR,nacionalidade) values ('George Miller','Australiano');
+
+
+insert into Filme(titulo,genero,duracao,ano,nomeR) values ('SnowPiercer','Ficção Científica',120,2013,'Bong Joon-ho');
+insert into Filme(titulo,genero,duracao,ano,nomeR) values ('Conan the Barbarian','Fantasia',120,1982,'John Milius');
+insert into Filme(titulo,genero,duracao,ano,nomeR) values ('Mad Max','Ação',120,1979,'George Miller');
+
+
+insert into Actor(nomeA,nacionalidade) values ('Chris Evans','Norte Americano');
+insert into Actor(nomeA,nacionalidade) values ('Song Kang-ho','Sul Coreano');
+insert into Actor(nomeA,nacionalidade) values ('Arnold Schwarzenegger','Austriaco');
+insert into Actor(nomeA,nacionalidade) values ('Mel Gibson','Australiano');
+
+
+insert into Existe(num,codigo,dataGravacao) values (1,1,'2013-05-16 15:25:00');
+insert into Existe(num,codigo,dataGravacao) values (2,2,'1982-05-16 16:00:00');
+insert into Existe(num,codigo,dataGravacao) values (3,3,'1979-05-16 08:00:00');
+
+
+insert into Interpreta(codigo,nomeA,personagem) values(1,'Chris Evans','Curtis Everett');
+insert into Interpreta(codigo,nomeA,personagem) values(1,'Song Kang-ho','Namgoong Minsu');
+insert into Interpreta(codigo,nomeA,personagem) values(2,'Arnold Schwarzenegger','Conan');
+insert into Interpreta(codigo,nomeA,personagem) values(3,'Mel Gibson','Max Rockatansky');
+
+

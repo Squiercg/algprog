@@ -1,0 +1,39 @@
+/*
+Entrando no postgree
+psql -d db_ponto_extra_201319030386 -U 201319030386 -W
+
+Gerando dump
+pg_dump -Fp -O db_ponto_extra_201319030386 -U 201319030386 -W > ~/ponto_extra_201319030386/questao3.sql
+*/
+
+/*Selecionar quaisquer FILMES*/
+
+grant select on Filme to hercules;
+
+/*Selecionar apenas as ATORES de nacionalidade 'BRASILEIRA'*/
+
+create view atores_brasileiros as
+	select * from actor where nacionalidade='Brasileira';
+
+grant select on atores_brasileiros to hercules;
+
+/*Selecionar   apenas   a duração dos CASSETES dos FILMES cujos ATORES são   de nacionalidade 'BRASILEIRA'*/
+
+
+create view cassetes_brasileiros as
+	select c.duracao
+	from interpreta as i,
+	     actor as a, 
+	     filme as f,
+	     existe as e,
+	     cassete as c
+	where i.nomea=a.nomea and a.nacionalidade='Brasileira' and f.codigo=i.codigo and f.codigo=e.codigo and e.num=c.num;
+
+grant select on cassetes_brasileiros to hercules;
+
+
+/*Revogue todos os privilégios concedidos até o momento (um por um)*/
+
+revoke select on Filme from hercules;
+revoke select on atores_brasileiros from hercules;
+revoke select on cassetes_brasileiros from hercules;

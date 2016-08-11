@@ -1,0 +1,56 @@
+/*
+Popular as tabelas com dados para teste, usando os comandos de manipulação do SQL (insert, delete  e  update)  e  verificando  as  restrições  de  integridade  estruturais
+
+Gerando dump
+pg_dump -Fp -O db_ponto_extra2_201319030386 -U 201319030386 -W > ~/ponto_extra2_201319030386/questao2.sql
+*/
+
+
+/*
+. Insira  três tuplas  em cada  tabela.
+*/
+insert into Automoveis(codigo,fabricante,modelo,ano,pais,preco_tabela) values(1,'Tesla','S',2012,'USA',237000);
+insert into Automoveis(codigo,fabricante,modelo,ano,pais,preco_tabela) values(1,'Tesla','X',2013,'USA',412000);
+insert into Automoveis(codigo,fabricante,modelo,ano,pais,preco_tabela) values(1,'Tesla','3',2016,'USA',500000);
+
+
+insert into revendedoras(cgc,nome,nome_proprietario,cidade,estado) values(1,'Vila Ipiranga Motors','João Silva','Campo Grande','MS');
+insert into revendedoras(cgc,nome,nome_proprietario,cidade,estado) values(2,'UFMS Carros','José Silva','Campo Grande','MS');
+insert into revendedoras(cgc,nome,nome_proprietario,cidade,estado) values(3,'Tesla Brasil','Arnaldo Cesar Coelho','São Paulo','SP');
+
+
+insert into consumidores(identidade,nome,sobrenome,sexo) values(01,'Augusto','Ribas','M');
+insert into consumidores(identidade,nome,sobrenome,sexo) values(02,'Luiz','Gustavo','M');
+insert into consumidores(identidade,nome,sobrenome,sexo) values(03,'Zildamara','Holsback','F');
+
+insert into negocios(identidade_consumidor,cgc_revenda,codigo_auto,ano_auto,preco) values (01,1,1,2012,250000);
+insert into negocios(identidade_consumidor,cgc_revenda,codigo_auto,ano_auto,preco) values (02,2,1,2013,500000);
+insert into negocios(identidade_consumidor,cgc_revenda,codigo_auto,ano_auto,preco) values (03,3,1,2016,500000);
+
+/*
+Atualize  dados  de  duas  tuplas  de  cada  tabela.
+*/
+
+update Automoveis set pais='Estados Unidos' where pais='USA';
+
+update revendedoras set estado='Mato Grosso do Sul' where estado='MS';
+update revendedoras set estado='São Paulo' where estado='SP';
+
+update consumidores set identidade=3482 where identidade=01;
+update consumidores set identidade=9452 where identidade=02;
+
+update negocios set cgc_revenda=2 where cgc_revenda=1 and identidade_consumidor=3482;
+update negocios set cgc_revenda=1 where cgc_revenda=2 and identidade_consumidor=9452;
+
+/*
+Apague  uma  tupla  da  tabela REVENDEDORAS, se possível.
+*/
+
+delete from revendedoras where cgc=3;
+
+/*
+Saida:
+db_ponto_extra2_201319030386=> delete from revendedoras where cgc=3;
+ERROR:  update or delete on table "revendedoras" violates foreign key constraint "negocios_cgc_revenda_fkey" on table "negocios"
+DETAIL:  Key (cgc)=(3) is still referenced from table "negocios".
+*/

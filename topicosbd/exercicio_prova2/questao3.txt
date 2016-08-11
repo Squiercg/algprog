@@ -1,0 +1,29 @@
+/*
+estar também, já com as tabelas povoadas, o comando ALTER TABLE que modifica a estrutura das  tabelas,  acrescentando  e  retirando atributos,  alterando  restrições  e depois  voltar  à situação original.
+
+Gerando dump
+pg_dump -Fp -O db_ponto_extra2_201319030386 -U 201319030386 -W > ~/ponto_extra2_201319030386/questao3.sql
+*/
+
+
+/*
+criar pelo menos um atributo
+*/
+
+alter table Consumidores add column telefone integer;
+
+
+/*
+apagar pelo menos uma restrição de integridade
+*/
+
+alter table only Automoveis drop constraint checa_ano;
+
+/*
+executar comandos para desfazer tudo, voltando o BD à situação original
+*/
+
+alter table Consumidores drop column telefone;
+alter table Automoveis add constraint checa_ano check(ano>2002);
+
+

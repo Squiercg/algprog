@@ -1,0 +1,74 @@
+/*
+Banco de dados
+Cassete(*idCassete,duraçao)
+Filme(*idFilme,título,genero,duracao,ano,*idRealizador)
+Actor(*idAtor,nacionalidade)
+Realizador(*idRealizador,nacionalidade)
+Existe(*idCassete,*idFilme,dataGravação)
+Interpreta(*idFilme,*idAtor,personagem)
+
+
+Entrando no servidor
+ssh 201319030386@10.87.0.219
+
+Criando uma pasta
+mkdir ponto_extra_201319030386
+
+Criando o banco
+createdb -T template0 -E UTF-8 db_ponto_extra_201319030386 -U 201319030386 -W
+
+Entrando no postgree
+psql -d db_ponto_extra_201319030386 -U 201319030386 -W
+
+Apagando o banco
+dropdb db_ponto_extra_201319030386 -U 201319030386 -W
+
+Gerando dump
+pg_dump -Fp -O db_ponto_extra_201319030386 -U 201319030386 -W > ~/ponto_extra_201319030386/questao1.sql
+*/
+
+
+create table Cassete(
+	num serial primary key,
+	duracao numeric not null
+);
+
+create table Realizador(
+	nomeR varchar(200) primary key,
+	nacionalidade varchar(200) not null
+);
+
+
+create table Filme(
+	codigo serial primary key,
+	titulo varchar(200) not null,
+	genero varchar(200) not null,
+	duracao integer not null check(duracao>0),
+	ano integer not null check(ano>1890),
+	nomeR varchar(200) references Realizador(nomeR) on delete restrict on update cascade
+);
+
+create table Actor(
+	nomeA varchar(200) primary key,
+	nacionalidade varchar(200) not null
+);
+
+create table Existe(
+	num integer not null,
+	codigo integer not null,
+	dataGravacao timestamp not null default now(),
+	primary key(num,codigo),	
+	foreign key(num) references Cassete(num) on delete restrict on update cascade,
+	foreign key(codigo) references Filme(codigo) on delete restrict on update cascade
+);
+
+create table Interpreta(
+	codigo integer not null,
+	nomeA varchar(200) not null,
+	personagem varchar(200) not null,
+	primary key(codigo,nomeA),
+	foreign key(codigo) references Filme(codigo) on delete restrict on update cascade,	
+	foreign key(nomeA) references Actor(nomeA) on delete restrict on update cascade	
+);
+
+

@@ -1,0 +1,66 @@
+/*
+automoveis(*codigo,fabricante,modelo,*ano,pais,preco_tabela)
+revendedoras(*cgc,nome,nome_proprietario,cidade,estado)
+consumidores(*identidade,nome,sobrenome,sexo)
+negocios(*identidade_consumidor,*cgc_revenda,*codigo_auto,*ano_auto,data,preco)
+
+drop table negocios;
+drop table consumidores;
+drop table revendedoras;
+drop table automoveis;
+
+
+ssh 201319030386@10.87.0.219 
+mkdir   ponto_extra2_201319030386
+
+createdb -T template0 -E UTF-8 db_ponto_extra2_201319030386 -U 201319030386 -W
+
+psql -d db_ponto_extra2_201319030386 -U 201319030386 -W
+
+Apagando o banco
+dropdb db_ponto_extra2_201319030386 -U 201319030386 -W
+
+Gerando dump
+pg_dump -Fp -O db_ponto_extra2_201319030386 -U 201319030386 -W > ~/ponto_extra2_201319030386/questao1.sql
+*/
+
+
+create table Automoveis(
+	codigo integer not null,
+	fabricante varchar(200) not null,
+	modelo varchar(200) not null,
+	ano integer constraint checa_ano check(ano>2000) not null,
+	pais varchar(50) not null,
+	preco_tabela numeric not null check(preco_tabela>=0),
+	primary key(codigo,ano)
+);
+
+create table Revendedoras(
+	cgc integer primary key,
+	nome varchar(200) not null,
+	nome_proprietario varchar(200) not null,
+	cidade varchar(200) not null,
+	estado varchar(200) not null
+);
+
+
+create table Consumidores(
+	identidade integer primary key,
+	nome varchar(200) not null,
+	sobrenome varchar(200) not null,
+	sexo varchar(200) not null check (sexo in ( 'F' , 'M' ) )
+);
+
+create table Negocios(
+	identidade_consumidor integer not null,
+	cgc_revenda integer not null,
+	codigo_auto integer not null,
+	ano_auto integer not null,
+	data timestamp not null default now(),
+	preco numeric not null check(preco>=0),
+	primary key(identidade_consumidor,cgc_revenda,codigo_auto,ano_auto),
+	foreign key(identidade_consumidor) references Consumidores(identidade) on delete restrict on update cascade,
+	foreign key(cgc_revenda) references Revendedoras(cgc) on delete restrict on update cascade,
+	foreign key(codigo_auto,ano_auto) references Automoveis(codigo,ano) on delete restrict on update cascade
+);
+

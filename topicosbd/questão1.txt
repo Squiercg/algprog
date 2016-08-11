@@ -1,0 +1,7 @@
+
+Cassete(*num,duraçao)
+Filme(*codigo,título,genero,duracao,ano,*nomeR)
+Actor(*nomeA,nacionalidade)
+Realizador(*nomeR,nacionalidade)
+Existe(*num,*codigo,dataGravação)
+Interpreta(*codigo,*nomeA,personagem)

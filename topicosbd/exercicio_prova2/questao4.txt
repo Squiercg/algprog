@@ -1,0 +1,60 @@
+/*
+estar também, já com as tabelas povoadas, o comando ALTER TABLE que modifica a estrutura das  tabelas,  acrescentando  e  retirando atributos,  alterando  restrições  e depois  voltar  à situação original.
+
+Gerando dump
+pg_dump -Fp -O db_ponto_extra2_201319030386 -U 201319030386 -W > ~/ponto_extra2_201319030386/questao4.sql
+*/
+
+
+/*
+Selecionar quaisquer AUTOMOVEIS
+*/
+
+grant select on Automoveis to hercules;
+
+/*
+Selecionar apenas as REVENDEDORAS do estado de 'MS'
+*/
+
+create view revendedoras_ms as
+	select * from revendedoras where estado='MS';
+
+grant select on revendedoras_ms to hercules;
+
+/*
+Selecionar apenas os CONSUMIDORES do sexo 'F'
+*/
+
+create view consumidoras as
+	select * from consumidores where sexo='F';
+
+grant select on consumidoras to hercules;
+
+/*
+Selecionar apenas o preco dos NEGOCIOS realizados em automóveis do ano de 2012
+*/
+
+create view automoveis_2012 as
+	select * from automoveis where ano>=2012;
+
+grant select on automoveis_2012 to hercules;
+
+
+/*
+Atualizar os atributos codigo e preco_tabela de quaisquer AUTOMOVEIS
+*/
+
+grant update(codigo,preco_tabela) on automoveis to hercules;
+
+/*
+Revogue todos os privilégios concedidos até o momento
+
+Checar permisões
+select * from information_schema.role_table_grants where grantee='hercules';
+*/
+
+revoke select on Automoveis from hercules;
+revoke select on revendedoras_ms from hercules;
+revoke select on consumidoras from hercules;
+revoke select on automoveis_2012 from hercules;
+revoke update on automoveis from hercules;
