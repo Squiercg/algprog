@@ -1,0 +1,200 @@
+/*
+**********************************************
+*Tabelas
+**********************************************
+Pessoa = (*CPF, RG, nome, formacaomusical, endereco, localnasc, datanasc)
+
+Autor = (*idautor,formacaopoetica,-CPF)
+
+Cantor = (*idcantor, grupo, estilo, empresario,-CPF)
+
+ContaBancaria = (*codbanco, *agencia, *numconta, -CPF)
+
+Escritorio = (*idesc, nome, local)
+
+Musica = (*idmusica, nome, tipo, dataregistro)
+
+Gravadora = (*idgravadora, nome)
+
+Midia = (*idmidia, tipo)
+
+Unidade = (*idunidade, datalancamento, -idmidia)
+
+Musico = (-CPF, valorcache)
+
+Instrumento = (*nome_instrumento, classe, notabaixa, nota_alta)
+
+Autor_pertence_Escritorio(-idautor,-idesc)
+
+Autor_compoe_Musica(-idautor,-idmusica)
+
+Autor_escreve_letra_Musica(-idautor,-idmusica)
+
+Cantor_pertence_Gravadora(-idcantor,-idgravadora)
+
+Cantor_toca_Instrumento(-idcantor,-nome_instrumento)
+
+Cantor_grava_Unidade(-idcantor,-idunidade, uantidadevendida, periodovenda)
+
+Unidade_gravada_Musica(-idunidade,-idmusica)
+
+Cantor_regrava_Musica(-idcantor,-idmusica,dataregravacao)
+
+Musica_participa_Unidade(-idmusica,-idunidade)
+
+**********************************************
+*Comando
+**********************************************
+
+createdb -T template0 -E UTF-8 db_provaPratica_201319030386 -U 201319030386 -W
+psql -d db_provaPratica_201319030386 -U 201319030386 -W
+pg_dump -Fp -O db_provaPratica_201319030386 -U 201319030386 -W > ~/prova/questao1.sql
+*/
+
+create table Pessoa(
+	cpf varchar(11) primary key,
+	rg varchar(8) not null,
+	nome varchar(200) not null,
+	formacaomusical varchar(200) not null,
+	endereco varchar(200) not null,
+	localnasc varchar(200) not null,
+	datanasc timestamp not null
+);
+
+create table Autor(
+	idautor serial primary key,
+	formacaopoetica varchar(200) not null,
+	cpf varchar(11) not null,
+	foreign key(cpf) references Pessoa(cpf) on delete restrict on update cascade
+);
+
+create table Cantor(
+	idcantor serial primary key,
+	grupo varchar(200) not null,
+	estilo varchar(200) not null,
+	empresario varchar(200) not null,
+	valorcache double precision not null,
+	cpf varchar(11) not null,
+	foreign key(cpf) references Pessoa(cpf) on delete restrict on update cascade
+);
+
+create table Automoveis(
+	codbanco integer not null,
+	agencia integer not null,
+	numconta integer not null,
+	cpf varchar(11) not null,
+	foreign key(cpf) references Pessoa(cpf) on delete restrict on update cascade
+);
+
+create table Escritorio(
+	idesc serial primary key,
+	nome varchar(100) not null,
+	local varchar(100) not null
+);
+
+create table Musica(
+	idmusica serial primary key,
+	nome varchar(100) not null,
+	tipo varchar(100) not null,
+	dataregistro varchar(100) not null
+);
+
+create table Gravadora(
+	idgravadora serial primary key,
+	nome varchar(100) not null
+);
+
+create table Midia(
+	idmidia serial primary key,
+	tipo varchar(100) not null
+);
+
+create table Unidade(
+	idunidade serial primary key,
+	datalancamento varchar(100) not null,
+	idmidia integer,
+	foreign key(idmidia) references Midia(idmidia) on delete restrict on update cascade
+);
+
+create table Instrumento(
+	nome_instrumento varchar(100) primary key,
+	classe varchar(100) not null,
+	notabaixa varchar(100) not null, 
+	nota_alta varchar(100) not null
+);
+
+create table Autor_pertence_Escritorio(
+	idautor integer not null,
+	idesc integer not null,
+	primary key(idautor,idesc),
+	foreign key(idautor) references Autor(idautor) on delete restrict on update cascade,	
+	foreign key(idesc) references Escritorio(idesc) on delete restrict on update cascade	
+);
+
+create table Autor_compoe_Musica(
+	idautor integer not null,
+	idmusica integer not null,
+	primary key(idautor,idmusica),
+	foreign key(idautor) references Autor(idautor) on delete restrict on update cascade,	
+	foreign key(idmusica) references Musica(idmusica) on delete restrict on update cascade	
+);
+
+create table Autor_escreve_letra_Musica(
+	idautor integer not null,
+	idmusica integer not null,
+	primary key(idautor,idmusica),
+	foreign key(idautor) references Autor(idautor) on delete restrict on update cascade,	
+	foreign key(idmusica) references Musica(idmusica) on delete restrict on update cascade	
+);
+
+create table Cantor_pertence_Gravadora(
+	idcantor integer not null,
+	idgravadora integer not null,
+	primary key(idcantor,idgravadora),
+	foreign key(idcantor) references Cantor(idcantor) on delete restrict on update cascade,	
+	foreign key(idgravadora) references Gravadora(idgravadora) on delete restrict on update cascade	
+);
+
+create table Cantor_toca_Instrumento(
+	idcantor integer not null,
+	nome_instrumento varchar(100),
+	primary key(idcantor,nome_instrumento),
+	foreign key(idcantor) references Cantor(idcantor) on delete restrict on update cascade,	
+	foreign key(nome_instrumento) references Instrumento(nome_instrumento) on delete restrict on update cascade	
+);
+
+create table Cantor_grava_Unidade(
+	idcantor integer not null,
+	idunidade integer not null,
+	primary key(idcantor,idunidade),
+	foreign key(idcantor) references Cantor(idcantor) on delete restrict on update cascade,	
+	foreign key(idunidade) references Unidade(idunidade) on delete restrict on update cascade	
+);
+
+create table Unidade_gravada_Musica(
+	idunidade integer not null,
+	idmusica integer not null,
+	primary key(idunidade,idmusica),
+	foreign key(idunidade) references Unidade(idunidade) on delete restrict on update cascade,	
+	foreign key(idmusica) references Musica(idmusica) on delete restrict on update cascade	
+);
+
+create table Cantor_regrava_Musica(
+	idcantor integer not null,
+	idmusica integer not null,
+	dataregravacao timestamp,
+	primary key(idcantor,idmusica),
+	foreign key(idcantor) references Cantor(idcantor) on delete restrict on update cascade,	
+	foreign key(idmusica) references Musica(idmusica) on delete restrict on update cascade	
+);
+
+create table Musica_participa_Unidade(
+	idmusica integer not null,
+	idunidade integer not null,
+	primary key(idmusica,idunidade),
+	foreign key(idmusica) references Musica(idmusica) on delete restrict on update cascade,	
+	foreign key(idunidade) references Unidade(idunidade) on delete restrict on update cascade	
+);
+
+
+

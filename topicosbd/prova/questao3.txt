@@ -1,0 +1,29 @@
+/*
+Sendo você, o OWNER do seu banco de dados,  conceda privilégios para o usuário hercules, tornando-o capaz apenas de:
+*/
+
+/*Selecionar quaisquer CANTORES*/
+grant select on Cantor to hercules;
+
+/*
+Selecionar apenas CANTORES nascidos em "Campo Grande"
+*/
+create view Cantores_Campo_Grande as
+	select Cantor.* from Cantor,Pessoa where Pessoa.localnasc='Campo Grande' and Pessoa.cpf=Cantor.cpf;
+
+grant select on Cantores_Campo_Grande to hercules;
+
+/*Selecionar apenas o formação musical dos CANTORES de MÚSICAS já regravadas*/
+
+create view Cantores_veteranos as
+	select Pessoa.nome,Pessoa.formacaomusical
+	from Cantor,Pessoa 
+	where Cantor.cpf=Pessoa.cpf and Cantor.idcantor in (select DISTINCT ON (idcantor) idcantor from Cantor_regrava_Musica);
+
+grant select on Cantores_veteranos to hercules;
+
+/*Revogue todos os privilégios concedidos até o momento*/
+
+revoke select on Cantor from hercules;
+revoke select on Cantores_Campo_Grande from hercules;
+revoke select on Cantores_veteranos from hercules;
