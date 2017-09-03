@@ -1,0 +1,17 @@
+#draggable {
+  height: 200px; 
+}
+#imagens{
+  display: flex;
+}
+
+#agrupa_imagem {
+	min-width: 460px;
+	height: 220px;
+	padding: 0px;
+	border: 1px solid #aaaaaa;
+}
+
+ table, th, td {
+   border: 1px solid black;
+}

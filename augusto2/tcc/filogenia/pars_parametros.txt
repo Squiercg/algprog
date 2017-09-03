@@ -1,0 +1,4 @@
+pars_entrada.txt
+R
+Y
+R

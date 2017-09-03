@@ -1,0 +1,6 @@
+     5    6
+Alpha     310110
+Beta      210000
+Gamma     100110
+Delta     001001
+Epsilon   001110

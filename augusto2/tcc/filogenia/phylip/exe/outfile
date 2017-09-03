@@ -1,0 +1,29 @@
+
+Discrete character parsimony algorithm, version 3.696
+
+
+One most parsimonious tree found:
+
+
+  +-----------Epsilon   
+  |  
+  1-----------Gamma     
+  |  
+  |                       +-----------------------Delta     
+  +-----------------------2  
+  |                       +-----------------------Beta      
+  |  
+  +-----------------------Alpha     
+
+
+requires a total of     10.000
+
+  between      and       length
+  -------      ---       ------
+     1      Epsilon        1.00
+     1      Gamma          1.00
+     1           2         2.00
+     2      Delta          2.00
+     2      Beta           2.00
+     1      Alpha          2.00
+

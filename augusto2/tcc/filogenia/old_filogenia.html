@@ -1,0 +1,302 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Introdução a Filogenia</title>
+
+		<link rel="stylesheet" type="text/css" href="../estilo.css">
+		<link rel="stylesheet" type="text/css" href="filogenia.css">
+
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="filogenia.js"></script>
+	</head>
+
+	<body>
+		<h1>Usando o DNA para aprender sobre a filogenia dos lagartos</h1>
+		<h2>Introdução</h2>
+		<p class="paper"> A mais de 700 ilhas caribenhas hospedam em torno de 150 espécies de lagartos do gênero Anoles, que ocupam diversos habitats e nichos.</p>
+
+		<a href="https://www.google.com.br/maps/@21.7018591,-71.4477721,2059846m/data=!3m1!1e3" target="_blank"> <img src="mapa.png"></img> </a>
+
+		<p class="paper"> A pesquisa com esses lagartos é uma forma de enriquecer nossa compreensão de processos evolutivos, como a adaptação pela seleção natural, evolução e a 
+		formação de novas espécies, e ajuda a entender como e porque existem tantas espécies diferentes, de tantos tipos de organismos vivendo na Terra.</p>
+
+		<h2>Exercícios</h2>
+		<h3>1 - Identificando os ecomorfos e explorando a radiação adaptativa dos lagartos Anole</h3>
+
+		<p> Examine as imagens dessas 16 espécies de lagartos do gênero Anole e as organize em grupos que você ache que deva existir, por exemplo, use as cores, locais onde eles habitam, tamanho e assim por diante.</p>
+
+		<div id="imagens">
+			<div id="draggable1" class="ui-widget-content"><img id="draggable" src="A_alutaceous.png"></img></div>
+			<div id="draggable2" class="ui-widget-content"><img id="draggable" src="A_cyabotes.png"></img></div>
+			<div id="draggable3" class="ui-widget-content"><img id="draggable" src="A_occultus.png"></img></div>
+			<div id="draggable4" class="ui-widget-content"><img id="draggable" src="A_pulchellus.png"></img></div>
+			<div id="draggable5" class="ui-widget-content"><img id="draggable" src="A_angusticeps.png"></img></div>
+			<div id="draggable6" class="ui-widget-content"><img id="draggable" src="A_evermanni.png"></img></div>
+			<div id="draggable7" class="ui-widget-content"><img id="draggable" src="A_olssoni.png"></img></div>
+			<div id="draggable8" class="ui-widget-content"><img id="draggable" src="A_sagrei.png"></img></div>
+		</div>
+
+		<div id="imagens">
+			<div id="draggable9" class="ui-widget-content"><img id="draggable" src="A_chlorocyanus.png"></img></div>
+			<div id="draggable10" class="ui-widget-content"><img id="draggable" src="A_grahami.png"></img></div>
+			<div id="draggable11" class="ui-widget-content"><img id="draggable" src="A_ophiolepis.png"></img></div>
+			<div id="draggable12" class="ui-widget-content"><img id="draggable" src="A_sheplani.png"></img></div>
+			<div id="draggable13" class="ui-widget-content"><img id="draggable" src="A_cristatellus.png"></img></div>
+			<div id="draggable14" class="ui-widget-content"><img id="draggable" src="A_lineatopus.png"></img></div>
+			<div id="draggable15" class="ui-widget-content"><img id="draggable" src="A_procatus.png"></img>	</div>
+			<div id="draggable16" class="ui-widget-content"><img id="draggable" src="A_valencienni.png"></img> </div> 
+		</div>  
+
+
+		<ol>
+			<li>Como você agrupou os lagarto? Qual foi seu raciocínio?</li>
+			<li>Você pegou alguma característica do corpo?</li>
+			<li>Quais são as vantagens e desvantagens de usar a característica do corpo no ambiente que eles ocupam?</li>
+		</ol>
+
+		<p class="paper"> As espécies caribenhas de Anoles podem ser categorizadas em seis principais grupos de acordo com suas características (morfologia) e nichos ecológicos 
+			que ocupam. Os grupos são denominados como <b>morfotipos ecologicos</b> ou <b>ecomorfos</b>. Os seus grupos se parecem com esses?</p>
+
+		<div class="FAQ">
+			<a href="#hide1" class="hide" id="hide1">+</a>
+			<a href="#show1" class="show" id="show1">-</a>
+<!--			<div class="question"><h3>Ecomorfos</h3></div> -->
+			<div class="list">
+				<img src="arvore.png"></img>
+				<table style="width:100%;" border=1>
+					<tr>
+						<th>Ecomorfo</th>
+						<th>Tamanho do corpo</th>
+						<th>Tamanho dos membros</th>
+						<th>Almofada do dedo do pé</th>
+						<th>Tamanho da Calda</th>
+						<th>Cor</th>
+						<th>Habitat</th>
+					</tr>
+					<tr>
+						<td>Crown-giant</td>
+						<td>130-191 mm</td>
+						<td>Pequeno</td>
+						<td>Grande</td>
+						<td>Longo</td>
+						<td>Geralmente verde</td>
+						<td>Troncos e galhos altos</td>
+					</tr>
+					<tr>
+						<td>Trunk-crown</td>
+						<td>44-84 mm</td>
+						<td>Pequeno</td>
+						<td>Muito Grande</td>
+						<td>Longo</td>
+						<td>Verde</td>
+						<td>Troncos, ramos e folhas</td>
+					</tr>
+					<tr>
+						<td>Trunk</td>
+						<td>40-58mm</td>
+						<td>Intermediario</td>
+						<td>Intermediario</td>
+						<td>Pequeno</td>
+						<td>Cinza</td>
+						<td>Troncos</td>
+					</tr>
+					<tr>
+						<td>Twig</td>
+						<td>41-80mm</td>
+						<td>Bem curto</td>
+						<td>Pequeno</td>
+						<td>Pequeno</td>
+						<td>Cinza</td>
+						<td>Ramos finos</td>
+					</tr>
+					<tr>
+						<td>Trunk-ground</td>
+						<td>55-79mm</td>
+						<td>Longo</td>
+						<td>Intermediario</td>
+						<td>Longo</td>
+						<td>Marrom</td>
+						<td>Troncos perto do solo e chão</td>
+					</tr>
+					<tr>
+						<td>Grass-bush</td>
+						<td>33-51mm</td>
+						<td>Longo</td>
+						<td>Intermediario</td>
+						<td>Muito Longa</td>
+						<td>Marrom</td>
+						<td>Arbustos e gramas</td>
+					</tr>
+				</table>
+		        <br>
+		        <p class="paper"> Você consegue pensar o porque as mesmas classes de ecomorfos podem ser encontradas em tantas ilhas diferentes do Caribe?</p>
+			</div>
+		</div>
+
+		
+		<!--Arrumar esse recuo. Sem o br ele gruda -->
+		<br><br>ARRUMAR!!!
+		<h3>2 - Gerando a filogenia a partir de sequências de DNA para compreender as relações evolutivas entre as espécies de Anoles.</h3>
+
+		<p >A partir da última pergunta, podemos gerar algumas hipóteses do porque podemos achar os diferentes ecomorfos nas ilhas caribenhas.</p>
+		
+		<ul>
+			<li><b>Hipótese 1</b>: Cada ecomorfo evoluiu uma vez e de alguma forma migrou para outras as ilhas, se espalhando assim por todas as ilhas.
+				Mas também, talvez essas fossem uma única ilha no passado, um pedaço de terra contínuo quando os ecomorfos diferentes apareceram e depois, 
+				quando as ilhas se separaram nas partes que vemos hoje, os ecomorfos já estavam lá.</li>
+
+			<li><b>Hipótese 2</b>: Os ecomorfos evoluiram repetidamente de forma independente em cada ilha. Os ecomorfos seriam exemplos de evolução convergente. 
+				(Evolução convergente é quando diferentes grupos de organismos evoluem independentemente características similares ao se adaptar ao ambiente ou 
+				a determinados nichos ecológicos). Nesse caso, esperaríamos que as espécies de cada ilha fossem mais aparentadas entre elas do que com espécies 
+				de outras ilhas com o mesmo ecomorfo.</li>
+		</ul>
+
+		<p> Primeiro veja nesse arquivo <a href="sequencias_Anolis.txt" target="_blank">aqui</a>, como estão organizados as sequências de DNA das diferentes espécies, este formato é chamado de fasta, onde um ">" sempre precede o nome da sequência e a partir da próxima linha, temos as bases, sendo que olhamos apenas uma fita, mas podemos deduzir a outra fita de dna a partir dessa.</p>
+
+		<p> Esse arquivo inclue 16 sequências de espécies das espécies de Anolis que vimos nas fotografias, mais especificamente, esse é um pedaço de DNA Mitocondrial que pega o gene NADH dehydrogenase subunit 2 (ND2) e cinco tRNA (RNA). Esses genes são conservados o suficiente entre para serem reconhecidos em espécies distantes, ainda assim, eles são suficientemente variáveis para que cada espécie tenha sequências diferentes, e a sequência pode ser comparada entre espécies próximas para inferir relações evolutivas. Genes como esses são usados em DNA fingerprinting de espécies. Além dos anoles, on lagarto não relacionado a essas espécies, Leiocephalus barahonensis é incluido como um outgroup para servir de raiz e adicionar um ancestral que deve representar o ancestral mais antigo do grupo, do qual as espécies irradiaram.</p>
+
+		<ul>
+		<li>Existem diversos programas para estudar filogenia. Neste exercício utilizaremos o site do PHYLOGENY. </li>
+		<li> Para começar a fazer a filogenia, utilizaremos o site do <a href="www.phylogeny.fr" target="_blank">PHYLOGENY</a>no navegador. Phylogeny.fr é uma página facil de usar que faz o alinhamento de sequências e gera a filogenia para a gente.</li>
+
+		<li> Selecione a opção "One Click" (um clique) da página inicial do www.phylogeny.fr, o que vai abrir as opções de:</li> 
+
+		<ol>	
+			<li>Fazer o upload de um arquivo de sequências clicando em "Choose File" e seguindo as instruções</li>
+			<li>Copiar todo o arquivo de sequências de DNA, com ctrl-A, por exemplo e colar ele na caixa de texto disponível</li>
+		</ol>
+
+		<li> Depois basta clicar em "Submit"</li>
+
+		<li> A página vai gerar uma árvore filogenetica. Os números em vermelho na filogenia são o resultado do bootstraping, e no dizem o quão confiantes devemos ser no programa sobre um determinado ramo da árvore. O valor de 1 indica uma grande confiança, enquanto zero indiica nenhuma confiança. Valores menores que 0.5 são muito invertos e devem ser considerados com cuidado. Mas como o nosso proposito aqui é ilustrar os principios das comparações de sequências de DNA, não vamos nos preocupar tanto com isso agora</li>
+
+		</ul>
+		<div class="FAQ">
+			<a href="#hide2" class="hide" id="hide2">+</a>
+			<a href="#show2" class="show" id="show2">-</a>
+			<div class="question">
+				<h3>Árvore filogenetica</h3>
+			</div>
+			<div class="list">
+				<img src="filo1.png"></img>
+			</div>
+		</div>
+
+		<p class="paper"> Agora vamos colorir de duas formas diferentes a árvore filogenética para entender melhor a evolução dos lagartos anoles</p>
+
+		<div class="FAQ">
+			<a href="#hide3" class="hide" id="hide3">+</a>
+			<a href="#show3" class="show" id="show3">-</a>
+			<div class="question">
+				<h3>Ilha e Ecomorfo por espécie</h3>
+
+			</div>
+			<div class="list">
+
+
+				<table style="width:1000px;">
+					<tr>
+						<th>Species name</th> <th>Island</th> <th>Ecomorph</th>
+					</tr>
+					<tr>   
+						<th>Anolis alutaceus</th> <th> Cuba</th> <th> Grass-bush</th>
+					</tr>
+					<tr>
+						<th>Anolis angusticeps</th> <th> Cuba</th> <th> Twig</th>
+					</tr>
+					<tr>
+						<th>Anolis chlorocyanus</th> <th> Hispaniola</th> <th> Trunk-crown</th>
+					</tr>
+					<tr>
+						<th>Anolis cristatellus</th> <th> Puerto Rico</th> <th> Trunk-ground</th>
+					</tr>
+					<tr>
+						<th>Anolis cybotes</th> <th> Hispaniola</th> <th> Trunk-ground</th>
+					</tr>
+					<tr>
+						<th>Anolis evermanni</th> <th> Puerto Rico</th> <th> Trunk-crown</th>
+					</tr>
+					<tr>
+						<th>Anolis grahami</th> <th> Jamaica</th> <th> Trunk-crown</th>
+					</tr>
+					<tr>
+						<th>Anolis lineatopus</th> <th> Jamaica</th> <th> Trunk-ground</th>
+					</tr>
+					<tr>
+						<th>Anolis occultus</th> <th> Puerto Rico </th> <th>Twig</th>
+					</tr>
+					<tr>
+						<th>Anolis olssoni</th> <th> Hispaniola</th> <th> Grass-bush</th>
+					</tr>
+					<tr>
+						<th>Anolis ophiolepis</th> <th> Cuba</th> <th> Grass-bush</th>
+					</tr>
+					<tr>
+						<th>Anolis porcatus</th> <th> Cuba</th> <th> Trunk-crown</th>
+					</tr>
+					<tr>
+						<th>Anolis pulchellus</th> <th> Puerto Rico</th> <th> Grass-bush</th>
+					</tr>
+					<tr>
+						<th>Anolis sagrei</th> <th> Cuba</th> <th> Trunk-ground</th>
+					</tr>
+					<tr>
+						<th>Anolis shelpani</th> <th> Hispaniola</th> <th> Twig</th>
+					</tr>
+					<tr>
+						<th>Anolis valencienni</th> <th> Jamaica</th> <th> Twig</th>
+					</tr>
+					<tr>
+						<th>Leiocephalus barahonensis</th> <th colspan="2"> Outgroup</th>
+					</tr>
+				</table>
+
+				</br>
+
+			</div>
+		</div>
+
+
+		<p class="paper"> Vamos colorir cada ramo de acordo com a ilha de origem (Cuba, Hispaniola, Jamaica ou Puerto Rico. Se ambos os ramos são da mesma cor, no mesmo ramo, pinte a raiz e continue para a esquerda até o proximo ramo. Inclua uma legenda</p>
+
+		<div class="FAQ">
+			<a href="#hide4" class="hide" id="hide4">+</a>
+			<a href="#show4" class="show" id="show4">-</a>
+			<div class="question">
+				<h3>Colorido por ilha</h3>
+			</div>
+			<div class="list">
+				<img src="filo2.png"></img>
+			</div>
+		</div>
+
+
+		<p class="paper"> Agora vamos colorir de acordo com o ecomorfo, incluindo também outra legenda</p>
+
+		<div class="FAQ">
+			<a href="#hide5" class="hide" id="hide5">+</a>
+			<a href="#show5" class="show" id="show5">-</a>
+			<div class="question">
+				<h3>Colorido por Ecomorfo</h3>
+			</div>
+			<div class="list">
+				<img src="filo3.png"></img>
+			</div>
+		</div>
+
+		<p >Qual o padrão geral que podemos observar nessa árvore?</p>
+
+		<p class="paper"> As espécies dos mesmo ecomorfos se agrupam na árvore? A árvore suporta essa afirmação?</p>
+
+		<p class="paper"> As espécies da mesma ilha se agrupam na árvore filogenetica? A árvore suporta essa afirmação?</p>
+
+		<p class="paper"> Baseado nas árvores coloridas qual das hipoteses iniciais deve estar certo, os ecomorfos evoluiram uma vez e dispersão para as diferentes ilhas ou cada ilha desenvolveu, a partir de algum ancestral comum, os diferentes ecomorfos, considerando os exames de DNA</p>
+
+		<p class="paper"> Examine a relação entre Anolis shelplani e Anolis augusticeps. Eles obedecem a hipotese que você disse na questão anterior? Você consegue desenvolver uma hipotese que podem explicar essa relação?</p>
+
+	</body>
+</html>
+

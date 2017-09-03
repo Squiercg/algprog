@@ -60,12 +60,12 @@ ordem<-order(valores/pesos,decreasing = T)
 mochila<-rep(0,n)
 
 i<-1
-while(sum(pesos[which(mochila==1)])<=capacidade && i<=n){
+while(i<=n){
+    if(sum(pesos[which(mochila==1)])+pesos[ordem[i]]<=capacidade){    
+        mochila[ordem[i]]<-1
+    }
     i<-i+1
-    mochila[ordem[i]]<-1
 }
-
-sum(valores[which(mochila==1)])
 
 
 #####################################
@@ -106,9 +106,11 @@ mochila_guloso<-function(valores,pesos,capacidade){
     ordem<-order(valores/pesos,decreasing = T)
     mochila<-rep(0,n)
     i<-1
-    while(sum(pesos[which(mochila==1)])+pesos[ordem[i]]<=capacidade && i<=n){
-        mochila[ordem[i]]<-1
-        i<-i+1            
+    while(i<=n){
+        if(sum(pesos[which(mochila==1)])+pesos[ordem[i]]<=capacidade){    
+            mochila[ordem[i]]<-1
+        }
+        i<-i+1
     }
     sum(valores[which(mochila==1)])
     saida<-list(ganho=sum(valores[which(mochila==1)]),solucao=mochila)
@@ -138,15 +140,24 @@ dados<-data.frame(itens=vector(),
                   ganho_dinamico=vector())
 
 set.seed(123)
-for(i in 1:50){
+for(i in 1:1000){
     print(paste("Iteração",i))
-    exemplo<-mochila_exemplo(n=1000,peso_max=1000,valores_max = 1000,capacidade_max = 1000)
-    write.table(rbind(c(length(exemplo$valores),exemplo$capacidade),cbind(exemplo$pesos,exemplo$valores)),file=paste("exemplo_",i,".txt",sep=""),row.names = F,col.names=F, sep=" ")    
-    tempo_guloso<-system.time(guloso<-mochila_guloso(exemplo$valores,exemplo$pesos,exemplo$capacidade))
-    tempo_dinamico<-system.time(dinamico<-mochila_dinamico(exemplo$valores,exemplo$pesos,exemplo$capacidade))
-    dados[i,]<-c(length(exemplo$valores),exemplo$capacidade,tempo_guloso[1],guloso$ganho,tempo_dinamico[1],dinamico$ganho)
+    exemplo<-mochila_exemplo(n=10000,peso_max=1000,valores_max = 1000,capacidade_max = 2000)
+    ##write.table(rbind(c(length(exemplo$valores),exemplo$capacidade),cbind(exemplo$pesos,exemplo$valores)),file=paste("exemplo_",i,".txt",sep=""),row.names = F,col.names=F, sep=" ")    
+    ##tempo_guloso<-system.time(guloso<-mochila_guloso(exemplo$valores,exemplo$pesos,exemplo$capacidade))
+    ##tempo_dinamico<-system.time(dinamico<-mochila_dinamico(exemplo$valores,exemplo$pesos,exemplo$capacidade))
+    ##dados[i,]<-c(length(exemplo$valores),exemplo$capacidade,tempo_guloso[1],guloso$ganho,tempo_dinamico[1],dinamico$ganho)
+    dados[i,1:2]<-c(length(exemplo$valores),exemplo$capacidade)
 }
 
+dados
+
+dados[,c(3,4)]<-read.table("guloso.txt")[,c(2,1)]
+dados[,c(5,6)]<-read.table("prog_dinamica.txt")[,c(2,1)]
+
+head(dados)
+
+png("figura1.png",width = 2*480,height = 2*480, pointsize = 2*12)
 plot(tempo_dinamico~itens,data=dados,pch=19,col="gray",cex=(dados$capacidade+0.2)/(max(dados$capacidade)-min(dados$capacidade)),
      xlab="Quantidade de Itens",ylab="Tempo Utilizado",frame=F)
 predicao<-predict(loess(tempo_dinamico~itens,data=dados),data.frame(itens = 1:max(dados$itens)))
@@ -157,16 +168,11 @@ predicao<-predict(loess(tempo_guloso~itens,data=dados),data.frame(itens = 1:max(
 points(1:max(dados$itens),predicao,type="l",lwd=3,lty=3,col="blue")
 legend("topleft",legend=c("Tempo Dinâmico","Tempo Guloso"),pch=19,col=c("gray","lightblue"),title="Casos",bty="n")
 legend("left",legend=c("Alg. Dinâmico","Alg. Guloso"),lwd=3,lty=3,col=c("black","blue"),title="Média esperada",bty="n")
+dev.off()
 
-
-stripchart(c(dados$ganho_guloso,dados$ganho_dinamico)~factor(rep(c("Guloso","Dinâmico"),each=nrow(dados))),
-           vertical=T,pch=19,at=c(1.2,1.8),ylab="Ganho",xlab="Abordagens")
-for(i in 1:nrow(dados)){
-    points(x=c(1.2,1.8),y=c(dados$ganho_dinamico[i],dados$ganho_guloso[i]),type="l")
-}
-
-dados
-hist(dados$ganho_dinamico-dados$ganho_guloso,xlab="Diferença de ganho entre dinâmico e guloso",ylab="Número de casos",col="gray")
+png("figura2.png",,width = 2*480,height = 2*480, pointsize = 2*12)
+hist(dados$ganho_dinamico-dados$ganho_guloso,breaks=seq(0,600,10),xlab="Diferença de ganho entre dinâmico e guloso",ylab="Número de casos",col="gray",main="")
+dev.off()
 
 table(dados$ganho_guloso==dados$ganho_dinamico)
 
@@ -174,8 +180,6 @@ dados[dados$ganho_guloso==dados$ganho_dinamico,]
 
 summary(dados$ganho_guloso)
 summary(dados$ganho_dinamico)
-
-system("ls -l")
     
 
 

@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Mapeando genético, descobrindo genes.</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="mapeamento.css">
+        <link rel="stylesheet" type="text/css" href="../estilo.css">
+
+        <!-- Esses dois scripts são da tabela dinamica-->
+        <script type="text/javascript" src="tablesorter/jquery-latest.js"></script>
+        <script type="text/javascript" src="tablesorter/jquery.tablesorter.js"></script>
+        <!--<script type="text/javascript" src="canvasjs/canvasjs.min.js"></script>-->
+        <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+        <script type="text/javascript" src="mapeamento.js"></script>
+
+    </head>
+    <body>
+
+        <h2>Contexto</h2>
+        <p>Audiência: Alunos de ensino médio.</p>
+        <p>Habilidades necessárias: Conhecimento básico da teoria da evolução e genética.</p>
+
+        <h2>Objetivo</h2>    
+        <p>O objetivo dessa atividade é entender como é possível localizar genes relacionados a algumas características nos seres vivos.</p>
+
+        <h2>Descrição</h2>    
+        <p>Trabalhando com variações de um nucleotídeos das sequências de cachorros com diferentes tipos de pelos (curtos e longos, encaracolados e lisos), vamos aprender como podemos descobrir quais genes estão associados a essa característica.</p>
+
+        <h1>Introdução</h1>
+        <p>Constantemente nos deparamos com notícias do tipo, "cientistas encontram um novo gene relacionado ao câncer". Mas você já se perguntou como é possível encontrar um gene?</p>
+
+        <img src="imagens/descoberta.png" height="300px">
+
+        <p>Veja que essa procura é feita dentro do <a href="https://pt.wikipedia.org/wiki/Genoma_humano">genoma humano</a>, que é imenso. Mas para entender como é possível encontrar genes que causam doenças, vamos começar com um problema mais simples, primeiro olhando para a pelagem de cachorrinhos.</p>
+
+        <p>Em 2005, cientistas obtiveram a primeira sequência de genoma completo de cachorros, que consiste de uma sequência de 2.400.000.000 pares de nucleotídeos (<b>A</b>,<b>C</b>,<b>T</b> e <b>G</b>) distribuídos em 39 pares de cromossomos.</p>
+
+        <p>Mas para que serve toda essa informação? Nessa atividade, vamos aprender uma abordagem para identificar genes associados a determinadas características, ou fenótipos, a partir de sequências do genoma, chamada de estudos de associação genômica (<i>Genome-Wide Association Studies</i> - GWAS).</p>
+
+        <p>GWAS envolve a busca em sequências do genoma de um grande número de indivíduos, nesse caso, vários cachorros, para encontrar diferenças, ou variações associadas com fenótipos particulares, para então identificar genes responsáveis por essas características. Você vai aprender sobre a ciência por trás do GWAS ao trabalhar em diferentes exercícios para achar as variações associadas com a textura e tamanho da pelagem de cachorros.</p>
+
+        <p>GWAS usa marcadores de DNA distribuídos pelo genoma chamados de polimorfismo de nucleotídeo único (<i>Single Nucleotide Polimorfism</i> - SNP). Um SNP é uma variação em um único nucleotídeo em uma posição particular do genoma. Nem toda mudança em um nucleotídeo é um SNP, mas falaremos melhor sobre mutações em um outro exercício.</p>
+
+        <p>Nada melhor para entender algum conceito, do que praticar. Para nossa sorte, cientistas sequenciaram o genoma de muitos cachorros domésticos, de uma variedade de raças diferentes. Eles identificaram milhões de variações comuns entre esses genomas e suas localizações nos cromossomos. Localizações específicas são apresentadas como o número do cromossomo seguido do número do nucleotídeo nesse cromossomo. Por exemplo, em uma localização particular, alguns cachorros tem um <b>A</b>, enquanto outros tem um <b>C</b>. Cachorros podem ter duas cópias do <b>C</b> nessa localização, duas cópias do alelo <b>A</b> ou uma de cada alelo (cachorros são diplóides, como nós humanos).</p>
+
+        <p>A partir do momento que sabemos onde os SNPs estão localizados no genoma de um organismo, eles podem ser usados para determinar onde estão certos genes de interesse. Em um estudo do tipo GWAS, cientistas tipicamente vão comparar SNPs em dois grupos de indivíduos, um com uma versão de uma características (por exemplo, pelo longo em cachorros) e outra com outra versão da característica (por exemplo, pelo curto em cachorros), sendo de forma mais geral conhecido como estudos do tipo caso controle. Eles então identificam os SNPs que são encontrados mais comumente em cachorros com uma versão da característica do que na outra. Esses SNPs servem de marcadores para a região do genoma canino onde o gene responsável para determinar a característica deve estar presente.</p>
+
+        <p>Mas porque certos SNPs estão associados com certas características? SNPs que ocorrem em um gene ou em uma área regulatória perto de um gene pode afetar diretamente a função do gene resultando na alteração da características. Por exemplo, a mudança de um <b>A</b> para um <b>C</b> no exemplo anterior dos genomas caninos é responsável por um cachorro ter pelo curto. Entretanto, um SNP pode não ser  a causa da característica e ainda sim estar associado a ela, se ele estiver perto o suficiente da mudança que causa a característica, ele pode ser herdado junto.</p>
+
+        <p>Variações em apenas três genes agem em diferentes combinações para determinar uma grande gama de texturas vistas nas pelagens de cachorros, dos pelos encaracolados dos poodles aos longos pelos lisos dos beagles. Um grupo de pesquisadores do instituto de pesquisa genômica humana (<i>National Human Genome Research Institute</i> - <a href="https://research.nhgri.nih.gov/dog_genome/" target="_blank">NHGRI</a>), descreveu esses variantes em um artigo da revista <b>Science</b>.</p>
+
+        <h1>Atividade</h1>
+
+        <p>Vamos explorar como o GWAS funciona usando um exemplo simples. Cientistas compararam SNPs em dois grupos de cachorros, aqueles com pelagem branca e aqueles com pelagem preta. Se um tipo de SNP é encontrado muito mais frenquentemente em cachorros com pelagem branca do que em cachorros com pelagem preta, o SNP é dito associado a pelagem branca. O SNP associado marca a região do genoma que pode conter um gene envolvido em determinar a pelagem branca. A tabela abaixo mostra alelos em 17 lócus do genoma de oito diferentes cachorros, quatro com pelagem preta e quatro com pelagem branca. Cada lócus de SNP é representado por dois nucleotídeos, um de cada cromossomo parental. Para determinar se algum desses lócus têm SNPs associados a pelagem de cor branca, você vai comparar os SNPs de vários cachorros com pelagem preta e cachorros com pelagem branca.</p>
+
+        <label class="collapse" for="_1">
+            <p><span class="circulo"><span>?</span></span> Não está entendendo todos os termos que estamos falando?</p>
+        </label>
+        <input id="_1" type="checkbox">
+        <div>        
+            <ul>
+                <li>SNP: Polimorfismo de nucleotídeo único.</li>
+                <li>Lócus: é o local fixo num cromossomo onde está localizado determinado gene ou marcador genético. A lista organizada de loci (loci é o plural de lócus) conhecidos para um cromossomo é chamada de mapa genético.</li>
+            </ul>        
+        </div>
+
+        <p>Para fazer a comparação, faça o seguinte:</p>
+
+        <label class="collapse" for="_2">
+            <p><span class="circulo"><span>+</span></span> Veja que você pode clicar no lócus para reordenar a tabela inteira a partir daquele lócus.</p>
+        </label>
+        <input id="_2" type="checkbox">
+        <div> 
+            <img src="imagens/tab01.png" height="600px">     
+        </div>
+
+        <label class="collapse" for="_3">
+            <p><span class="circulo"><span>+</span></span> Mas dependendo do lócus que você usar para ordenar, você vai misturar cachorros com os dois tipos de pelagem.</p>
+        </label>
+        <input id="_3" type="checkbox">
+        <div> 
+            <p>Quando você clica no lócus 2:</p>
+            <img src="imagens/tab_locus2.png" height="600px"> 
+            <p>Quando você clica no lócus 16:</p>
+            <img src="imagens/tab_locus16.png" height="600px"> 
+        </div>
+
+
+
+
+
+        <table id="locus" class="tablesorter"> 
+            <thead> 
+                <tr> 
+                    <th>Pelagem</th> 
+                    <th>Locus 1</th> 
+                    <th>Locus 2</th> 
+                    <th>Locus 3</th> 
+                    <th>Locus 4</th> 
+                    <th>Locus 5</th> 
+                    <th>Locus 6</th> 
+                    <th>Locus 7</th> 
+                    <th>Locus 8</th> 
+                    <th>Locus 9</th> 
+                    <th>Locus 10</th> 
+                    <th>Locus 11</th> 
+                    <th>Locus 12</th> 
+                    <th>Locus 13</th> 
+                    <th>Locus 14</th> 
+                    <th>Locus 15</th> 
+                    <th>Locus 16</th> 
+                    <th>Locus 17</th> 
+                </tr> 
+            </thead> 
+            <tbody>
+                <tr>
+                    <th><img src="imagens/pelos_escuros.png"></th>
+                    <th>CC</th> 
+                    <th>AT</th> 
+                    <th>CC </th>
+                    <th>GG</th> 
+                    <th>AA </th>
+                    <th>TC </th>
+                    <th>TT </th>
+                    <th>CC </th>
+                    <th>GG</th>
+                    <th>AA </th>
+                    <th>TT</th> 
+                    <th>GT</th> 
+                    <th>AG </th>
+                    <th>AA </th>
+                    <th>CC </th>
+                    <th>GG </th>
+                    <th>AT</th>
+                </tr>
+
+                <tr>
+                    <th><img src="imagens/pelos_escuros.png"></th>
+                    <th>CC</th>
+                    <th>AT</th>
+                    <th>AC</th>
+                    <th>GG</th>
+                    <th>GG</th>
+                    <th>TT</th>
+                    <th>TT</th>
+                    <th>CC</th>
+                    <th>GG</th>
+                    <th>AG</th>
+                    <th>TT</th>
+                    <th>GG</th>
+                    <th>AG</th>
+                    <th>AG</th>
+                    <th>CC</th>
+                    <th>GG</th>
+                    <th>AT</th>
+                </tr>
+
+                <tr>
+                    <th><img src="imagens/pelos_escuros.png"></th>
+
+                    <th>CC</th>
+                    <th>AA</th>
+                    <th>AC</th>
+                    <th>CG</th>
+                    <th>GG</th>
+                    <th>TT</th>
+                    <th>TT</th>
+                    <th>CT</th>
+                    <th>GG</th>
+                    <th>AA</th>
+                    <th>TT</th>
+                    <th>GT</th>
+                    <th>AG</th>
+                    <th>AG</th>
+                    <th>CC</th>
+                    <th>TT</th>
+                    <th>AT </th>
+                </tr>
+
+                <tr>
+                    <th><img src="imagens/pelos_escuros.png"></th>
+                    <th>CC</th>
+                    <th>AA</th>
+                    <th>AC</th>
+                    <th>GG</th>
+                    <th>AG</th>
+                    <th>TT</th>
+                    <th>TT</th>
+                    <th>CT</th>
+                    <th>GG</th>
+                    <th>GG</th>
+                    <th>TT</th>
+                    <th>GG</th>
+                    <th>AG</th>
+                    <th>AG</th>
+                    <th>CC</th>
+                    <th>GT</th>
+                    <th>AT</th>
+                </tr>
+
+                <tr>
+                    <th><img src="imagens/pelos_claros.png"></th>
+                    <th>CC</th>
+                    <th>AT</th>
+                    <th>CC</th>
+                    <th>CG</th>
+                    <th>AA</th>
+                    <th>TT</th>
+                    <th>AA</th>
+                    <th>CT</th>
+                    <th>GG</th>
+                    <th>AA</th>
+                    <th>TT</th>
+                    <th>GT</th>
+                    <th>AA</th>
+                    <th>AA</th>
+                    <th>CC</th>
+                    <th>GT</th>
+                    <th>AT</th>  
+                </tr>
+
+                <tr>
+                    <th><img src="imagens/pelos_claros.png"></th>
+                    <th>CC</th>
+                    <th>AT</th>
+                    <th>CC</th>
+                    <th>GG</th>
+                    <th>AA</th>
+                    <th>TT</th>
+                    <th>AA</th>
+                    <th>TC</th>
+                    <th>GG</th>
+                    <th>AA</th>
+                    <th>TT</th>
+                    <th>GG</th>
+                    <th>AG</th>
+                    <th>AA</th>
+                    <th>CC</th>
+                    <th>GG</th>
+                    <th>TT </th>
+                </tr>
+
+                <tr>
+                    <th><img src="imagens/pelos_claros.png"></th>
+                    <th>CC</th>
+                    <th>AT</th>
+                    <th>CC</th>
+                    <th>GG</th>
+                    <th>AA</th>
+                    <th>TT</th>
+                    <th>AA</th>
+                    <th>CC</th>
+                    <th>GG</th>
+                    <th>AA</th>
+                    <th>TT</th>
+                    <th>GG</th>
+                    <th>AA</th>
+                    <th>AA</th>
+                    <th>CC</th>
+                    <th>GT</th>
+                    <th>AT </th>  
+                </tr>
+
+                <tr>
+                    <th><img src="imagens/pelos_claros.png"></th>
+                    <th>CC</th>
+                    <th>AA</th>
+                    <th>CC</th>
+                    <th>GG</th>
+                    <th>AG</th>
+                    <th>TT</th>
+                    <th>AA</th>
+                    <th>TC</th>
+                    <th>GG</th>
+                    <th>GG</th>
+                    <th>TT</th>
+                    <th>GG</th>
+                    <th>AA</th>
+                    <th>AA</th>
+                    <th>CC</th>
+                    <th>TT</th>
+                    <th>AT </th>
+                </tr>
+
+            </tbody> 
+        </table>
+
+
+
+
+
+        <p>Um SNP em particular é 100% associado com a cor da pelagem quando todos os cachorros com a pelagem branca tem o mesmo nucleotídeo naquela posição, enquanto todos os cachorros de pelagem preta tem outro nucleotídeo. Se um SNP é 100% associado com o fenótipo, o SNP pode estar localizado dentro do gene responsável e ser a causa do fenótipo observado. Qual lócus da tabela está 100% associada a cor da pelagem, ou seja, que organiza os cachorros pela cor e têm nucleotídeos diferentes para cada cor de pelagem?</p>
+
+        <h3>Resposta:</h3>
+        <input id="pergunta01">
+        <button type="button" onclick="confere_pergunta01()">Responder!</button>
+        <p id="resposta01">             
+        </p> 
+
+        <p>Em geral, quanto mais próximos dois SNPs estão no DNA, é provável que eles sejam herdados juntos. Assim, se um SNP está perto de um gene, provavelmente ele sempre será herdado junto com esse gene. O grau dessa associação (aqui, se as cores dos cachorros ficam organizadas em dois grupos, não se misturam) prediz o quão perto um SNP em particular está de um gene responsável por um fenótipo. Você consegue identificar na tabela acima, um SNP que de alguma forma está associado a cor da pelagem?</p>
+
+        <h3>Resposta:</h3>
+        <input id="pergunta02">
+        <button type="button" onclick="confere_pergunta02()">Responder!</button>
+        <p id="resposta02"></p> 
+
+        <p>SNPs não são associados a cor da pelagem, quando eles ocorrem mais ou menos na mesma frequência em cachorros com pelagem preta e pelagem branca. Qual coluna (lócus) de um SNP que não está associado a cor da pelagem?</p>
+
+        <h3>Resposta:</h3>
+        <input id="pergunta03">
+        <button type="button" onclick="confere_pergunta03()">Responder!</button>
+        <p id="resposta03"></p> 
+
+
+        <p>Observando suas respostas acima, quais seriam as possíveis explicações para um SNP estar associado a um fenótipo da cor do pelo?</p>
+
+        <p>Bem, duas coisas podem estar acontecendo, um SNP pode ser associado com um fenótipo porque ele causa esse fenótipo (como a cor do pelo) ou porque é ligado a ele, ou localizado perto na sequência de DNA ao alelo que causa o fenótipo.</p>
+
+
+        <label class="collapse" for="_4">
+            <p><span class="circulo"><span>?</span></span>Talvez você se pergunte, mas porque é relevante estar perto ou longe na cadeia de DNA?</p>
+        </label>
+        <input id="_4" type="checkbox">
+        <div> 
+            <p>A resposta vem das aulas de genética, quando aprendemos sobre cruzamento cromossômico (ou <i>crossing-over</i>), que é uma troca de material genético entre cromossomos homólogos.</p>
+            <p>Veja que na tabela, quando vemos que em um lócus o cachorrinho tem um <b>AC</b>, significa que em um cromossomo ele tem um <b>A</b> e em outro ele tem um <b>C</b> naquela posição da cadeia de DNA, mas quando fazemos a meiose, para gerar os nossos gametas e se reproduzir, não mandamos sempre só o primeiro ou só o segundo alelo, podemos misturá-los com o <i>crossing-over</i>.</p>
+
+            <p>Vamos a um exemplo mais concreto, imagine o segundo cachorro, ele tem <b>CC AT CG GG</b> como alelos nos quatro primeiros loci, ele vai produzir um gameta <b>C A C G</b> 
+(somente os primeiros alelos) e outro <b>C T G G</b>, os gametas parentais, mas somente se houver troca entre os cromossomos que ele poderá produzir o gameta <b>C A G G</b>, porque o <b>A</b> 
+vem do primeiro alelo e o <b>G</b> do segundo alelo, porém quanto mais perto os loci são, mais raro é esse evento de troca, ou seja, só vemos cromossomos como os parentais para essa devida posição.</p>
+        </div>
+
+        <p>Tudo bem, agora já temos uma ideia, de como podemos usar os dados de vários cachorros para ver a associação de alguns loci a determinadas características (fenótipos). Mas devemos lembrar 
+que quando falamos de loci, eles estão em um cromossomo e tem uma posição nesse cromossomo. Outra coisa, é que estamos no "olhômetro" aqui, o que é ruim, pois pode trazer grande ambiguidade para nossas 
+conclusões, com exceção da resposta a primeira pergunta que era quando a associação é de 100%, veja que temos mais de uma possibilidade nas outras respostas, precisamos de meios de medir essa associação. 
+Então agora vamos avaliar dados reais e ver como podemos resolver esses problemas.</p>
+
+        <h2>Tamanho da pelagem canina</h2>
+        <p>Vamos começar olhando a tabela abaixo, para a pelagem canina. Cada linha representa a sequência obtida de um cachorro, não a sequência toda, somente o que está na posição indicada na coluna, 
+naquele cromossomo, naquele lócus. As sequências mostram SNPs em sete locais no cromossomo 32. Observe esses dados e tente agrupar cachorros com pelos longos e aqueles com pelos curtos juntos, você 
+pode predizer, como antes, quais SNPs têm a maior associação com os fenótipos de pelo longo e pelo curto?</p>
+
+        <table id="tabela1" class="tablesorter"> 
+            <thead> 
+                <tr> 
+                    <th>Cachorro</th> 
+                    <th>Pelagem</th> 
+                    <th>chr32 7420804</th> 
+                    <th>chr32 7472206 </th> 
+                    <th>chr32 7473337</th> 
+                    <th>chr32 7479580</th> 
+                    <th>chr32 7482867</th> 
+                    <th>chr32 7490570</th> 
+                    <th>chr32 7492364</th> 
+                </tr> 
+            </thead> 
+            <tbody>
+                <tr>
+                    <th><img src="imagens/tamanho01.png" height="100px"></th>
+                    <th>Curto</th> 
+                    <th>TC</th>
+                    <th>AA</th>
+                    <th>GT</th>
+                    <th>TT</th>
+                    <th>AG</th>
+                    <th>TT</th>
+                    <th>CG</th>
+                </tr>
+                <tr>
+                    <th><img src="imagens/tamanho02.png" height="100px"></th>
+                    <th>Curto</th> 
+                    <th>TC</th> 
+                    <th>AA</th> 
+                    <th>GG</th> 
+                    <th>TT</th> 
+                    <th>GG</th> 
+                    <th>CC</th> 
+                    <th>GG</th>
+                </tr>
+                <tr>
+                    <th><img src="imagens/tamanho03.png" height="100px"></th>
+                    <th>Curto</th> 
+                    <th>CC</th> 
+                    <th>GA</th> 
+                    <th>GT</th> 
+                    <th>CT</th> 
+                    <th>AG</th> 
+                    <th>CT</th> 
+                    <th>GG</th>
+                </tr>
+                <tr>
+                    <th><img src="imagens/tamanho04.png" height="100px"></th>
+                    <th>Curto</th> 
+                    <th>TC</th> 
+                    <th>GA</th> 
+                    <th>GG</th> 
+                    <th>CT</th> 
+                    <th>AA</th> 
+                    <th>TT</th> 
+                    <th>CG</th>
+                </tr>
+                <tr>
+                    <th><img src="imagens/tamanho05.png" height="100px"></th>
+                    <th>Curto</th> 
+                    <th>CC</th> 
+                    <th>GA</th> 
+                    <th>GT</th> 
+                    <th>CT</th> 
+                    <th>AG</th> 
+                    <th>CT</th> 
+                    <th>GG</th>
+                </tr>
+                <tr>
+                    <th><img src="imagens/tamanho06.png" height="100px"></th>
+                    <th>Curto</th> 
+                    <th>TC</th> 
+                    <th>AA</th> 
+                    <th>GG</th> 
+                    <th>TT</th> 
+                    <th>GG</th> 
+                    <th>CC</th> 
+                    <th>CG</th>
+                </tr>
+                <tr>
+                    <th><img src="imagens/tamanho07.png" height="100px"></th>
+                    <th>Longo</th> 
+                    <th>CC</th> 
+                    <th>AA</th> 
+                    <th>TT</th> 
+                    <th>TT</th> 
+                    <th>GG</th> 
+                    <th>TT</th> 
+                    <th>GG</th>
+                </tr>
+                <tr>
+                    <th><img src="imagens/tamanho08.png" height="100px"></th>
+                    <th>Longo</th> 
+                    <th>TC</th> 
+                    <th>AA</th> 
+                    <th>TT</th> 
+                    <th>TT</th> 
+                    <th>GG</th> 
+                    <th>TT</th> 
+                    <th>GG</th>
+                </tr>
+                <tr>
+                    <th><img src="imagens/tamanho09.png" height="100px"></th>
+                    <th>Longo</th> 
+                    <th>TC</th> 
+                    <th>AA</th> 
+                    <th>TT</th> 
+                    <th>TT</th> 
+                    <th>GG</th> 
+                    <th>TT</th> 
+                    <th>GG</th>
+                </tr>
+                <tr>
+                    <th><img src="imagens/tamanho10.png" height="100px"></th>
+                    <th>Longo</th> 
+                    <th>CC</th>
+                    <th>AA</th>
+                    <th>TT</th>
+                    <th>TT</th>
+                    <th>GG</th>
+                    <th>CT</th>
+                    <th>CG</th>
+                </tr>
+                <tr>
+                    <th><img src="imagens/tamanho11.png" height="100px"></th>
+                    <th>Longo</th> 
+                    <th>TT</th>
+                    <th>AA</th>
+                    <th>TT</th>
+                    <th>TT</th>
+                    <th>GG</th>
+                    <th>TT</th>
+                    <th>GG</th>
+                </tr>
+                <tr>
+                    <th><img src="imagens/tamanho12.png" height="100px"></th>
+                    <th>Longo</th> 
+                    <th>CC</th>
+                    <th>AA</th>
+                    <th>TT</th>
+                    <th>TT</th>
+                    <th>GG</th>
+                    <th>TT</th>
+                    <th>GG</th>                    
+                </tr>
+            </tbody> 
+        </table>        
+
+        <P>O olhômetro aqui pode não ser uma boa ideia, mas podemos examinar os dados para medir quais SNPs têm a maior associação.</p>
+
+        <p>Para cada lócus de SNP, vamos fazer o seguinte:</p>
+
+        <label class="collapse" for="_5">
+            <p><span class="circulo"><span>+</span></span>Ver quais os alelos do lócus.</p>
+        </label>
+        <input id="_5" type="checkbox">
+        <div> 
+            <p>No lócus Chr32 7473337 temos os alelos <b>T</b> e <b>G</b></p>        
+            <img src="imagens/pelagem01.png" height="600px"> 
+            <p>Então preenchemos eles na tabela</p>
+            <img src="imagens/pelagem02.png" height="200px">        
+        </div>
+
+        <label class="collapse" for="_6">
+            <p><span class="circulo"><span>+</span></span>Contar o número de vezes que um alelo aparece e anotar na tabela</p>
+        </label>
+        <input id="_6" type="checkbox">
+        <div> 
+            <p>No lócus Chr32 7473337 contando os <b>T</b> para os pelos curtos temos:</p>       
+            <img src="imagens/pelagem03.png" height="600px">
+
+            <p>Então anotamos na tabela.</p>        
+            <img src="imagens/pelagem04.png" height="200px"> 
+        </div>
+
+
+        <label class="collapse" for="_7">
+            <p><span class="circulo"><span>+</span></span>Terminamos de preencher a tabela, clicamos em adicionar ao gráfico para conferir as entradas e adicionar o ponto ao gráfico.</p>
+        </label>
+        <input id="_7" type="checkbox">
+        <div> 
+            <p>Depois podemos calcular a diferença entre alelos dos dois grupos de cachorros. Somamos as diferenças e anotamos o número total de cada lócus na tabela. O maior número total de diferenças indica uma associação forte entre um SNP em particular e o fenótipo. Quando você clicar em adicionar ao gráfico, as respostas erradas vão ficar em caixas com o fundo vermelho, reveja essas respostas.</p>
+            <img src="imagens/pelagem05.png" height="200px">  
+            <p>Abaixo das tabelas existe um gráfico que atualiza de acordo com que clicamos no botão de adicionar ao gráfico de cada tabela.</p>
+            <img src="imagens/pelagem06.png" height="200px"> 
+        </div>       
+
+        <table style="width:100%">
+            <tr>
+                <th rowspan="4">Chr32 7420804</th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+            </tr>
+
+            <tr>
+                <th>T</th>
+                <th>4</th>
+                <th>4</th>
+                <th>0</th>
+            </tr>
+
+            <tr>
+                <th>C</th>
+                <th>8</th>
+                <th>8</th>
+                <th>0</th>
+            </tr>
+
+            <tr >
+                <th colspan="3" >Total de diferenças</th>
+                <th>0</th>
+            </tr>
+        </table> 
+
+        <table style="width:100%">
+            <tr>
+                <th rowspan="4">Chr32 7472206</th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+            </tr>
+
+            <tr>
+                <th>T</th>
+                <th>9</th>
+                <th>12</th>
+                <th>3</th>
+            </tr>
+
+            <tr>
+                <th>C</th>
+                <th>3</th>
+                <th>0</th>
+                <th>3</th>
+            </tr>
+
+            <tr >
+                <th colspan="3" >Total de diferenças</th>
+                <th>6</th>
+            </tr>
+        </table> 
+
+        <table style="width:100%">
+            <tr>
+                <th rowspan="4"><p>Chr32 7473337</p><p><button type="button" onclick="ponto_3()">Adicionar ao gráfico</button></p></th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+            </tr>
+
+            <tr>
+                <th><input id="g1"></th>
+                <th><input id="g2"></th>
+                <th><input id="g3"></th>
+                <th><input id="g4"></th>
+            </tr>
+
+            <tr>
+                <th><input id="g5"></th>
+                <th><input id="g6"></th>
+                <th><input id="g7"></th>
+                <th><input id="g8"></th>
+            </tr>
+
+            <tr >
+                <th colspan="3" >Total de diferenças</th>
+                <th><input id="g9"></th>
+            </tr>
+        </table> 
+
+        <table style="width:100%">
+            <tr>
+                <th rowspan="4"><p>Chr32 7479580</p><p><button type="button" onclick="ponto_4()">Adicionar ao gráfico</button></p></th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+            </tr>
+
+            <tr>
+                <th><input id="g10"></th>
+                <th><input id="g11"></th>
+                <th><input id="g12"></th>
+                <th><input id="g13"></th>
+            </tr>
+
+            <tr>
+                <th><input id="g14"></th>
+                <th><input id="g15"></th>
+                <th><input id="g16"></th>
+                <th><input id="g17"></th>
+            </tr>
+
+            <tr >
+                <th colspan="3" >Total de diferenças</th>
+                <th><input id="g18"></th>
+            </tr>
+        </table>  
+
+        <table style="width:100%">
+            <tr>
+                <th rowspan="4"><p>Chr32 7482867</p><p><button type="button" onclick="ponto_5()">Adicionar ao gráfico</button></p></th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+            </tr>
+
+            <tr>
+                <th><input id="g19"></th>
+                <th><input id="g20"></th>
+                <th><input id="g21"></th>
+                <th><input id="g22"></th>
+            </tr>
+
+            <tr>
+                <th><input id="g23"></th>
+                <th><input id="g24"></th>
+                <th><input id="g25"></th>
+                <th><input id="g26"></th>
+            </tr>
+
+            <tr >
+                <th colspan="3" >Total de diferenças</th>
+                <th><input id="g27"></th>
+            </tr>
+
+        </table>  
+
+        <table style="width:100%">
+            <tr>
+                <th rowspan="4"><p>Chr32 7490570</p><p><button type="button" onclick="ponto_6()">Adicionar ao gráfico</button></p></th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+            </tr>
+
+            <tr>
+                <th><input id="g28"></th>
+                <th><input id="g29"></th>
+                <th><input id="g30"></th>
+                <th><input id="g31"></th>
+            </tr>
+
+            <tr>
+                <th><input id="g32"></th>
+                <th><input id="g33"></th>
+                <th><input id="g34"></th>
+                <th><input id="g35"></th>
+            </tr>
+
+            <tr>
+                <th colspan="3" >Total de diferenças</th>
+                <th><input id="g36"></th>
+            </tr>
+
+        </table> 
+
+        <table style="width:100%">
+            <tr>
+                <th rowspan="4"><p>Chr32 7492364</p><p><button type="button" onclick="ponto_7()">Adicionar ao gráfico</button></p></th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+            </tr>
+
+            <tr>
+                <th><input id="g37"></th>
+                <th><input id="g38"></th>
+                <th><input id="g39"></th>
+                <th><input id="g40"></th>
+            </tr>
+
+            <tr>
+                <th><input id="g41"></th>
+                <th><input id="g42"></th>
+                <th><input id="g43"></th>
+                <th><input id="g44"></th>
+            </tr>
+
+            <tr >
+                <th colspan="3" >Total de diferenças</th>
+                <th><input id="g45"></th>
+            </tr>
+        </table>  
+
+        <p></p> 
+        <div id="grafico1" style="height: 300px; width: 100%;"></div>
+        <p>Agora, observando essa figura, responda:</p>
+
+
+        <p>1. Qual SNP tem a maior associação?</p>
+        <h3>Resposta:</h3>
+        <input type="text" id="pergunta04" style="width: 150px;">
+        <button type="button" onclick="confere_pergunta04()">Responder!</button>
+        <p id="resposta04"></p> 
+
+        <p>2. Qual SNP tem a menor associação?</p>
+        <h3>Resposta:</h3>
+        <input type="text" id="pergunta05" style="width: 150px;">
+        <button type="button" onclick="confere_pergunta05()">Responder!</button>
+        <p id="resposta05"></p> 
+
+        <h2>Textura da pelagem</h2>
+
+        <p>Agora, para pegar o jeito, vamos olhar os dados para a textura do pelo. Os dados serão de seis loci do cromossomo 27, em cinco cães de pelo encaracolado e cinco de pelo liso. Usando o mesmo método anterior, conte o número de vezes que os alelos aparecem para cada um dos seis loci e anote na tabela, calculando a diferença dos SNPs em cada lócus.</p>
+
+        <table id="tabela2" class="tablesorter"> 
+            <thead> 
+                <tr> 
+                    <th>Cachorro</th> 
+                    <th>Tipo de pelos</th> 
+                    <th>chr27 5525002</th> 
+                    <th>chr27 5541113</th> 
+                    <th>chr27 5542806</th> 
+                    <th>chr27 5545082</th> 
+                    <th>chr27 5557298</th> 
+                    <th>chr27 5568947</th> 
+                </tr> 
+            </thead> 
+            <tbody>
+                <tr>
+                    <th><img src="imagens/pelo01.png" height="100px"></th>
+                    <th>Encaracolado</th> 
+                    <th>CC</th>
+                    <th>CT</th>
+                    <th>CC</th>
+                    <th>AA</th>
+                    <th>CT</th>
+                    <th>CC</th>
+                </tr>
+                <tr>
+                    <th><img src="imagens/pelo02.png" height="100px"></th>
+                    <th>Encaracolado</th> 
+                    <th>TC</th> 
+                    <th>CT</th> 
+                    <th>TC</th> 
+                    <th>GA</th> 
+                    <th>CT</th> 
+                    <th>TC</th>                    
+                </tr>
+                <tr>
+                    <th><img src="imagens/pelo03.png" height="100px"></th>
+                    <th>Encaracolado</th>
+                    <th>TT</th> 
+                    <th>CT</th> 
+                    <th>TC</th> 
+                    <th>GA</th> 
+                    <th>CT</th> 
+                    <th>TT</th> 
+                </tr>
+                <tr>
+                    <th><img src="imagens/pelo04.png" height="100px"></th>
+                    <th>Encaracolado</th> 
+                    <th>TT</th> 
+                    <th>CC</th> 
+                    <th>TT</th> 
+                    <th>GG</th> 
+                    <th>CT</th> 
+                    <th>TC</th> 
+
+                </tr>
+                <tr>
+                    <th><img src="imagens/pelo05.png" height="100px"></th>
+                    <th>Encaracolado</th>
+                    <th>TC</th> 
+                    <th>CC</th> 
+                    <th>TT</th> 
+                    <th>GG</th> 
+                    <th>TT</th> 
+                    <th>TC</th> 
+                </tr>
+                <tr>
+                    <th><img src="imagens/pelo06.png" height="100px"></th>
+                    <th>Liso</th>
+                    <th>TC</th> 
+                    <th>CT</th> 
+                    <th>CC</th> 
+                    <th>GA</th> 
+                    <th>TT</th> 
+                    <th>TC</th> 
+                </tr>
+                <tr>
+                    <th><img src="imagens/pelo07.png" height="100px"></th>
+                    <th>Liso</th> 
+                    <th>TT</th> 
+                    <th>TT</th> 
+                    <th>CC</th> 
+                    <th>AA</th> 
+                    <th>TT</th> 
+                    <th>TC</th> 
+
+                </tr>
+                <tr>
+                    <th><img src="imagens/pelo08.png" height="100px"></th>
+                    <th>Liso</th> 
+                    <th>CC</th> 
+                    <th>CC</th> 
+                    <th>CC</th> 
+                    <th>GA</th> 
+                    <th>CT</th> 
+                    <th>CC</th> 
+
+                </tr>
+                <tr>
+                    <th><img src="imagens/pelo09.png" height="100px"></th>
+                    <th>Liso</th>
+                    <th>TC</th> 
+                    <th>CT</th> 
+                    <th>CC</th> 
+                    <th>AA</th> 
+                    <th>CT</th> 
+                    <th>TT</th> 
+
+                </tr>
+                <tr>
+                    <th><img src="imagens/pelo10.png" height="100px"></th>
+                    <th>Liso</th> 
+                    <th>TC</th>
+                    <th>TT</th>
+                    <th>CC</th>
+                    <th>AA</th>
+                    <th>TT</th>
+                    <th>CC</th>
+                </tr>              
+
+            </tbody> 
+        </table>
+
+        <h1>Tabelas</h1> 
+
+        <table style="width:100%">
+            <tr>
+                <th rowspan="4"><p>Chr27 5525002</p><p><button type="button" onclick="ponto_8()">Adicionar ao gráfico</button></p></th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+            </tr>
+
+            <tr>
+                <th><input id="h1"></th>
+                <th><input id="h2"></th>
+                <th><input id="h3"></th>
+                <th><input id="h4"></th>
+            </tr>
+
+            <tr>
+                <th><input id="h5"></th>
+                <th><input id="h6"></th>
+                <th><input id="h7"></th>
+                <th><input id="h8"></th>
+            </tr>
+
+            <tr >
+                <th colspan="3" >Total de diferenças</th>
+                <th><input id="h9"></th>
+            </tr>
+
+        </table> 
+
+
+        <table style="width:100%">
+            <tr>
+                <th rowspan="4"><p>Chr27 5541113</p><p><button type="button" onclick="ponto_9()">Adicionar ao gráfico</button></p></th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+
+            </tr>
+
+            <tr>
+                <th><input id="h10"></th>
+                <th><input id="h11"></th>
+                <th><input id="h12"></th>
+                <th><input id="h13"></th>
+            </tr>
+
+            <tr>
+                <th><input id="h14"></th>
+                <th><input id="h15"></th>
+                <th><input id="h16"></th>
+                <th><input id="h17"></th>
+            </tr>
+
+            <tr >
+                <th colspan="3" >Total de diferenças</th>
+                <th><input id="h18"></th>
+            </tr>
+
+        </table>  
+
+        <table style="width:100%">
+            <tr>
+                <th rowspan="4"><p>Chr27 5542806</p><p><button type="button" onclick="ponto_10()">Adicionar ao gráfico</button></p></th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+
+            </tr>
+
+            <tr>
+                <th><input id="h19"></th>
+                <th><input id="h20"></th>
+                <th><input id="h21"></th>
+                <th><input id="h22"></th>
+            </tr>
+
+            <tr>
+                <th><input id="h23"></th>
+                <th><input id="h24"></th>
+                <th><input id="h25"></th>
+                <th><input id="h26"></th>
+            </tr>
+
+            <tr >
+                <th colspan="3" >Total de diferenças</th>
+                <th><input id="h27"></th>
+            </tr>
+
+        </table>  
+
+        <table style="width:100%">
+            <tr>
+                <th rowspan="4"><p>Chr27 5545082</p><p><button type="button" onclick="ponto_11()">Adicionar ao gráfico</button></p></th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+            </tr>
+
+            <tr>
+                <th><input id="h28"></th>
+                <th><input id="h29"></th>
+                <th><input id="h30"></th>
+                <th><input id="h31"></th>
+            </tr>
+
+            <tr>
+                <th><input id="h32"></th>
+                <th><input id="h33"></th>
+                <th><input id="h34"></th>
+                <th><input id="h35"></th>
+            </tr>
+
+            <tr >
+                <th colspan="3" >Total de diferenças</th>
+                <th><input id="h36"></th>
+            </tr>
+
+        </table> 
+
+        <table style="width:100%">
+
+            <tr>
+
+                <th rowspan="4"><p>Chr27 5557298</p><p><button type="button" onclick="ponto_12()">Adicionar ao gráfico</button></p></th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+
+            </tr>
+
+            <tr>
+                <th><input id="h37"></th>
+                <th><input id="h38"></th>
+                <th><input id="h39"></th>
+                <th><input id="h40"></th>
+            </tr>
+
+            <tr>
+                <th><input id="h41"></th>
+                <th><input id="h42"></th>
+                <th><input id="h43"></th>
+                <th><input id="h44"></th>
+            </tr>
+
+            <tr >
+                <th colspan="3" >Total de diferenças</th>
+                <th><input id="h45"></th>
+            </tr>
+
+        </table>
+
+        <table style="width:100%">
+            <tr>
+                <th rowspan="4"><p>Chr27 5568947</p><p><button type="button" onclick="ponto_13()">Adicionar ao gráfico</button></p></th>
+                <th>Alelo</th>
+                <th>Pelos Curtos</th>
+                <th>Pelos Longos</th>
+                <th>Diferença</th>
+
+            </tr>
+
+            <tr>
+                <th><input id="h46"></th>
+                <th><input id="h47"></th>
+                <th><input id="h48"></th>
+                <th><input id="h49"></th>
+            </tr>
+
+            <tr>
+                <th><input id="h50"></th>
+                <th><input id="h51"></th>
+                <th><input id="h52"></th>
+                <th><input id="h53"></th>
+            </tr>
+
+            <tr >
+                <th colspan="3" >Total de diferenças</th>
+                <th><input id="h54"></th>
+            </tr>
+
+        </table> 
+
+        <h1>Gráfico</h1>   
+        <div id="grafico2" style="height: 300px; width: 100%;"></div>
+
+        <p>Agora, observando essa figura, responda:</p>
+
+        <p>1. Qual SNP tem a maior associação?</p>
+        <h3>Resposta:</h3>
+        <input type="text" id="pergunta06" style="width: 150px;">
+        <button type="button" onclick="confere_pergunta06()">Responder!</button>
+        <p id="resposta06"></p> 
+
+
+        <h2>Uma medida de associação</h2>
+
+        <p>Bem, nós começamos usando o "olhômetro", mas pode ser difícil de usar, se tivermos muitos indivíduos para avaliar, ou definir o tamanho da associação. Mas nós vimos que podemos então contar as diferenças nos alelos para comparar a associação de um SNP a um fenótipo, mas você ainda vê algum problema nisso?</p>
+
+        <p>Veja que o tamanho da diferença ainda está atrelado ao número de cachorros que olhamos, ou seja, ao número de amostras. Se a gente fizer um trabalho olhando 50 cachorros, as barras do nosso gráfico podem ser muito mais altas, mas isso não significa uma maior associação.</p>
+
+        <p>Nesse caso podemos usar a estatística chi-quadrado para evitar esse problema. Ela pode ser calculada com a seguinte fórmula:</p>
+
+        <p><img src="imagens/chi-quadrado.png" height="100px"></p>
+
+        <p>Se não entender a fórmula, não fique preocupado, basicamente, o que vamos fazer é ver qual a diferença do observado, que é a contagem que tivemos de cada alelo para cada tipo de pelo, para o esperado, que é quantos alelos deveríamos contar caso não houvesse associação nenhuma para cada um dos alelos nos dois tipos de pelagem, dessa forma comparando o que observamos com como as contagens deveriam ser em um mundo onde imaginamos não haver nenhuma associação.</p>
+
+        <p>E o que seria o esperado? Bem, se não existe associação, qualquer diferença é por acaso, então em média deveríamos ter o mesmo número de alelos para qualquer tipo de pelagem.</p>
+
+        <p>Vamos calcular para um SNP para entender melhor, vamos usar os resultados do Chr32 7492364.</p>
+
+        <table>
+            <tr>
+                <th>Alelo</th>
+                <th>Registros de pelo curto observados</th> 
+                <th>Registros de pelo longo observados</th>
+                <th>Registros esperados</th>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>3</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>G</td>
+                <td>9</td>
+                <td>11</td>
+                <td>10</td>
+            </tr>  
+        </table>
+
+        <p>Veja que se o SNP não tem nenhuma associação, então esperamos que os registros ocorram ao acaso, então assim como esperamos que se jogarmos uma moeda honesta para o alto, tenhamos 50% de cara e coroa, se temos 4 registros do alelo <b>C</b> (3 para pelos curtos e 1 para pelos longos, num total de 4), então esperamos 2 registros de cada (a metade do total de 4 registros), da mesma forma, esperamos 10 registros do alelo <b>G</b> (9 de pelos curtos mais 11 de pelos longos divididos por 2).</p>
+
+        <p>Então o valor de chi-quadrado será:</p>
+
+        <p><img src="imagens/chi-quadrado-conta.png" height="400px"></p>
+
+        <p>O resultado é 1.2, mas o que significa esse 1.2? Ele significa o desvio do esperado, caso os registros fossem ao acaso, caso houvesse a mesma chance de registrar um alelo ou o outro. Quanto maior a diferença nos registros dos alelos, mais observamos somente um alelo em detrimento do outro, maior será o valor do chi-quadrado, como no gráfico abaixo.</p>
+
+        <p><img src="imagens/figura1.jpg" height="600px"></p>
+
+
+        <p>Nesse gráfico, vemos que quando temos um resultado de 1:1, ou 50% de registro de cada caso, temos um valor de chi-quadrado de 0, e conforme aumenta o desvio da proporção de 1:1, esse valor aumenta.</p>
+
+        <p>Você se lembra que para o tamanho da pelagem, nós vimos que o maior registro de diferenças foi no SNP do Chr32 7473337? Vamos calcular o valor de chi-quadrado para ele também.</p>
+
+        <table>
+            <tr>
+                <th>Alelo</th>
+                <th>Registros de pelo curto observados</th> 
+                <th>Registros de pelo longo observados</th>
+                <th>Registros esperados</th>
+            </tr>
+            <tr>
+                <td><input id="chi1"></td>
+                <td><input id="chi2"></td>
+                <td><input id="chi3"></td>
+                <td><input id="chi4"></td>
+            </tr>
+            <tr>
+                <td><input id="chi5"></td>
+                <td><input id="chi6"></td>
+                <td><input id="chi7"></td>
+                <td><input id="chi8"></td>
+            </tr>  
+        </table>
+        <p>Valor de chi-quadrado:<input id="chi9"> <button type="button" onclick="confere_pergunta07()">Conferir!</button></p>
+
+        <p>E agora, o que você obteve de resultado? Lembra-se que essa era a maior barra de diferenças? Logo ele da o valor de chi-quadrado grande certo?</p>
+
+        <p>Mas será que esse valor que obtivemos é muito raro ou não, é grande? Podemos usar a distribuição chi-quadrado para calcular uma probabilidade de o quão raro é ver esse desvio, mas a intuição é a de que se você estiver jogando cara e corou contra alguém e essa pessoa ganhar 3 vezes de você, você pode não desconfiar dela, mas se ela ganhar 300 vezes, você vai achar que ela esta roubando certo?</p>
+
+        <p>Para o nosso caso, se acharmos uma probabilidade alta de acontecer esse desvio ao acaso, consideramos que o não existe associação do lócus com o fenótipo que estamos estudando. Mas não vamos abordar esses calculos aqui, pois são um pouco mais demorados e complicados.</p>
+
+        <h2>O gráfico de Manhatan</h2>
+
+        <p>Nas revistas científicas, os resultados que estamos encontrando aqui são apresentados como um gráfico de Manhattan, que é muito parecido com o gráfico de barras que estávamos fazendo, mas ao invés de barras nos usamos pontos.</p>
+
+        <p>Nesse gráfico, o eixo x representa as posições no cromossomo, assim como nós estávamos fazendo, mas no eixo y, nós usamos a probabilidade do desvio de uma razão caso não houvesse associação nenhuma entre o SNP de um lócus e o fenótipo avaliado. Vamos usar a ferramenta <a href="http://www.oncogenetics.icr.ac.uk/LocusExplorer/" targer="_blank">Locus Explorer</a> para ver melhor como fica no final o gráfico de  Manhattan.</p>
+        
+        <label class="collapse" for="_8">
+            <p><span class="circulo"><span>+</span></span>Primeiro abra a ferramenta <a href="http://www.oncogenetics.icr.ac.uk/LocusExplorer/" target="_blank">Locus Explorer</a>.</p>
+        </label>
+        <input id="_8" type="checkbox">
+        <div> 
+            <img src="imagens/le01.png" height="600px"> 
+        </div>     
+        
+        <label class="collapse" for="_9">
+            <p><span class="circulo"><span>+</span></span>Vamos usar um conjunto de dados prontos chamado prostate.</p>
+        </label>
+        <input id="_9" type="checkbox">
+        <div>
+            <p>Veja que ao clicarmos em prostate, o conjunto de dados de exemplo são abertos, e temos informações da sua origem, que nesse caso é de uma estudo sobre genes associados ao câncer de próstata em europeus. Veja que ao invés de nossos poucos cachorrinhos que olhamos aqui, ele olharam 25,723 pessoas com câncer de próstata  e 26,274 pessoas sadias, é um bocado de gente, mas somente observando muitas pessoas podemos ter mais certeza que um associação não ocorre por acaso.</p>
+            <img src="imagens/le02.png" height="600px"> 
+        </div>  
+
+        <label class="collapse" for="_10">
+            <p><span class="circulo"><span>+</span></span>Entre em <i>Association</i>, para ver como são os dados.</p>
+        </label>
+        <input id="_10" type="checkbox">
+        <div> 
+            <p>Veja que aqui temos as seguintes informações:</p>
+            
+            <ul>
+
+<li><b>CHR</b> – Cromossomo onde está o SNP.</li>
+<li><b>SNP</b> – Identificador do SNP, esse identificador serve para buscarmos em bases de dados mais informações sobre esse SNP, como se ele pertence a algum gene, se já se sabe de algum fenótipo relacionado a ele, etc.</li>
+<li><b>BP</b> – Posição do SNP no cromossomo.</li>
+<li><b>P</b> – Probabilidade de associação, como nós fizemos quando calculamos o valor de chi-quadrado, note que aqui estamos vendo um valor em notação científica, então 2.093e<sup>-66</sup> é o mesmo que "0.000000000000000000000000000000000000000000000000000000000000000002093", O valor 65 casas depois da vírla, já que a virgula conta como uma das casas desse -66, essa é uma probabilidade muito baixa.</li>
+</ul>
+            <img src="imagens/le03.png" height="600px"> 
+        </div> 
+        
+        <label class="collapse" for="_11">
+            <p><span class="circulo"><span>+</span></span>Entre em <i>Plot Settings</i> para fazer alguns ajustes na figura.</p>
+        </label>
+        <input id="_11" type="checkbox">
+        <div> 
+            <p>Temos várias configurações aqui, mas talvez algo interessante é que podemos mover a linha verde com a configuração <b>Suggestive Line -Log10(Pvalue)</b>, inicialmente ela começa em 5, ou seja, somente probabilidades menores que 0.00001 (na figura temos o valor de 5, mas lembre-se que -log10 de 0.00001 é 5, usamos o log para evitar ter que lidar com número com tantas zeros depois da vírgula) serão consideradas como uma associação diferente do acaso, você pode achar esse número pequeno, mas é só olhar no gráfico que temos muitos casos de mutações muito raras, que definitivamente estão associadas ao câncer de próstata.</p>
+            <img src="imagens/le04.png" height="600px">  
+        </div> 
+        
+        <label class="collapse" for="_12">
+            <p><span class="circulo"><span>+</span></span>Entre em <i>Final Plot</i> para ver a figura concluída.</p>
+        </label>
+        <input id="_12" type="checkbox">
+        <div> 
+            <img src="imagens/le05.png" height="600px">  
+        </div> 
+
+<h1>Agora você já sabe que ...</h1>
+
+        <div>
+            <ul>
+                <li>Podemos usar mutações no genoma para identificar em qual cromossomo, e mais especificamente, a posição em um cromossomo em que existem genes relacionados a uma determinada caractarístias.</li>
+                <li>Quando observados vários indivíduos de diferentes fenótipos, podemos contar as diferenças nos registros de alelos para quantificar a sua associação aos fenótipos, quanto maior essa associação, maior a chance do SNP estar dentro ou próximo ao gene que determina o fenótipo.</li>
+                <li>Existem ainda medidas, como o chi-quadrado, que podem medir essa associação independente do número de amostras.</li>
+                <li>Podemos usar o gráfico de Manhatan para mostrar essas associações.</li>
+            </ul> 
+
+
+            <p>Atividade retirada de:</p>            
+            <p><a href="http://www.hhmi.org/biointeractive/mapping-genes-traits-dogs-using-snps">Mapping Genes to Traits in Dogs Using SNPs</a>.</p>
+
+            <h1>Referência:</h1>
+
+            <p><a href="http://recologia.com.br/2014/03/a-distribuicao-chi-quadrado/">Texto sobre a distribuição chi-quadrado</a>.</p>
+
+    </body>
+</html>

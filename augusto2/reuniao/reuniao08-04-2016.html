@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Reunião 08/04/2016</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+
+    <div>
+	<h1>Reunião 08/04/2016</h1>
+
+
+	<h2>Métodos do artigo do Kao</h2>
+
+	<p><a href="https://dx.doi.org/10.1371/journal.pone.0149017" target="_blank">Artigo</a></p>
+
+	<iframe src="methods_kao.html"></iframe>
+
+	<h2>O que falta fazer para começar a rodar as coisas? </h2>
+
+	<ol>
+	    <li><strike>Baixar sequências</strike></li>
+	    <li><strike>Selecionar o que vai ser usado</strike></li>
+	    <li>Terminar script para converter saida do nucmer para algo igual ao vcf</li>
+	    <li>Dar merge com vcfs da sequências prontas</li>
+	    <li>Concatenar snps</li>
+	    <li>Alinhar tudo</li>
+	    <li>Passar no gblocks</li>
+	    <li>Rodar modelo no Beast</li>
+	    <li>Validar com Bats</li>
+	</ol>
+
+
+	<h3>Terminar script para converter saida do nucmer para algo igual ao vcf</h3>
+	<p><a href="http://samtools.github.io/hts-specs/VCFv4.2.pdf">Manual do formato vcf</a></p>
+
+	<p>1.4 Data lines<br/>
+	    1.4.1 Fixed  fields<br/>
+	    4. REF: ...<q>For  simple  insertions  and deletions in which either the REF <br/>
+	    or one of the ALT alleles would otherwise be null/empty, the REF and ALT<br/>
+	    Strings must include the base before the event (which must be re ected in the POS  eld),  unless the event<br/>
+	    occurs at position 1 on the contig in which case it must include the base after the event; this padding base is <br/>
+	    not required (although it is permitted) for e.g.  complex substitutions or other events where all alleles have at<br/>
+	    least one base represented in their Strings</q></p>
+	
+		
+
+	
+
+	
+
+	
+
+    <footer>
+      <p>Navegação</p>
+      <p><a href="../index.html">Início</a> <a href="index.html">Lista de reuniões</a></p>
+    </footer>
+    
+    
+  </body>
+
+
+</html>

@@ -1,0 +1,16 @@
+     15    5
+A_alutaceus    11111
+A_angusticeps  11111
+A_chlorocyanus 11111
+A_cristatellus 11111
+A_cybotes      11111
+A_grahami      11111
+A_lineatopus   11111
+A_occultus     11111
+A_olssoni      11111
+A_ophiolepis   11111
+A_porcatus     11111
+A_pulchellus   11111
+A_sagrei       11111
+A_shelpani     11111
+A_valencienni  11111
